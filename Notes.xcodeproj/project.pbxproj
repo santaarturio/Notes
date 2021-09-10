@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5246C0CC26EB572C005FA1D4 /* APIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5246C0CB26EB572C005FA1D4 /* APIProtocol.swift */; };
+		5246C0D026EB5984005FA1D4 /* NotesTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5246C0CF26EB5984005FA1D4 /* NotesTarget.swift */; };
+		5246C0D626EB66B8005FA1D4 /* KeyHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5246C0D526EB66B8005FA1D4 /* KeyHolder.swift */; };
+		5246C0D826EB7F70005FA1D4 /* NoteDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5246C0D726EB7F70005FA1D4 /* NoteDTO.swift */; };
+		5246C0DB26EB9049005FA1D4 /* LoginAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5246C0DA26EB9049005FA1D4 /* LoginAPIProtocol.swift */; };
+		5246C0DD26EB926D005FA1D4 /* LoginAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5246C0DC26EB926D005FA1D4 /* LoginAPI.swift */; };
+		5246C0DF26EB92BE005FA1D4 /* LoginTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5246C0DE26EB92BE005FA1D4 /* LoginTarget.swift */; };
+		5246C0E126EB9F88005FA1D4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5246C0E026EB9F88005FA1D4 /* User.swift */; };
+		5246C0E326EB9FC1005FA1D4 /* UserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5246C0E226EB9FC1005FA1D4 /* UserDTO.swift */; };
 		528D2DE226E8FC930095AA77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528D2DE126E8FC930095AA77 /* AppDelegate.swift */; };
 		528D2DEB26E8FC980095AA77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 528D2DEA26E8FC980095AA77 /* Assets.xcassets */; };
 		528D2DEE26E8FC980095AA77 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 528D2DEC26E8FC980095AA77 /* LaunchScreen.storyboard */; };
@@ -26,6 +35,15 @@
 
 /* Begin PBXFileReference section */
 		51192068211AC726A2C53202 /* Pods_Notes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Notes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5246C0CB26EB572C005FA1D4 /* APIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIProtocol.swift; sourceTree = "<group>"; };
+		5246C0CF26EB5984005FA1D4 /* NotesTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesTarget.swift; sourceTree = "<group>"; };
+		5246C0D526EB66B8005FA1D4 /* KeyHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyHolder.swift; sourceTree = "<group>"; };
+		5246C0D726EB7F70005FA1D4 /* NoteDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDTO.swift; sourceTree = "<group>"; };
+		5246C0DA26EB9049005FA1D4 /* LoginAPIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAPIProtocol.swift; sourceTree = "<group>"; };
+		5246C0DC26EB926D005FA1D4 /* LoginAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAPI.swift; sourceTree = "<group>"; };
+		5246C0DE26EB92BE005FA1D4 /* LoginTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTarget.swift; sourceTree = "<group>"; };
+		5246C0E026EB9F88005FA1D4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		5246C0E226EB9FC1005FA1D4 /* UserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDTO.swift; sourceTree = "<group>"; };
 		528D2DDE26E8FC930095AA77 /* Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Notes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		528D2DE126E8FC930095AA77 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		528D2DEA26E8FC980095AA77 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -58,6 +76,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5246C0CD26EB5951005FA1D4 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				5246C0DA26EB9049005FA1D4 /* LoginAPIProtocol.swift */,
+				528D2E1F26EA1E300095AA77 /* NotesAPIProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		5246C0CE26EB595A005FA1D4 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				5246C0DC26EB926D005FA1D4 /* LoginAPI.swift */,
+				528D2E2126EA1E620095AA77 /* NotesAPI.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		5246C0D126EB5988005FA1D4 /* Targets */ = {
+			isa = PBXGroup;
+			children = (
+				5246C0DE26EB92BE005FA1D4 /* LoginTarget.swift */,
+				5246C0CF26EB5984005FA1D4 /* NotesTarget.swift */,
+			);
+			path = Targets;
+			sourceTree = "<group>";
+		};
+		5246C0D926EB8073005FA1D4 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				5246C0E226EB9FC1005FA1D4 /* UserDTO.swift */,
+				5246C0D726EB7F70005FA1D4 /* NoteDTO.swift */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
 		528D2DD526E8FC930095AA77 = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +186,7 @@
 			children = (
 				528D2E0926EA08C60095AA77 /* CoreDataModel.xcdatamodeld */,
 				528D2E2326EA338A0095AA77 /* Note.swift */,
+				5246C0E026EB9F88005FA1D4 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -180,8 +235,11 @@
 		528D2E0C26EA10BA0095AA77 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				528D2E1F26EA1E300095AA77 /* NotesAPIProtocol.swift */,
-				528D2E2126EA1E620095AA77 /* NotesAPI.swift */,
+				5246C0CB26EB572C005FA1D4 /* APIProtocol.swift */,
+				5246C0D926EB8073005FA1D4 /* DTO */,
+				5246C0CD26EB5951005FA1D4 /* Protocols */,
+				5246C0CE26EB595A005FA1D4 /* API */,
+				5246C0D126EB5988005FA1D4 /* Targets */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -189,6 +247,7 @@
 		528D2E0D26EA10D00095AA77 /* Misc */ = {
 			isa = PBXGroup;
 			children = (
+				5246C0D526EB66B8005FA1D4 /* KeyHolder.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -332,12 +391,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5246C0D026EB5984005FA1D4 /* NotesTarget.swift in Sources */,
+				5246C0D626EB66B8005FA1D4 /* KeyHolder.swift in Sources */,
 				528D2DE226E8FC930095AA77 /* AppDelegate.swift in Sources */,
 				528D2E0426EA08560095AA77 /* NotesViewModel.swift in Sources */,
+				5246C0DD26EB926D005FA1D4 /* LoginAPI.swift in Sources */,
 				528D2E2026EA1E300095AA77 /* NotesAPIProtocol.swift in Sources */,
+				5246C0D826EB7F70005FA1D4 /* NoteDTO.swift in Sources */,
+				5246C0DF26EB92BE005FA1D4 /* LoginTarget.swift in Sources */,
+				5246C0E126EB9F88005FA1D4 /* User.swift in Sources */,
+				5246C0CC26EB572C005FA1D4 /* APIProtocol.swift in Sources */,
 				528D2DF826E9FF420095AA77 /* NotesTableVC.swift in Sources */,
 				528D2DFF26EA07B60095AA77 /* NotesTableCell.swift in Sources */,
+				5246C0E326EB9FC1005FA1D4 /* UserDTO.swift in Sources */,
 				528D2E0B26EA08C60095AA77 /* CoreDataModel.xcdatamodeld in Sources */,
+				5246C0DB26EB9049005FA1D4 /* LoginAPIProtocol.swift in Sources */,
 				528D2E1E26EA1DBA0095AA77 /* DBManagerProtocol.swift in Sources */,
 				528D2E0226EA08240095AA77 /* NotesCreationVC.swift in Sources */,
 				528D2E2226EA1E620095AA77 /* NotesAPI.swift in Sources */,
