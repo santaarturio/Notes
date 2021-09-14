@@ -1,8 +1,8 @@
+// MARK: - General -
+"App.General.logo-accessibilityLabel" = "логотип приложения";
+
 // MARK: - Login -
 "App.Login.SignUp" = "Зарегистрироваться";
 "App.Login.SignIn" = "Войти";
-"App.Login.Go" = "Вперед!";
-"App.Login.fillAllFields" = "Заполните все поля";
-"App.Login.Placeholder.Name" = "имя";
 "App.Login.Placeholder.Email" = "электронная почта";
 "App.Login.Placeholder.Password" = "пароль";

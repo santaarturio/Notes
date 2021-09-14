@@ -56,7 +56,7 @@ struct KeyHolder {
 
 extension KeyHolder {
   
-  static func isUserLoggedIn() -> Bool {
-    get(.email) != nil && get(.password) != nil
+  static var isUserLoggedIn: Bool {
+    return get(.email) != nil && get(.password) != nil
   }
 }

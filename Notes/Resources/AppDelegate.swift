@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 private extension AppDelegate {
   
   private func refreshToken() {
-    if KeyHolder.isUserLoggedIn() {
+    if KeyHolder.isUserLoggedIn {
       LoginAPI()
         .signIn(
           email: KeyHolder.get(.email) ?? "",

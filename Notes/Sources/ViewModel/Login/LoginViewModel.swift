@@ -7,10 +7,6 @@ final class LoginViewModel {
   private var cancellables: Set<AnyCancellable> = []
   
   // MARK: - Input
-  let backSubject = PassthroughSubject<Void, Never>()
-  let goSubject = PassthroughSubject<Void, Never>()
-  
-  let nameSubject = CurrentValueSubject<String, Never>("")
   let emailSubject = CurrentValueSubject<String, Never>("")
   let passwordSubject = CurrentValueSubject<String, Never>("")
   
@@ -18,9 +14,8 @@ final class LoginViewModel {
   let signInSubject = PassthroughSubject<Void, Never>()
   
   // MARK: - Output
-  let stateSubject = PassthroughSubject<State, Never>(); enum State {
-    case initial, signUp, signIn, go(Bool)
-  }
+  let canGoSubject = PassthroughSubject<Bool, Never>()
+  let isDownloadingSubject = PassthroughSubject<Bool, Never>()
   
   init() { bindData() }
 }
@@ -29,34 +24,16 @@ final class LoginViewModel {
 extension LoginViewModel {
   
   func bindData() {
-    backSubject
-      .map { .initial }
-      .subscribe(stateSubject)
-      .store(in: &cancellables)
-    
-    signUpSubject
-      .map { .signUp }
-      .subscribe(stateSubject)
-      .store(in: &cancellables)
-    
-    signInSubject
-      .map { .signIn }
-      .subscribe(stateSubject)
-      .store(in: &cancellables)
-    
     emailSubject
       .combineLatest(passwordSubject)
-      .dropFirst()
-      .map { .go($0.count > 9 && $1.count > 7) }
-      .subscribe(stateSubject)
+      .map { $0.count > 9 && $1.count > 7 }
+      .subscribe(canGoSubject)
       .store(in: &cancellables)
     
     let signUp = signUpSubject
-      .zip(goSubject)
       .map { _ in Endpoint.signUp }
     
     let signIn = signInSubject
-      .zip(goSubject)
       .map { _ in Endpoint.signIn }
     
     signUp.merge(with: signIn)
@@ -67,8 +44,11 @@ extension LoginViewModel {
   // MARK: - Handle Login
   private enum Endpoint { case signUp, signIn }
   private func handleLogin(_ endpoint: Endpoint) {
+    isDownloadingSubject.send(true)
     
     func handleResult(_ result: Result<UserDTO, Error>) {
+      isDownloadingSubject.send(false)
+      
       switch result {
       case let .success(userDTO):
         KeyHolder.update(emailSubject.value, for: .email)
@@ -85,7 +65,7 @@ extension LoginViewModel {
     case .signUp:
       api
         .signUp(
-          name: nameSubject.value,
+          name: "",
           email: emailSubject.value,
           password: passwordSubject.value,
           completion: handleResult(_:)

@@ -8,23 +8,27 @@ final class Router {
   private var navigationController = UINavigationController()
   
   enum Destination {
-    case notes
+    case notes, login
   }
   
   func setRootViewController(_ window: UIWindow?) {
     navigationController = UINavigationController(
-      rootViewController: KeyHolder.isUserLoggedIn()
-        ? factory.makeNotesVC()
-        : factory.makeLoginVC()
+      rootViewController: factory.makeNotesVC()
     )
     window?.rootViewController = navigationController
   }
   
   func navigate(to destination: Destination) {
     switch destination {
+    case .login:
+      let loginVC = factory.makeLoginVC()
+      loginVC.modalPresentationStyle = .fullScreen
+      navigationController
+        .present(loginVC, animated: true, completion: nil)
+      
     case .notes:
       navigationController
-        .pushViewController(factory.makeNotesVC(), animated: true)
+        .dismiss(animated: true, completion: nil)
     }
   }
 }
