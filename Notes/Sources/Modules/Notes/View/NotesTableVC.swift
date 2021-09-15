@@ -3,16 +3,13 @@ import UIKit
 final class NotesTableVC: UITableViewController, Bindable {
   
   var viewModel: NotesViewModel!
-  private let router: Router = .shared
   
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    
-    if KeyHolder.isUserLoggedIn == false { router.navigate(to: .login) }
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    viewModel.loginIfNeeded.send()
   }
   
   func bind(_ viewModel: NotesViewModel) {
     self.viewModel = viewModel
   }
-  
 }

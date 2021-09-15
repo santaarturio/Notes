@@ -10,17 +10,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
   ) -> Bool {
     
+    setupWindow()
     refreshToken()
-    
-    window = UIWindow(frame: UIScreen.main.bounds)
-    Router.shared.setRootViewController(window)
-    window?.makeKeyAndVisible()
     
     return true
   }
 }
 
 private extension AppDelegate {
+  
+  private func setupWindow() {
+    window = UIWindow(frame: UIScreen.main.bounds)
+    window?.rootViewController = Factory.shared.makeNotesVC()
+    window?.makeKeyAndVisible()
+  }
   
   private func refreshToken() {
     if KeyHolder.isUserLoggedIn {

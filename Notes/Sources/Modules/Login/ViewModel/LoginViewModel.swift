@@ -2,7 +2,8 @@ import Combine
 
 final class LoginViewModel {
   
-  private let api = LoginAPI()
+  private let api: LoginAPI
+  private let navigator: LoginNavigator
   
   private var cancellables: Set<AnyCancellable> = []
   
@@ -17,7 +18,15 @@ final class LoginViewModel {
   let canGoSubject = PassthroughSubject<Bool, Never>()
   let isDownloadingSubject = PassthroughSubject<Bool, Never>()
   
-  init() { bindData() }
+  init(
+    api: LoginAPI,
+    navigator: LoginNavigator)
+  {
+    self.api = api
+    self.navigator = navigator
+    
+    bindData()
+  }
 }
 
 // MARK: - Bind Data
@@ -54,7 +63,8 @@ extension LoginViewModel {
         KeyHolder.update(emailSubject.value, for: .email)
         KeyHolder.update(passwordSubject.value, for: .password)
         KeyHolder.update(userDTO.jwt ?? "", for: .token)
-        Router.shared.navigate(to: .notes)
+        
+        navigator.navigate(to: .dismiss)
         
       case let .failure(error):
         print(error.localizedDescription)
