@@ -43,38 +43,35 @@ final class LoginVC: UIViewController, Bindable {
   func bind(_ viewModel: LoginViewModel) {
     self.viewModel = viewModel
     
-    signUpButton
-      .publisher(for: .touchUpInside)
-      .map { _ in () }
-      .subscribe(viewModel.signUpSubject)
-      .store(in: &cancellables)
-    
-    signInButton
-      .publisher(for: .touchUpInside)
-      .map { _ in () }
-      .subscribe(viewModel.signInSubject)
-      .store(in: &cancellables)
-    
     emailTextField
       .publisher(for: .editingChanged)
       .compactMap(\.text)
-      .subscribe(viewModel.emailSubject)
-      .store(in: &cancellables)
+      .assign(to: &viewModel.$email)
     
     passwordTextField
       .publisher(for: .editingChanged)
       .compactMap(\.text)
-      .subscribe(viewModel.passwordSubject)
-      .store(in: &cancellables)
+      .assign(to: &viewModel.$password)
     
     viewModel
-      .canGoSubject
+      .$login
+      .map { $0 != nil }
       .sink(receiveValue: weakify(LoginVC.handleIsEnabled, object: self))
       .store(in: &cancellables)
     
     viewModel
-      .isDownloadingSubject
+      .$isDownloading
       .sink(receiveValue: weakify(LoginVC.handleIsDownloading, object: self))
+      .store(in: &cancellables)
+    
+    signInButton
+      .publisher(for: .touchUpInside)
+      .sink(receiveValue: { [weak viewModel] _ in viewModel?.login?(.signIn) })
+      .store(in: &cancellables)
+    
+    signUpButton
+      .publisher(for: .touchUpInside)
+      .sink(receiveValue: { [weak viewModel] _ in viewModel?.login?(.signUp) })
       .store(in: &cancellables)
   }
   

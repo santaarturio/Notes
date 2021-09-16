@@ -1,67 +1,46 @@
 import Combine
+import SwiftUI
 
-final class LoginViewModel {
+final class LoginViewModel: ObservableObject {
   
   private let api: LoginAPI
   private let navigator: LoginNavigator
   
   private var cancellables: Set<AnyCancellable> = []
   
-  // MARK: - Input
-  let emailSubject = CurrentValueSubject<String, Never>("")
-  let passwordSubject = CurrentValueSubject<String, Never>("")
-  
-  let signUpSubject = PassthroughSubject<Void, Never>()
-  let signInSubject = PassthroughSubject<Void, Never>()
-  
-  // MARK: - Output
-  let canGoSubject = PassthroughSubject<Bool, Never>()
-  let isDownloadingSubject = PassthroughSubject<Bool, Never>()
+  @Published var email = ""
+  @Published var password = ""
+  @Published private(set) var login: ((Endpoint) -> Void)?
+  @Published var isDownloading = false
   
   init(
     api: LoginAPI,
-    navigator: LoginNavigator)
-  {
+    navigator: LoginNavigator
+  ) {
     self.api = api
     self.navigator = navigator
     
-    bindData()
+    $email
+      .combineLatest($password)
+      .map { $0.count > 9 && $1.count > 7 ? weakify(LoginViewModel.handleLogin, object: self) : nil }
+      .assign(to: &$login)
   }
 }
 
-// MARK: - Bind Data
 extension LoginViewModel {
   
-  func bindData() {
-    emailSubject
-      .combineLatest(passwordSubject)
-      .map { $0.count > 9 && $1.count > 7 }
-      .subscribe(canGoSubject)
-      .store(in: &cancellables)
-    
-    let signUp = signUpSubject
-      .map { _ in Endpoint.signUp }
-    
-    let signIn = signInSubject
-      .map { _ in Endpoint.signIn }
-    
-    signUp.merge(with: signIn)
-      .sink(receiveValue: weakify(LoginViewModel.handleLogin, object: self))
-      .store(in: &cancellables)
-  }
-  
   // MARK: - Handle Login
-  private enum Endpoint { case signUp, signIn }
+  enum Endpoint { case signUp, signIn }
   private func handleLogin(_ endpoint: Endpoint) {
-    isDownloadingSubject.send(true)
+    isDownloading = true
     
     func handleResult(_ result: Result<UserDTO, Error>) {
-      isDownloadingSubject.send(false)
+      isDownloading = false
       
       switch result {
       case let .success(userDTO):
-        KeyHolder.update(emailSubject.value, for: .email)
-        KeyHolder.update(passwordSubject.value, for: .password)
+        KeyHolder.update(email, for: .email)
+        KeyHolder.update(password, for: .password)
         KeyHolder.update(userDTO.jwt ?? "", for: .token)
         
         navigator.navigate(to: .dismiss)
@@ -76,16 +55,16 @@ extension LoginViewModel {
       api
         .signUp(
           name: "",
-          email: emailSubject.value,
-          password: passwordSubject.value,
+          email: email,
+          password: password,
           completion: handleResult(_:)
         )
       
     case .signIn:
       api
         .signIn(
-          email: emailSubject.value,
-          password: passwordSubject.value,
+          email: email,
+          password: password,
           completion: handleResult(_:)
         )
     }

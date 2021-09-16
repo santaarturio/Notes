@@ -1,4 +1,5 @@
 import UIKit
+import SwiftUI
 
 final class Factory: FactoryProtocol {
   
@@ -7,10 +8,8 @@ final class Factory: FactoryProtocol {
   private let navigationController: UINavigationController = .init()
   
   func makeLoginVC() -> UIViewController {
-    let vc = LoginVC()
-    let viewModel = LoginViewModel(api: .init(), navigator: .init(base: navigationController))
-    vc.bind(viewModel)
-    return vc
+    let view = LoginScreen(viewModel: LoginViewModel(api: .init(), navigator: .init(base: navigationController)))
+    return UIHostingController(rootView: view, ignoreSafeArea: true)
   }
   
   func makeNotesVC() -> UIViewController {

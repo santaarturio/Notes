@@ -6,3 +6,4 @@
 "App.Login.SignIn" = "Войти";
 "App.Login.Placeholder.Email" = "электронная почта";
 "App.Login.Placeholder.Password" = "пароль";
+"App.Login.Authorization" = "Авторизация...";

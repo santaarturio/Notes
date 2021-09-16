@@ -6,3 +6,4 @@
 "App.Login.SignIn" = "Sign In";
 "App.Login.Placeholder.Email" = "email";
 "App.Login.Placeholder.Password" = "password";
+"App.Login.Authorization" = "Authorization...";

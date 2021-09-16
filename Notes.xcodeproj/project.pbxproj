@@ -50,6 +50,11 @@
 		52A9845526F13BEC003589BE /* NavigatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A9845426F13BEC003589BE /* NavigatorProtocol.swift */; };
 		52A9845726F13C91003589BE /* LoginNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A9845626F13C91003589BE /* LoginNavigator.swift */; };
 		52A9845926F13E2B003589BE /* NotesNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A9845826F13E2B003589BE /* NotesNavigator.swift */; };
+		52A9846726F20F74003589BE /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A9846626F20F74003589BE /* LoginScreen.swift */; };
+		52A9846926F25078003589BE /* KeyboardResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A9846826F25078003589BE /* KeyboardResponder.swift */; };
+		52A9846C26F34074003589BE /* UIHostingController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A9846B26F34074003589BE /* UIHostingController+Extensions.swift */; };
+		52A9846E26F345D9003589BE /* UIScreen+Extenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A9846D26F345D9003589BE /* UIScreen+Extenstions.swift */; };
+		52A9847026F362D7003589BE /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A9846F26F362D7003589BE /* ActivityIndicator.swift */; };
 		B2D61CE14A57B6D96928D18A /* Pods_Notes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51192068211AC726A2C53202 /* Pods_Notes.framework */; };
 /* End PBXBuildFile section */
 
@@ -102,6 +107,11 @@
 		52A9845426F13BEC003589BE /* NavigatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorProtocol.swift; sourceTree = "<group>"; };
 		52A9845626F13C91003589BE /* LoginNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNavigator.swift; sourceTree = "<group>"; };
 		52A9845826F13E2B003589BE /* NotesNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesNavigator.swift; sourceTree = "<group>"; };
+		52A9846626F20F74003589BE /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
+		52A9846826F25078003589BE /* KeyboardResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardResponder.swift; sourceTree = "<group>"; };
+		52A9846B26F34074003589BE /* UIHostingController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIHostingController+Extensions.swift"; sourceTree = "<group>"; };
+		52A9846D26F345D9003589BE /* UIScreen+Extenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extenstions.swift"; sourceTree = "<group>"; };
+		52A9846F26F362D7003589BE /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		55AD57DBDDEEF1F114559BF6 /* Pods-Notes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Notes.release.xcconfig"; path = "Target Support Files/Pods-Notes/Pods-Notes.release.xcconfig"; sourceTree = "<group>"; };
 		97DCDFD44247B7209E50FE8D /* Pods-Notes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Notes.debug.xcconfig"; path = "Target Support Files/Pods-Notes/Pods-Notes.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -288,14 +298,15 @@
 		528D2E0D26EA10D00095AA77 /* Misc */ = {
 			isa = PBXGroup;
 			children = (
+				5246C10126EDF18C005FA1D4 /* UIKit */,
+				52A9846A26F34051003589BE /* SwiftUI */,
+				5246C10626EF48D6005FA1D4 /* Combine */,
 				52A9845226F13B6D003589BE /* Mixin.swift */,
 				5246C10226EE15BD005FA1D4 /* Weakify.swift */,
 				5246C0D526EB66B8005FA1D4 /* KeyHolder.swift */,
 				52A9845426F13BEC003589BE /* NavigatorProtocol.swift */,
 				5246C0EA26EC97FE005FA1D4 /* ViewCodeProtocol.swift */,
 				5246C0EC26EC9CFE005FA1D4 /* BindableProtocol.swift */,
-				5246C10126EDF18C005FA1D4 /* UIKit */,
-				5246C10626EF48D6005FA1D4 /* Combine */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -343,6 +354,7 @@
 			isa = PBXGroup;
 			children = (
 				5246C0E426EC9704005FA1D4 /* LoginVC.swift */,
+				52A9846626F20F74003589BE /* LoginScreen.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -409,6 +421,17 @@
 			children = (
 			);
 			path = Navigator;
+			sourceTree = "<group>";
+		};
+		52A9846A26F34051003589BE /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				52A9846826F25078003589BE /* KeyboardResponder.swift */,
+				52A9846B26F34074003589BE /* UIHostingController+Extensions.swift */,
+				52A9846D26F345D9003589BE /* UIScreen+Extenstions.swift */,
+				52A9846F26F362D7003589BE /* ActivityIndicator.swift */,
+			);
+			path = SwiftUI;
 			sourceTree = "<group>";
 		};
 		AE3F3797A08DF64DF2C888A7 /* Frameworks */ = {
@@ -576,8 +599,12 @@
 				528D2E2026EA1E300095AA77 /* NotesAPIProtocol.swift in Sources */,
 				5246C0D826EB7F70005FA1D4 /* NoteDTO.swift in Sources */,
 				5246C0DF26EB92BE005FA1D4 /* LoginTarget.swift in Sources */,
+				52A9846726F20F74003589BE /* LoginScreen.swift in Sources */,
 				5246C0E126EB9F88005FA1D4 /* User.swift in Sources */,
+				52A9847026F362D7003589BE /* ActivityIndicator.swift in Sources */,
 				5246C10526EF48CA005FA1D4 /* CombineCompatible.swift in Sources */,
+				52A9846926F25078003589BE /* KeyboardResponder.swift in Sources */,
+				52A9846C26F34074003589BE /* UIHostingController+Extensions.swift in Sources */,
 				5246C0CC26EB572C005FA1D4 /* APIProtocol.swift in Sources */,
 				528D2DF826E9FF420095AA77 /* NotesTableVC.swift in Sources */,
 				528D2DFF26EA07B60095AA77 /* NotesTableCell.swift in Sources */,
@@ -589,6 +616,7 @@
 				5246C0ED26EC9CFE005FA1D4 /* BindableProtocol.swift in Sources */,
 				5246C10A26EF494E005FA1D4 /* UIGestureRecognizer+Combine.swift in Sources */,
 				528D2E1E26EA1DBA0095AA77 /* DBManagerProtocol.swift in Sources */,
+				52A9846E26F345D9003589BE /* UIScreen+Extenstions.swift in Sources */,
 				528D2E0226EA08240095AA77 /* NotesCreationVC.swift in Sources */,
 				5246C10826EF48FE005FA1D4 /* UIControl+Combine.swift in Sources */,
 				5246C10326EE15BD005FA1D4 /* Weakify.swift in Sources */,
