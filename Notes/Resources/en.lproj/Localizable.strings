@@ -1,9 +1,0 @@
-// MARK: - General -
-"App.General.logo-accessibilityLabel" = "application's logo";
-
-// MARK: - Login -
-"App.Login.SignUp" = "Sign Up";
-"App.Login.SignIn" = "Sign In";
-"App.Login.Placeholder.Email" = "email";
-"App.Login.Placeholder.Password" = "password";
-"App.Login.Authorization" = "Authorization...";

@@ -1,5 +1,5 @@
-input_dir: Notes
-output_dir: Notes
+input_dir: notes
+output_dir: notes
 
 strings:
   inputs: Resources/en.lproj

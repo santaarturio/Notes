@@ -1,6 +1,6 @@
 platform :ios, '14.0'
 
-target 'Notes' do
+target 'notes' do
   
   use_frameworks!
 
