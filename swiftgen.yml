@@ -1,0 +1,16 @@
+input_dir: Notes
+output_dir: Notes
+
+strings:
+  inputs: Resources/en.lproj
+  outputs:
+    - templateName: structured-swift5
+      output: Resources/Generated/Strings.swift
+      
+xcassets:
+  inputs:
+    - Resources/Assets.xcassets
+  outputs:
+    - templateName: swift5
+      output: Resources/Generated/Assets.swift
+

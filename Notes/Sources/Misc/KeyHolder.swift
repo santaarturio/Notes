@@ -36,12 +36,27 @@ struct KeyHolder {
   }
   
   // MARK: Remove
-  static func remove(_ value: String, for key: KeyType) {
+  static func remove(_ key: KeyType) {
     let keychainQuery: [CFString : Any] = [
       kSecClass: kSecClassGenericPassword,
       kSecAttrService: key.rawValue
     ]
     
     SecItemDelete(keychainQuery as CFDictionary)
+  }
+  
+  static func flush()  {
+    let secItemClasses =  [kSecClassGenericPassword]
+    for itemClass in secItemClasses {
+      let spec: NSDictionary = [kSecClass: itemClass]
+      SecItemDelete(spec)
+    }
+  }
+}
+
+extension KeyHolder {
+  
+  static var isUserLoggedIn: Bool {
+    return get(.email) != nil && get(.password) != nil
   }
 }
