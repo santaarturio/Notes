@@ -9,7 +9,7 @@ final class SignUpViewModel: ObservableObject {
   @Published var name = ""
   @Published var email = ""
   @Published var password = ""
-  @Published private(set) var signUp: (() -> Void)?
+  @Published var signUp: (() -> Void)?
   @Published var isDownloading = false
   
   init(api: LoginAPIProtocol) {

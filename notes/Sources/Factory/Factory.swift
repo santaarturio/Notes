@@ -2,23 +2,23 @@ import SwiftUI
 
 struct Factory: FactoryProtocol {
   
-  func makeRootScreen() -> AnyView {
-    AnyView(RootView(login: makeLoginScreen, notes: makeNotesScreen))
+  func makeRootView() -> AnyView {
+    AnyView(RootView(login: makeLoginView, notes: makeNotesView))
   }
   
-  func makeLoginScreen() -> AnyView {
-    AnyView(LoginScreen(viewModel: LoginViewModel(api: LoginAPI())))
+  func makeLoginView() -> AnyView {
+    AnyView(LoginView(viewModel: LoginViewModel(api: LoginAPI())))
   }
   
-  func makeSignUpScreen() -> AnyView {
-    AnyView(SignUpScreen(viewModel: SignUpViewModel(api: LoginAPI())))
+  func makeSignUpView() -> AnyView {
+    AnyView(SignUpView(viewModel: SignUpViewModel(api: LoginAPI())))
   }
   
-  func makeNotesScreen() -> AnyView {
-    AnyView(NotesScreen(viewModel: NotesViewModel(api: NotesAPI())))
+  func makeNotesView() -> AnyView {
+    AnyView(NotesView(viewModel: NotesViewModel(api: NotesAPI())))
   }
   
-  func makeCreateNoteScreen() -> AnyView {
-    AnyView(CreateNoteScreen(viewModel: CreateNoteViewModel(api: NotesAPI())))
+  func makeCreateNoteView() -> AnyView {
+    AnyView(CreateNoteView(viewModel: CreateNoteViewModel(api: NotesAPI())))
   }
 }

@@ -9,12 +9,12 @@ final class LoginViewModel: ObservableObject {
   private let factory: FactoryProtocol = Factory()
   
   private(set) lazy var signUpView: AnyView = { [weak self] in
-    AnyView(self?.factory.makeSignUpScreen())
+    AnyView(self?.factory.makeSignUpView())
   }()
   
   @Published var email = ""
   @Published var password = ""
-  @Published private(set) var signIn: (() -> Void)?
+  @Published var signIn: (() -> Void)?
   @Published var isDownloading = false
   
   init(api: LoginAPIProtocol) {

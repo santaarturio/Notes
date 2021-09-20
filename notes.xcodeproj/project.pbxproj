@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		524C45D326F4D8B9009EB4EC /* CreateNoteScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C45D226F4D8B9009EB4EC /* CreateNoteScreen.swift */; };
+		524C45D326F4D8B9009EB4EC /* CreateNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C45D226F4D8B9009EB4EC /* CreateNoteView.swift */; };
 		524C45D526F4D8DB009EB4EC /* CreateNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C45D426F4D8DB009EB4EC /* CreateNoteViewModel.swift */; };
 		52A984A426F3DD7B003589BE /* notesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984A326F3DD7B003589BE /* notesApp.swift */; };
 		52A984A826F3DD7F003589BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52A984A726F3DD7F003589BE /* Assets.xcassets */; };
@@ -27,27 +27,27 @@
 		52A984DA26F3E20C003589BE /* KeyHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984D926F3E20C003589BE /* KeyHolder.swift */; };
 		52A984F526F3E3D8003589BE /* NotesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984E426F3E3D8003589BE /* NotesViewModel.swift */; };
 		52A984F926F3E3D8003589BE /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984ED26F3E3D8003589BE /* LoginViewModel.swift */; };
-		52A984FB26F3E3D8003589BE /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984F026F3E3D8003589BE /* LoginScreen.swift */; };
-		52A984FE26F3E438003589BE /* NotesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984FD26F3E438003589BE /* NotesScreen.swift */; };
+		52A984FB26F3E3D8003589BE /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984F026F3E3D8003589BE /* LoginView.swift */; };
+		52A984FE26F3E438003589BE /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984FD26F3E438003589BE /* NotesView.swift */; };
 		52A9850126F3E4AC003589BE /* Weakify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984FF26F3E4AC003589BE /* Weakify.swift */; };
 		52A9850226F3E4AC003589BE /* Mixin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A9850026F3E4AC003589BE /* Mixin.swift */; };
 		52A9850726F3E504003589BE /* KeyboardResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A9850426F3E504003589BE /* KeyboardResponder.swift */; };
 		52A9850826F3E504003589BE /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A9850526F3E504003589BE /* ActivityIndicator.swift */; };
-		52A9850926F3E504003589BE /* UIScreen+Extenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A9850626F3E504003589BE /* UIScreen+Extenstions.swift */; };
+		52A9850926F3E504003589BE /* Binding+Extenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A9850626F3E504003589BE /* Binding+Extenstions.swift */; };
 		52A9850D26F3E654003589BE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52A9850F26F3E654003589BE /* Localizable.strings */; };
 		52A9851426F3E6FE003589BE /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A9851226F3E6FE003589BE /* Strings.swift */; };
 		52A9851526F3E6FE003589BE /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A9851326F3E6FE003589BE /* Assets.swift */; };
 		52A9851826F49F8B003589BE /* FactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A9851726F49F8B003589BE /* FactoryProtocol.swift */; };
 		52A9851A26F4A015003589BE /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A9851926F4A015003589BE /* Factory.swift */; };
 		52A9851C26F4A2E9003589BE /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A9851B26F4A2E9003589BE /* RootView.swift */; };
-		52A9852226F4B38D003589BE /* SignUpScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A9852126F4B38D003589BE /* SignUpScreen.swift */; };
+		52A9852226F4B38D003589BE /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A9852126F4B38D003589BE /* SignUpView.swift */; };
 		52A9852426F4B3A6003589BE /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A9852326F4B3A6003589BE /* SignUpViewModel.swift */; };
 		5EADD64D5A47695B2922E89E /* Pods_notes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23C6406D2C5A3D3F2DF24262 /* Pods_notes.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		23C6406D2C5A3D3F2DF24262 /* Pods_notes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_notes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		524C45D226F4D8B9009EB4EC /* CreateNoteScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNoteScreen.swift; sourceTree = "<group>"; };
+		524C45D226F4D8B9009EB4EC /* CreateNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNoteView.swift; sourceTree = "<group>"; };
 		524C45D426F4D8DB009EB4EC /* CreateNoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNoteViewModel.swift; sourceTree = "<group>"; };
 		52A984A026F3DD7B003589BE /* notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = notes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52A984A326F3DD7B003589BE /* notesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notesApp.swift; sourceTree = "<group>"; };
@@ -69,13 +69,13 @@
 		52A984D926F3E20C003589BE /* KeyHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyHolder.swift; sourceTree = "<group>"; };
 		52A984E426F3E3D8003589BE /* NotesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesViewModel.swift; sourceTree = "<group>"; };
 		52A984ED26F3E3D8003589BE /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		52A984F026F3E3D8003589BE /* LoginScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
-		52A984FD26F3E438003589BE /* NotesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesScreen.swift; sourceTree = "<group>"; };
+		52A984F026F3E3D8003589BE /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		52A984FD26F3E438003589BE /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
 		52A984FF26F3E4AC003589BE /* Weakify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weakify.swift; sourceTree = "<group>"; };
 		52A9850026F3E4AC003589BE /* Mixin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mixin.swift; sourceTree = "<group>"; };
 		52A9850426F3E504003589BE /* KeyboardResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardResponder.swift; sourceTree = "<group>"; };
 		52A9850526F3E504003589BE /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
-		52A9850626F3E504003589BE /* UIScreen+Extenstions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extenstions.swift"; sourceTree = "<group>"; };
+		52A9850626F3E504003589BE /* Binding+Extenstions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Binding+Extenstions.swift"; sourceTree = "<group>"; };
 		52A9850E26F3E654003589BE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		52A9851026F3E694003589BE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		52A9851226F3E6FE003589BE /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
@@ -83,7 +83,7 @@
 		52A9851726F49F8B003589BE /* FactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactoryProtocol.swift; sourceTree = "<group>"; };
 		52A9851926F4A015003589BE /* Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
 		52A9851B26F4A2E9003589BE /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
-		52A9852126F4B38D003589BE /* SignUpScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpScreen.swift; sourceTree = "<group>"; };
+		52A9852126F4B38D003589BE /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		52A9852326F4B3A6003589BE /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		D7D983098D17FF904B2991F2 /* Pods-notes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-notes.release.xcconfig"; path = "Target Support Files/Pods-notes/Pods-notes.release.xcconfig"; sourceTree = "<group>"; };
 		EE811D638C860AEDD5060497 /* Pods-notes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-notes.debug.xcconfig"; path = "Target Support Files/Pods-notes/Pods-notes.debug.xcconfig"; sourceTree = "<group>"; };
@@ -244,7 +244,7 @@
 		52A984DC26F3E3D8003589BE /* Creation */ = {
 			isa = PBXGroup;
 			children = (
-				524C45D226F4D8B9009EB4EC /* CreateNoteScreen.swift */,
+				524C45D226F4D8B9009EB4EC /* CreateNoteView.swift */,
 				524C45D426F4D8DB009EB4EC /* CreateNoteViewModel.swift */,
 			);
 			path = Creation;
@@ -253,7 +253,7 @@
 		52A984E226F3E3D8003589BE /* Notes */ = {
 			isa = PBXGroup;
 			children = (
-				52A984FD26F3E438003589BE /* NotesScreen.swift */,
+				52A984FD26F3E438003589BE /* NotesView.swift */,
 				52A984E426F3E3D8003589BE /* NotesViewModel.swift */,
 			);
 			path = Notes;
@@ -273,7 +273,7 @@
 			children = (
 				52A9850426F3E504003589BE /* KeyboardResponder.swift */,
 				52A9850526F3E504003589BE /* ActivityIndicator.swift */,
-				52A9850626F3E504003589BE /* UIScreen+Extenstions.swift */,
+				52A9850626F3E504003589BE /* Binding+Extenstions.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -299,7 +299,7 @@
 		52A9851F26F4B35E003589BE /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				52A984F026F3E3D8003589BE /* LoginScreen.swift */,
+				52A984F026F3E3D8003589BE /* LoginView.swift */,
 				52A984ED26F3E3D8003589BE /* LoginViewModel.swift */,
 			);
 			path = Login;
@@ -308,7 +308,7 @@
 		52A9852026F4B364003589BE /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
-				52A9852126F4B38D003589BE /* SignUpScreen.swift */,
+				52A9852126F4B38D003589BE /* SignUpView.swift */,
 				52A9852326F4B3A6003589BE /* SignUpViewModel.swift */,
 			);
 			path = SignUp;
@@ -464,22 +464,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52A9852226F4B38D003589BE /* SignUpScreen.swift in Sources */,
+				52A9852226F4B38D003589BE /* SignUpView.swift in Sources */,
 				52A984D626F3E1D0003589BE /* User.swift in Sources */,
-				52A984FE26F3E438003589BE /* NotesScreen.swift in Sources */,
+				52A984FE26F3E438003589BE /* NotesView.swift in Sources */,
 				52A984F926F3E3D8003589BE /* LoginViewModel.swift in Sources */,
 				52A9850226F3E4AC003589BE /* Mixin.swift in Sources */,
-				52A9850926F3E504003589BE /* UIScreen+Extenstions.swift in Sources */,
+				52A9850926F3E504003589BE /* Binding+Extenstions.swift in Sources */,
 				52A9851A26F4A015003589BE /* Factory.swift in Sources */,
 				52A9851826F49F8B003589BE /* FactoryProtocol.swift in Sources */,
 				52A9850726F3E504003589BE /* KeyboardResponder.swift in Sources */,
 				52A984CB26F3DFD0003589BE /* NotesTarget.swift in Sources */,
 				524C45D526F4D8DB009EB4EC /* CreateNoteViewModel.swift in Sources */,
-				52A984FB26F3E3D8003589BE /* LoginScreen.swift in Sources */,
+				52A984FB26F3E3D8003589BE /* LoginView.swift in Sources */,
 				52A9850126F3E4AC003589BE /* Weakify.swift in Sources */,
 				52A9851426F3E6FE003589BE /* Strings.swift in Sources */,
 				52A9851C26F4A2E9003589BE /* RootView.swift in Sources */,
-				524C45D326F4D8B9009EB4EC /* CreateNoteScreen.swift in Sources */,
+				524C45D326F4D8B9009EB4EC /* CreateNoteView.swift in Sources */,
 				52A984CA26F3DFD0003589BE /* LoginTarget.swift in Sources */,
 				52A984D526F3E1D0003589BE /* CoreDataModel.xcdatamodeld in Sources */,
 				52A9852426F4B3A6003589BE /* SignUpViewModel.swift in Sources */,

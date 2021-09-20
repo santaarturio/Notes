@@ -4,7 +4,7 @@ final class KeyHolder: ObservableObject {
   
   static let `default` = KeyHolder()
   
-  private init() { isUserLoggedIn = get(.email) != nil && get(.password) != nil }
+  private init() { isUserLoggedIn = get(.token) != nil }
   
   @Published var isUserLoggedIn: Bool = false
   
@@ -40,7 +40,9 @@ final class KeyHolder: ObservableObject {
     SecItemDelete(keychainQuery as CFDictionary)
     SecItemAdd(keychainQuery as CFDictionary, nil)
     
-    isUserLoggedIn = get(.email) != nil && get(.password) != nil
+    if key == .token && isUserLoggedIn == false {
+      isUserLoggedIn = true
+    }
   }
   
   // MARK: Flush
