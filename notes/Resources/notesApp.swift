@@ -4,6 +4,6 @@ import SwiftUI
 struct notesApp: App {
   
   var body: some Scene {
-    WindowGroup { Factory().makeRootScreen() }
+    WindowGroup { Factory().makeRootView() }
   }
 }

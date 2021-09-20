@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct CreateNoteScreen: View {
+struct CreateNoteView: View {
   
   @ObservedObject var viewModel: CreateNoteViewModel
   
@@ -11,6 +11,6 @@ struct CreateNoteScreen: View {
 
 struct CreateNoteScreen_Previews: PreviewProvider {
   static var previews: some View {
-    CreateNoteScreen(viewModel: CreateNoteViewModel(api: NotesAPI()))
+    CreateNoteView(viewModel: CreateNoteViewModel(api: NotesAPI()))
   }
 }

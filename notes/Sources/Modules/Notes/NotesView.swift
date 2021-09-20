@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct NotesScreen: View {
+struct NotesView: View {
   
   @ObservedObject var viewModel: NotesViewModel
   
@@ -20,6 +20,6 @@ struct NotesScreen: View {
 
 struct NotesScreen_Previews: PreviewProvider {
   static var previews: some View {
-    NotesScreen(viewModel: NotesViewModel(api: NotesAPI()))
+    NotesView(viewModel: NotesViewModel(api: NotesAPI()))
   }
 }

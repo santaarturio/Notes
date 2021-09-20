@@ -9,7 +9,7 @@ final class LoginViewModel: ObservableObject {
   private let factory: FactoryProtocol = Factory()
   
   private(set) lazy var signUpView: AnyView = { [weak self] in
-    AnyView(self?.factory.makeSignUpScreen())
+    AnyView(self?.factory.makeSignUpView())
   }()
   
   @Published var email = ""
