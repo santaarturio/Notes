@@ -14,7 +14,7 @@ final class LoginViewModel: ObservableObject {
   
   @Published var email = ""
   @Published var password = ""
-  @Published private(set) var signIn: (() -> Void)?
+  @Published var signIn: (() -> Void)?
   @Published var isDownloading = false
   
   init(api: LoginAPIProtocol) {
