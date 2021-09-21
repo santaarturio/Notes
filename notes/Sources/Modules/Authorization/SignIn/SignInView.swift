@@ -1,8 +1,8 @@
 import SwiftUI
 
-struct LoginView: View {
+struct SignInView: View {
   
-  @ObservedObject var viewModel: LoginViewModel
+  @ObservedObject var viewModel: SignInViewModel
   @ObservedObject var keyboardResponder = KeyboardResponder()
   
   @State var isSignUpPresented = false
@@ -36,7 +36,7 @@ struct LoginView: View {
 }
 
 // MARK: - Subviews
-private extension LoginView {
+private extension SignInView {
   
   // MARK: LogoImage
   struct LogoImage: View {
@@ -131,6 +131,6 @@ private extension LoginView {
 // MARK: - PreviewProvider
 struct LoginScreen_Previews: PreviewProvider {
   static var previews: some View {
-    LoginView(viewModel: .init(api: LoginAPI()))
+    SignInView(viewModel: .init(api: LoginAPI()))
   }
 }

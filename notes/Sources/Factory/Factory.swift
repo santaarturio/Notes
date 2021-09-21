@@ -3,22 +3,22 @@ import SwiftUI
 struct Factory: FactoryProtocol {
   
   func makeRootView() -> AnyView {
-    AnyView(RootView(login: makeLoginView, notes: makeNotesView))
+    AnyView(RootView(login: makeSignInView, notes: makeNotesListView))
   }
   
-  func makeLoginView() -> AnyView {
-    AnyView(LoginView(viewModel: LoginViewModel(api: LoginAPI())))
+  func makeSignInView() -> AnyView {
+    AnyView(SignInView(viewModel: SignInViewModel(api: LoginAPI())))
   }
   
   func makeSignUpView() -> AnyView {
     AnyView(SignUpView(viewModel: SignUpViewModel(api: LoginAPI())))
   }
   
-  func makeNotesView() -> AnyView {
-    AnyView(NotesView(viewModel: NotesViewModel(api: NotesAPI())))
+  func makeNotesListView() -> AnyView {
+    AnyView(NotesListView(viewModel: NotesListViewModel(api: NotesAPI())))
   }
   
-  func makeCreateNoteView() -> AnyView {
-    AnyView(CreateNoteView(viewModel: CreateNoteViewModel(api: NotesAPI())))
+  func makeNotesCreationView() -> AnyView {
+    AnyView(NotesCreationView(viewModel: NotesCreationViewModel(api: NotesAPI())))
   }
 }

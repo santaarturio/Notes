@@ -3,8 +3,8 @@ import SwiftUI
 protocol FactoryProtocol {
   
   func makeRootView() -> AnyView
-  func makeLoginView() -> AnyView
+  func makeSignInView() -> AnyView
   func makeSignUpView() -> AnyView
-  func makeNotesView() -> AnyView
-  func makeCreateNoteView() -> AnyView
+  func makeNotesListView() -> AnyView
+  func makeNotesCreationView() -> AnyView
 }

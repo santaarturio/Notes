@@ -1,7 +1,7 @@
 import SwiftUI
 import Combine
 
-final class LoginViewModel: ObservableObject {
+final class SignInViewModel: ObservableObject {
   
   private var cancellables: Set<AnyCancellable> = []
   
@@ -22,12 +22,12 @@ final class LoginViewModel: ObservableObject {
     
     $email
       .combineLatest($password)
-      .map { $0.count > 9 && $1.count > 7 ? weakify(LoginViewModel.handleSignIn, object: self) : nil }
+      .map { $0.count > 9 && $1.count > 7 ? weakify(SignInViewModel.handleSignIn, object: self) : nil }
       .assign(to: &$signIn)
   }
 }
 
-extension LoginViewModel {
+extension SignInViewModel {
   
   // MARK: - Sign In
   private func handleSignIn() {

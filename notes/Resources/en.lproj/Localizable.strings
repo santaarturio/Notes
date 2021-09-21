@@ -1,6 +1,6 @@
 // MARK: - General -
 "App.General.logo-accessibilityLabel" = "application's logo";
-"App.General.name" = "notes";
+"App.General.name" = "Notes";
 
 // MARK: - Login -
 "App.Login.SignUp" = "Sign Up";
@@ -10,3 +10,12 @@
 "App.Login.Placeholder.Email" = "email";
 "App.Login.Placeholder.Password" = "password";
 "App.Login.Authorization" = "Authorization...";
+
+// MARK: - List -
+"App.List.Empty.title" = "no title";
+"App.List.Empty.body" = "no additional text";
+
+// MARK: - Creation -
+"App.Creation.Done" = "Done";
+"App.Creation.Placeholder.Title" = "title";
+"App.Creation.Placeholder.Body" = "body";

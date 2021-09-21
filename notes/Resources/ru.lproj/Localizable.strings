@@ -1,6 +1,6 @@
 // MARK: - General -
 "App.General.logo-accessibilityLabel" = "логотип приложения";
-"App.General.name" = "заметки";
+"App.General.name" = "Заметки";
 
 // MARK: - Login -
 "App.Login.SignUp" = "Зарегистрироваться";
@@ -10,3 +10,12 @@
 "App.Login.Placeholder.Email" = "электронная почта";
 "App.Login.Placeholder.Password" = "пароль";
 "App.Login.Authorization" = "Авторизация...";
+
+// MARK: - List -
+"App.List.Empty.title" = "заголовок отсутствует";
+"App.List.Empty.body" = "нет дополнительного текста";
+
+// MARK: - Creation -
+"App.Creation.Done" = "Готово";
+"App.Creation.Placeholder.Title" = "заголовок";
+"App.Creation.Placeholder.Body" = "текст";
