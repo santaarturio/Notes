@@ -12,11 +12,29 @@ import Foundation
 internal enum L10n {
 
   internal enum App {
+    internal enum Creation {
+      /// Done
+      internal static let done = L10n.tr("Localizable", "App.Creation.Done")
+      internal enum Placeholder {
+        /// body
+        internal static let body = L10n.tr("Localizable", "App.Creation.Placeholder.Body")
+        /// title
+        internal static let title = L10n.tr("Localizable", "App.Creation.Placeholder.Title")
+      }
+    }
     internal enum General {
       /// application's logo
       internal static let logoAccessibilityLabel = L10n.tr("Localizable", "App.General.logo-accessibilityLabel")
-      /// notes
+      /// Notes
       internal static let name = L10n.tr("Localizable", "App.General.name")
+    }
+    internal enum List {
+      internal enum Empty {
+        /// no additional text
+        internal static let body = L10n.tr("Localizable", "App.List.Empty.body")
+        /// no title
+        internal static let title = L10n.tr("Localizable", "App.List.Empty.title")
+      }
     }
     internal enum Login {
       /// Authorization...

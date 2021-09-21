@@ -29,8 +29,10 @@ internal enum Asset {
     internal static let grayPremium2 = ColorAsset(name: "Colors/gray-premium-2")
     internal static let grayPremium3 = ColorAsset(name: "Colors/gray-premium-3")
     internal static let grayPremium4 = ColorAsset(name: "Colors/gray-premium-4")
+    internal static let stillYellow = ColorAsset(name: "Colors/still-yellow")
   }
   internal enum Images {
+    internal static let createNote = ImageAsset(name: "Images/create-note")
     internal static let mainLogo = ImageAsset(name: "Images/main-logo")
   }
 }
