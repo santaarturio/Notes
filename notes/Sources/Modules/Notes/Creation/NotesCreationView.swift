@@ -2,6 +2,7 @@ import SwiftUI
 
 struct NotesCreationView: View {
   
+  @Environment(\.presentationMode) var presentation
   @ObservedObject var viewModel: NotesCreationViewModel
   
   var body: some View {
@@ -24,7 +25,12 @@ struct NotesCreationView: View {
       trailing: Button(action: { viewModel.done?() }) {
         Text(L10n.App.Creation.done)
       }.disabled(viewModel.done == nil)
-    )
+    ).onAppear {
+      viewModel
+        .$saved
+        .sink { saved in if saved { presentation.wrappedValue.dismiss() } }
+        .store(in: &viewModel.cancellables)
+    }
   }
 }
 

@@ -21,7 +21,7 @@
 		52A984CD26F3DFD0003589BE /* NotesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984C326F3DFD0003589BE /* NotesAPI.swift */; };
 		52A984CE26F3DFD0003589BE /* LoginAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984C526F3DFD0003589BE /* LoginAPIProtocol.swift */; };
 		52A984CF26F3DFD0003589BE /* NotesAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984C626F3DFD0003589BE /* NotesAPIProtocol.swift */; };
-		52A984D526F3E1D0003589BE /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 52A984D126F3E1D0003589BE /* CoreDataModel.xcdatamodeld */; };
+		52A984D526F3E1D0003589BE /* NotesData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 52A984D126F3E1D0003589BE /* NotesData.xcdatamodeld */; };
 		52A984D626F3E1D0003589BE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984D326F3E1D0003589BE /* User.swift */; };
 		52A984D726F3E1D0003589BE /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984D426F3E1D0003589BE /* Note.swift */; };
 		52A984DA26F3E20C003589BE /* KeyHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984D926F3E20C003589BE /* KeyHolder.swift */; };
@@ -43,6 +43,7 @@
 		52A9852226F4B38D003589BE /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A9852126F4B38D003589BE /* SignUpView.swift */; };
 		52A9852426F4B3A6003589BE /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A9852326F4B3A6003589BE /* SignUpViewModel.swift */; };
 		52CB05A726F912C200D3ADCE /* LinkPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CB05A626F912C200D3ADCE /* LinkPresenter.swift */; };
+		52F21CCD26F9D6F8000D3CE7 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F21CCC26F9D6F8000D3CE7 /* CoreDataManager.swift */; };
 		5EADD64D5A47695B2922E89E /* Pods_notes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23C6406D2C5A3D3F2DF24262 /* Pods_notes.framework */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +88,7 @@
 		52A9852126F4B38D003589BE /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		52A9852326F4B3A6003589BE /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		52CB05A626F912C200D3ADCE /* LinkPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkPresenter.swift; sourceTree = "<group>"; };
+		52F21CCC26F9D6F8000D3CE7 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		D7D983098D17FF904B2991F2 /* Pods-notes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-notes.release.xcconfig"; path = "Target Support Files/Pods-notes/Pods-notes.release.xcconfig"; sourceTree = "<group>"; };
 		EE811D638C860AEDD5060497 /* Pods-notes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-notes.debug.xcconfig"; path = "Target Support Files/Pods-notes/Pods-notes.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -153,6 +155,7 @@
 				52A984D826F3E1E1003589BE /* Misc */,
 				52A984D026F3E1D0003589BE /* Model */,
 				52A984DB26F3E3D8003589BE /* Modules */,
+				52F21CCB26F9D6E1000D3CE7 /* DB */,
 				52A9851626F49F6E003589BE /* Factory */,
 				52A984B926F3DFD0003589BE /* Service */,
 			);
@@ -223,7 +226,7 @@
 		52A984D026F3E1D0003589BE /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				52A984D126F3E1D0003589BE /* CoreDataModel.xcdatamodeld */,
+				52A984D126F3E1D0003589BE /* NotesData.xcdatamodeld */,
 				52A984D326F3E1D0003589BE /* User.swift */,
 				52A984D426F3E1D0003589BE /* Note.swift */,
 			);
@@ -323,6 +326,14 @@
 				52A9852326F4B3A6003589BE /* SignUpViewModel.swift */,
 			);
 			path = SignUp;
+			sourceTree = "<group>";
+		};
+		52F21CCB26F9D6E1000D3CE7 /* DB */ = {
+			isa = PBXGroup;
+			children = (
+				52F21CCC26F9D6F8000D3CE7 /* CoreDataManager.swift */,
+			);
+			path = DB;
 			sourceTree = "<group>";
 		};
 		C1B7B6E3C56F1471D074600F /* Pods */ = {
@@ -479,6 +490,7 @@
 				52A984D626F3E1D0003589BE /* User.swift in Sources */,
 				52A984FE26F3E438003589BE /* NotesListView.swift in Sources */,
 				52A984F926F3E3D8003589BE /* SignInViewModel.swift in Sources */,
+				52F21CCD26F9D6F8000D3CE7 /* CoreDataManager.swift in Sources */,
 				52A9850226F3E4AC003589BE /* Mixin.swift in Sources */,
 				52A9850926F3E504003589BE /* Binding+Extenstions.swift in Sources */,
 				52A9851A26F4A015003589BE /* Factory.swift in Sources */,
@@ -493,7 +505,7 @@
 				52CB05A726F912C200D3ADCE /* LinkPresenter.swift in Sources */,
 				524C45D326F4D8B9009EB4EC /* NotesCreationView.swift in Sources */,
 				52A984CA26F3DFD0003589BE /* LoginTarget.swift in Sources */,
-				52A984D526F3E1D0003589BE /* CoreDataModel.xcdatamodeld in Sources */,
+				52A984D526F3E1D0003589BE /* NotesData.xcdatamodeld in Sources */,
 				52A9852426F4B3A6003589BE /* SignUpViewModel.swift in Sources */,
 				52A984DA26F3E20C003589BE /* KeyHolder.swift in Sources */,
 				52A984CE26F3DFD0003589BE /* LoginAPIProtocol.swift in Sources */,
@@ -714,13 +726,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		52A984D126F3E1D0003589BE /* CoreDataModel.xcdatamodeld */ = {
+		52A984D126F3E1D0003589BE /* NotesData.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				52A984D226F3E1D0003589BE /* Note.xcdatamodel */,
 			);
 			currentVersion = 52A984D226F3E1D0003589BE /* Note.xcdatamodel */;
-			path = CoreDataModel.xcdatamodeld;
+			path = NotesData.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

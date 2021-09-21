@@ -5,3 +5,11 @@ struct Note: Identifiable {
   let title: String?
   let text: String?
 }
+
+extension Note {
+  init(mo: NoteMO) {
+    id = .init(string: mo.id ?? "")
+    title = mo.title
+    text = mo.text
+  }
+}
