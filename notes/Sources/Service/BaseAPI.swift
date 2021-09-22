@@ -1,4 +1,5 @@
 import Moya
+import Combine
 
 class BaseAPI<T: TargetType> {
   
@@ -11,6 +12,14 @@ class BaseAPI<T: TargetType> {
   ) {
     self.provider = provider
     self.callbackQueue = callbackQueue
+  }
+  
+  func future<Response: Decodable>(_ target: T) -> Future<Response, Error> {
+    .init { [weak self] promise in
+      self?
+        .provider
+        .request(target, callbackQueue: self?.callbackQueue) { promise(handleResult($0)) }
+    }
   }
 }
 

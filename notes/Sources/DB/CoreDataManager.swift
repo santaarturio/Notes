@@ -15,6 +15,7 @@ final class CoreDataManager {
           fatalError("Unresolved error: \(error.localizedDescription)")
         }
       }
+    container.viewContext.automaticallyMergesChangesFromParent = true
     
     return container
   }()
@@ -23,22 +24,40 @@ final class CoreDataManager {
     persistentContainer.viewContext
   }
   
+  lazy private(set) var backgroundContext: NSManagedObjectContext = {
+    let context = persistentContainer.newBackgroundContext()
+    context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+    context.shouldDeleteInaccessibleFaults = true
+    return context
+  }()
+  
   func saveContext() {
     if viewContext.hasChanges {
       do {
         try viewContext.save()
       } catch {
-        print("Error occured while save context: \(error.localizedDescription)")
+        print("Error occured while save view context: \(error.localizedDescription)")
+      }
+    }
+  }
+  
+  func saveBackgroundContext() {
+    if backgroundContext.hasChanges {
+      do {
+        try backgroundContext.save()
+      } catch {
+        print("Error occured while save background context: \(error.localizedDescription)")
       }
     }
   }
   
   func removeAll(entity: NSManagedObject.Type) {
-    let fetchRequest = entity.fetchRequest()
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: entity))
     let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
     
     do {
       try viewContext.execute(deleteRequest)
+      try viewContext.save()
     } catch { print(error) }
   }
 }

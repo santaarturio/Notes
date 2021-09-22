@@ -59,6 +59,6 @@ private extension NotesListView {
 // MARK: - PreviewProvider
 struct NotesScreen_Previews: PreviewProvider {
   static var previews: some View {
-    NotesListView(viewModel: NotesListViewModel(api: NotesAPI()))
+    NotesListView(viewModel: NotesListViewModel(loginAPI: LoginAPI(), notesAPI: NotesAPI()))
   }
 }

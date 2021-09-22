@@ -15,7 +15,7 @@ struct Factory: FactoryProtocol {
   }
   
   func makeNotesListView() -> AnyView {
-    AnyView(NotesListView(viewModel: NotesListViewModel(api: NotesAPI())))
+    AnyView(NotesListView(viewModel: NotesListViewModel(loginAPI: LoginAPI(), notesAPI: NotesAPI())))
   }
   
   func makeNotesCreationView() -> AnyView {

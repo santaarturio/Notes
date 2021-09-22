@@ -1,12 +1,16 @@
 import SwiftUI
+import Combine
 import CoreData
 
 final class NotesListViewModel: NSObject, ObservableObject {
   
-  private let api: NotesAPIProtocol
+  private var cancellables: Set<AnyCancellable> = []
+  private var fetchedResultsController: NSFetchedResultsController<NoteMO>!
+  
+  private let loginAPI: LoginAPIProtocol
+  private let notesAPI: NotesAPIProtocol
   private let factory: FactoryProtocol = Factory()
   
-  private var fetchedResultsController: NSFetchedResultsController<NoteMO>!
   @Published var notes: [Note] = []
   
   let logout: () -> Void = { KeyHolder.default.flush() }
@@ -14,15 +18,25 @@ final class NotesListViewModel: NSObject, ObservableObject {
     AnyView(factory.makeNotesCreationView())
   }
   
-  init(api: NotesAPIProtocol) {
-    self.api = api
+  init(
+    loginAPI: LoginAPIProtocol,
+    notesAPI: NotesAPIProtocol
+  ) {
+    self.loginAPI = loginAPI
+    self.notesAPI = notesAPI
+    
     super.init()
     
     setupFetchedResultsController()
     setupNetworking()
   }
   
-  private func syncList() {
+}
+
+// MARK: - Sync
+private extension NotesListViewModel {
+  
+  func syncList() {
     guard
       let objects = fetchedResultsController.fetchedObjects else { return }
     
@@ -56,32 +70,44 @@ extension NotesListViewModel: NSFetchedResultsControllerDelegate {
   ) { syncList() }
 }
 
-// MARK: - NSFetchedResultsController
+// MARK: - Networking
 private extension NotesListViewModel {
   
   func setupNetworking() {
-    // TODO: refresh token
-    fetchNotes()
+    let keyHolder: KeyHolder = .default
+    
+    loginAPI
+      .signIn(
+        email: keyHolder.get(.email) ?? "",
+        password: keyHolder.get(.password) ?? ""
+      )
+      .sink(
+        receiveCompletion: weakify(NotesListViewModel.fetchNotes, object: self),
+        receiveValue: { KeyHolder.default.update($0.jwt ?? "", for: .token) }
+      )
+      .store(in: &cancellables)
   }
   
-  func fetchNotes() {
-    api
-      .fetchNotes { result in
-        switch result {
-        case let .success(dtos):
+  func fetchNotes(_ completion: Subscribers.Completion<Error>) {
+    guard case .finished = completion else { return }
+    
+    notesAPI
+      .fetchNotes()
+      .sink(
+        receiveCompletion: { _ in },
+        receiveValue: { dtos in
           dtos
             .map(Note.init)
             .forEach { note in
-              let entity = NoteMO(context: CoreDataManager.instance.viewContext)
+              let entity = NoteMO(context: CoreDataManager.instance.backgroundContext)
               entity.id = note.id.string
               entity.title = note.title
               entity.text = note.text
             }
-          CoreDataManager.instance.saveContext()
           
-        case let .failure(error):
-          print(error.localizedDescription)
+          CoreDataManager.instance.saveBackgroundContext()
         }
-      }
+      )
+      .store(in: &cancellables)
   }
 }

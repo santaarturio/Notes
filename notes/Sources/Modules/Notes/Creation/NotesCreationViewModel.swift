@@ -29,25 +29,28 @@ private extension NotesCreationViewModel {
   
   func createNote() {
     func save(note: Note) {
-      defer { saved = true }
+      let entity = NoteMO(context: CoreDataManager.instance.backgroundContext)
       
-      let entity = NoteMO(context: CoreDataManager.instance.viewContext)
       entity.id = note.id.string
       entity.title = note.title
       entity.text = note.text
       
-      CoreDataManager.instance.saveContext()
+      CoreDataManager.instance.saveBackgroundContext()
     }
     
     api
-      .createNote(title: title, text: body) { result in
-        switch result {
-        case let .success(dto):
-          save(note: Note(dto: dto))
-          
-        case let .failure(error):
-          print(error.localizedDescription)
-        }
-      }
+      .createNote(title: title, text: body)
+      .sink(
+        receiveCompletion: { [weak self] completion in
+          switch completion {
+          case .finished:
+            self?.saved = true
+          case let .failure(error):
+            print("Error occured while creating new note: \(error.localizedDescription)")
+          }
+        },
+        receiveValue: { save(note: Note(dto: $0)) }
+      )
+      .store(in: &cancellables)
   }
 }

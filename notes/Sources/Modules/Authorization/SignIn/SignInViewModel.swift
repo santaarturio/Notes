@@ -30,28 +30,28 @@ final class SignInViewModel: ObservableObject {
 extension SignInViewModel {
   
   // MARK: - Sign In
+  func receiveCompletion(_ completion: Subscribers.Completion<Error>) {
+    isDownloading = false
+  }
+  
+  func receiveValue(_ dto: UserDTO) {
+    KeyHolder.default.update(email, for: .email)
+    KeyHolder.default.update(password, for: .password)
+    KeyHolder.default.update(dto.jwt ?? "", for: .token)
+  }
+  
   private func handleSignIn() {
     isDownloading = true
-    
-    func handleResult(_ result: Result<UserDTO, Error>) {
-      isDownloading = false
-      
-      switch result {
-      case let .success(userDTO):
-        KeyHolder.default.update(email, for: .email)
-        KeyHolder.default.update(password, for: .password)
-        KeyHolder.default.update(userDTO.jwt ?? "", for: .token)
-        
-      case let .failure(error):
-        print(error.localizedDescription)
-      }
-    }
     
     api
       .signIn(
         email: email,
-        password: password,
-        completion: handleResult(_:)
+        password: password
       )
+      .sink(
+        receiveCompletion: weakify(SignInViewModel.receiveCompletion, object: self),
+        receiveValue: weakify(SignInViewModel.receiveValue, object: self)
+      )
+      .store(in: &cancellables)
   }
 }

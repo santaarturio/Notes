@@ -1,4 +1,5 @@
 import Moya
+import Combine
 
 final class NotesAPI: BaseAPI<NotesTarget> {
   
@@ -16,23 +17,14 @@ final class NotesAPI: BaseAPI<NotesTarget> {
 
 extension NotesAPI: NotesAPIProtocol {
   
-  func fetchNotes(
-    _ completion: @escaping (Result<[NoteDTO], Error>
-    ) -> Void) {
-    provider
-      .request(.notes, callbackQueue: callbackQueue) {
-        completion(handleResult($0))
-      }
+  func fetchNotes() -> Future<[NoteDTO], Error> {
+    future(.notes)
   }
   
   func createNote(
-    title: String?,
-    text: String?,
-    completion: @escaping (Result<NoteDTO, Error>) -> Void
-  ) {
-    provider
-      .request(.create(title: title ?? "", text: text ?? ""), callbackQueue: callbackQueue) {
-        completion(handleResult($0))
-      }
+    title: String,
+    text: String
+  ) -> Future<NoteDTO, Error> {
+    future(.create(title: title, text: text))
   }
 }
