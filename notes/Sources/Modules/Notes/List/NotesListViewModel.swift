@@ -13,7 +13,11 @@ final class NotesListViewModel: NSObject, ObservableObject {
   
   @Published var notes: [Note] = []
   
-  let logout: () -> Void = { KeyHolder.default.flush() }
+  let logout: () -> Void = {
+    KeyHolder.default.flush()
+    CoreDataManager.instance.removeAll(entities: NoteMO.self)
+  }
+  
   var creationView: AnyView {
     AnyView(factory.makeNotesCreationView())
   }
@@ -30,7 +34,6 @@ final class NotesListViewModel: NSObject, ObservableObject {
     setupFetchedResultsController()
     setupNetworking()
   }
-  
 }
 
 // MARK: - Sync
@@ -96,16 +99,22 @@ private extension NotesListViewModel {
       .sink(
         receiveCompletion: { _ in },
         receiveValue: { dtos in
+          let manager = CoreDataManager.instance
+          
           dtos
             .map(Note.init)
             .forEach { note in
-              let entity = NoteMO(context: CoreDataManager.instance.backgroundContext)
-              entity.id = note.id.string
-              entity.title = note.title
-              entity.text = note.text
+              manager
+                .backgroundContext
+                .perform {
+                  let entity = NoteMO(context: manager.backgroundContext)
+                  entity.id = note.id.string
+                  entity.title = note.title
+                  entity.text = note.text
+                }
             }
           
-          CoreDataManager.instance.saveBackgroundContext()
+          manager.saveBackgroundContext()
         }
       )
       .store(in: &cancellables)

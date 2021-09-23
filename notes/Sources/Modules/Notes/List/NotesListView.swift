@@ -10,7 +10,6 @@ struct NotesListView: View {
         .navigationBarItems(leading: leadingNavigationItem, trailing: trailingNavigationItem)
         .navigationBarTitle(L10n.App.General.name)
         .navigationBarTitleDisplayMode(.inline)
-        .animation(.easeOut)
     }
     .accentColor(Color(Asset.Colors.stillYellow.color))
   }

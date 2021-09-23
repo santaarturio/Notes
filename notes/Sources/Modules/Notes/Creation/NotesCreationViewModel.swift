@@ -15,28 +15,32 @@ final class NotesCreationViewModel: ObservableObject {
   init(api: NotesAPIProtocol) {
     self.api = api
     
-    $title.merge(with: $body)
-      .map { text in
-        !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-          ? weakify(NotesCreationViewModel.createNote, object: self)
-          : nil
-      }
-      .assign(to: &$done)
+    $title.combineLatest($body)
+      .map { !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        && !$1.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
+      .sink { [weak self] isFulFilled in self?.done = isFulFilled ? { self?.createNote() } : nil }
+      .store(in: &cancellables)
   }
 }
 
 private extension NotesCreationViewModel {
   
+  func save(note: Note) {
+    let manager =  CoreDataManager.instance
+    
+    manager
+      .backgroundContext
+      .perform {
+        let entity = NoteMO(context: manager.backgroundContext)
+        entity.id = note.id.string
+        entity.title = note.title
+        entity.text = note.text
+      }
+    
+    manager.saveBackgroundContext()
+  }
+  
   func createNote() {
-    func save(note: Note) {
-      let entity = NoteMO(context: CoreDataManager.instance.backgroundContext)
-      
-      entity.id = note.id.string
-      entity.title = note.title
-      entity.text = note.text
-      
-      CoreDataManager.instance.saveBackgroundContext()
-    }
     
     api
       .createNote(title: title, text: body)
@@ -49,7 +53,7 @@ private extension NotesCreationViewModel {
             print("Error occured while creating new note: \(error.localizedDescription)")
           }
         },
-        receiveValue: { save(note: Note(dto: $0)) }
+        receiveValue: { weakify(NotesCreationViewModel.save, object: self)(Note(dto: $0)) }
       )
       .store(in: &cancellables)
   }

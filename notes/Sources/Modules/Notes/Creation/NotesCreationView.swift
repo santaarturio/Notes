@@ -30,6 +30,10 @@ struct NotesCreationView: View {
         .$saved
         .sink { saved in if saved { presentation.wrappedValue.dismiss() } }
         .store(in: &viewModel.cancellables)
+    }.onDisappear {
+      viewModel
+        .cancellables
+        .removeAll()
     }
   }
 }

@@ -30,8 +30,11 @@ final class CoreDataManager {
     context.shouldDeleteInaccessibleFaults = true
     return context
   }()
+}
+
+extension CoreDataManager {
   
-  func saveContext() {
+  func saveViewContext() {
     if viewContext.hasChanges {
       do {
         try viewContext.save()
@@ -42,22 +45,30 @@ final class CoreDataManager {
   }
   
   func saveBackgroundContext() {
-    if backgroundContext.hasChanges {
-      do {
-        try backgroundContext.save()
-      } catch {
-        print("Error occured while save background context: \(error.localizedDescription)")
+    backgroundContext
+      .perform { [unowned self] in
+        if backgroundContext.hasChanges {
+          do {
+            try backgroundContext.save()
+          } catch {
+            print("Error occured while save background context: \(error.localizedDescription)")
+          }
+        }
       }
-    }
   }
   
-  func removeAll(entity: NSManagedObject.Type) {
-    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: entity))
+  func removeAll(entities type: NSManagedObject.Type) {
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: type))
     let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
     
-    do {
-      try viewContext.execute(deleteRequest)
-      try viewContext.save()
-    } catch { print(error) }
+    backgroundContext
+      .perform { [unowned self] in
+        do {
+          try backgroundContext.execute(deleteRequest)
+          try backgroundContext.save()
+        } catch {
+          print("Error occured while delete entities of type \(type): \(error.localizedDescription)")
+        }
+      }
   }
 }
