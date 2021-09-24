@@ -25,17 +25,14 @@ final class NotesCreationViewModel: ObservableObject {
 
 private extension NotesCreationViewModel {
   
-  func save(note: Note) {
+  func save(note: Note, isSync: Bool) {
     let manager = CoreDataManager.instance
     
     manager
       .backgroundContext
       .perform {
         let entity = NoteMO(context: manager.backgroundContext)
-        entity.id = note.id.string
-        entity.title = note.title
-        entity.text = note.text
-        entity.date = note.date ?? Date()
+        entity.configure(note: note, isSync: isSync)
       }
     
     manager.saveBackgroundContext()
@@ -47,16 +44,29 @@ private extension NotesCreationViewModel {
       .createNote(title: title, text: body)
       .sink(
         receiveCompletion: { [weak self] completion in
+          defer { self?.saved = true }
+          
           switch completion {
           case .finished:
-            self?.saved = true
+            break
+            
           case let .failure(error):
             print("Error occured while creating new note: \(error.localizedDescription)")
             print("Saving offline")
-            // TODO: offline mode
+            
+            self?
+              .save(
+                note: Note(
+                  id: .init(string: "\(Date())"),
+                  title: self?.title,
+                  text: self?.body,
+                  date: Date()
+                ),
+                isSync: false
+              )
           }
         },
-        receiveValue: { weakify(NotesCreationViewModel.save, object: self)(Note(dto: $0)) }
+        receiveValue: { [weak self] dto in self?.save(note: Note(dto: dto), isSync: true) }
       )
       .store(in: &cancellables)
   }

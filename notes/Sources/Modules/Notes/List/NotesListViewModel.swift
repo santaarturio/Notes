@@ -76,6 +76,7 @@ extension NotesListViewModel: NSFetchedResultsControllerDelegate {
 // MARK: - Networking
 private extension NotesListViewModel {
   
+  // MARK: Refresh Token
   func setupNetworking() {
     let keyHolder: KeyHolder = .default
     
@@ -91,13 +92,14 @@ private extension NotesListViewModel {
       .store(in: &cancellables)
   }
   
+  // MARK: Fetch Notes
   func fetchNotes(_ completion: Subscribers.Completion<Error>) {
     guard case .finished = completion else { return }
     
     notesAPI
       .fetchNotes()
       .sink(
-        receiveCompletion: { _ in },
+        receiveCompletion: weakify(NotesListViewModel.syncNotesIfNeeded, object: self),
         receiveValue: { dtos in
           let manager = CoreDataManager.instance
           let date = Date()
@@ -114,6 +116,7 @@ private extension NotesListViewModel {
                   entity.title = note.title
                   entity.text = note.text
                   entity.date = note.date ?? date - TimeInterval(index)
+                  entity.isSync = true
                 }
             }
           
@@ -122,4 +125,45 @@ private extension NotesListViewModel {
       )
       .store(in: &cancellables)
   }
+  
+  // MARK: Sync Untracked Notes
+  func syncNotesIfNeeded(_ completion: Subscribers.Completion<Error>) {
+    guard case .finished = completion else { return }
+    
+    let context = CoreDataManager.instance.persistentContainer.newBackgroundContext()
+    let fetchRequest: NSFetchRequest<NoteMO> = NoteMO.fetchRequest()
+    fetchRequest.predicate = NSPredicate(format: "isSync == FALSE")
+    
+    context
+      .perform { [weak self] in
+        do {
+          try context
+            .fetch(fetchRequest)
+            .forEach { mo in
+              self?
+                .notesAPI
+                .createNote(title: mo.title ?? "", text: mo.text ?? "")
+                .sink(
+                  receiveCompletion: { _ in },
+                  receiveValue: { dto in
+                    
+                    mo.id = dto.id
+                    mo.isSync = true
+                    
+                    do {
+                      try context.save()
+                    } catch {
+                      context.rollback()
+                    }
+                  }
+                )
+                .store(in: &NotesAPI.cancellables)
+            }
+        } catch { print("Error occured while fetching non sync notes, error: \(error.localizedDescription)") }
+      }
+  }
+}
+
+private extension NotesAPI {
+  static var cancellables: Set<AnyCancellable> = []
 }
