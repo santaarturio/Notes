@@ -43,6 +43,7 @@
 		52A9852226F4B38D003589BE /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A9852126F4B38D003589BE /* SignUpView.swift */; };
 		52A9852426F4B3A6003589BE /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A9852326F4B3A6003589BE /* SignUpViewModel.swift */; };
 		52CB05A726F912C200D3ADCE /* LinkPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CB05A626F912C200D3ADCE /* LinkPresenter.swift */; };
+		52EB118726FCC3C7005B1C5F /* ISO8601DateFormatter + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EB118626FCC3C7005B1C5F /* ISO8601DateFormatter + Extensions.swift */; };
 		52F21CCD26F9D6F8000D3CE7 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F21CCC26F9D6F8000D3CE7 /* CoreDataManager.swift */; };
 		5EADD64D5A47695B2922E89E /* Pods_notes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23C6406D2C5A3D3F2DF24262 /* Pods_notes.framework */; };
 /* End PBXBuildFile section */
@@ -88,6 +89,7 @@
 		52A9852126F4B38D003589BE /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		52A9852326F4B3A6003589BE /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		52CB05A626F912C200D3ADCE /* LinkPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkPresenter.swift; sourceTree = "<group>"; };
+		52EB118626FCC3C7005B1C5F /* ISO8601DateFormatter + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ISO8601DateFormatter + Extensions.swift"; sourceTree = "<group>"; };
 		52F21CCC26F9D6F8000D3CE7 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		D7D983098D17FF904B2991F2 /* Pods-notes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-notes.release.xcconfig"; path = "Target Support Files/Pods-notes/Pods-notes.release.xcconfig"; sourceTree = "<group>"; };
 		EE811D638C860AEDD5060497 /* Pods-notes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-notes.debug.xcconfig"; path = "Target Support Files/Pods-notes/Pods-notes.debug.xcconfig"; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 				52A984FF26F3E4AC003589BE /* Weakify.swift */,
 				52A984D926F3E20C003589BE /* KeyHolder.swift */,
 				52A9851B26F4A2E9003589BE /* RootView.swift */,
+				52EB118626FCC3C7005B1C5F /* ISO8601DateFormatter + Extensions.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -487,6 +490,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52EB118726FCC3C7005B1C5F /* ISO8601DateFormatter + Extensions.swift in Sources */,
 				52A9852226F4B38D003589BE /* SignUpView.swift in Sources */,
 				52A984D626F3E1D0003589BE /* User.swift in Sources */,
 				52A984FE26F3E438003589BE /* NotesListView.swift in Sources */,

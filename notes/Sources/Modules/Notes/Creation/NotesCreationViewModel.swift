@@ -26,7 +26,7 @@ final class NotesCreationViewModel: ObservableObject {
 private extension NotesCreationViewModel {
   
   func save(note: Note) {
-    let manager =  CoreDataManager.instance
+    let manager = CoreDataManager.instance
     
     manager
       .backgroundContext
@@ -35,6 +35,7 @@ private extension NotesCreationViewModel {
         entity.id = note.id.string
         entity.title = note.title
         entity.text = note.text
+        entity.date = note.date ?? Date()
       }
     
     manager.saveBackgroundContext()
@@ -51,6 +52,8 @@ private extension NotesCreationViewModel {
             self?.saved = true
           case let .failure(error):
             print("Error occured while creating new note: \(error.localizedDescription)")
+            print("Saving offline")
+            // TODO: offline mode
           }
         },
         receiveValue: { weakify(NotesCreationViewModel.save, object: self)(Note(dto: $0)) }

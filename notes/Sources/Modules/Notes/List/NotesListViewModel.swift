@@ -52,7 +52,7 @@ extension NotesListViewModel: NSFetchedResultsControllerDelegate {
   
   private func setupFetchedResultsController() {
     let fetchRequest = NoteMO.fetchRequest() as NSFetchRequest
-    fetchRequest.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+    fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
     
     fetchedResultsController = NSFetchedResultsController(
       fetchRequest: fetchRequest,
@@ -100,10 +100,12 @@ private extension NotesListViewModel {
         receiveCompletion: { _ in },
         receiveValue: { dtos in
           let manager = CoreDataManager.instance
+          let date = Date()
           
           dtos
             .map(Note.init)
-            .forEach { note in
+            .enumerated()
+            .forEach { index, note in
               manager
                 .backgroundContext
                 .perform {
@@ -111,6 +113,7 @@ private extension NotesListViewModel {
                   entity.id = note.id.string
                   entity.title = note.title
                   entity.text = note.text
+                  entity.date = note.date ?? date - TimeInterval(index)
                 }
             }
           

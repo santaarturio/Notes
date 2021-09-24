@@ -7,9 +7,10 @@ struct NotesListView: View {
   var body: some View {
     NavigationView {
       List(viewModel.notes) { NotePreviewCell(note: $0) }
-        .navigationBarItems(leading: leadingNavigationItem, trailing: trailingNavigationItem)
-        .navigationBarTitle(L10n.App.General.name)
-        .navigationBarTitleDisplayMode(.inline)
+      .navigationBarTitleDisplayMode(.inline)
+      .navigationBarItems(leading: leadingNavigationItem, trailing: trailingNavigationItem)
+      .navigationBarTitle(L10n.App.General.name)
+      .animation(.easeInOut)
     }
     .accentColor(Color(Asset.Colors.stillYellow.color))
   }
