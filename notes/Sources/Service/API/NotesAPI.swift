@@ -1,6 +1,5 @@
 import Moya
 import Combine
-import struct Result.AnyError
 
 final class NotesAPI: BaseAPI<NotesTarget> {
   
@@ -18,14 +17,14 @@ final class NotesAPI: BaseAPI<NotesTarget> {
 
 extension NotesAPI: NotesAPIProtocol {
   
-  func fetchNotes() -> AnyPublisher<[NoteDTO], Error> {
+  func fetchNotes() -> AnyPublisher<[API.Note], Error> {
     requestPublisher(.notes)
   }
   
   func createNote(
     title: String,
     text: String
-  ) -> AnyPublisher<NoteDTO, Error> {
+  ) -> AnyPublisher<API.Note, Error> {
     requestPublisher(.create(title: title, text: text))
   }
 }

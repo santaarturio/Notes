@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5200C4DA2702222600304656 /* Note+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5200C4D82702222600304656 /* Note+CoreDataClass.swift */; };
 		524C45D326F4D8B9009EB4EC /* NotesCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C45D226F4D8B9009EB4EC /* NotesCreationView.swift */; };
 		524C45D526F4D8DB009EB4EC /* NotesCreationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C45D426F4D8DB009EB4EC /* NotesCreationViewModel.swift */; };
 		52A984A426F3DD7B003589BE /* notesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984A326F3DD7B003589BE /* notesApp.swift */; };
@@ -22,8 +23,6 @@
 		52A984CE26F3DFD0003589BE /* LoginAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984C526F3DFD0003589BE /* LoginAPIProtocol.swift */; };
 		52A984CF26F3DFD0003589BE /* NotesAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984C626F3DFD0003589BE /* NotesAPIProtocol.swift */; };
 		52A984D526F3E1D0003589BE /* NotesData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 52A984D126F3E1D0003589BE /* NotesData.xcdatamodeld */; };
-		52A984D626F3E1D0003589BE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984D326F3E1D0003589BE /* User.swift */; };
-		52A984D726F3E1D0003589BE /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984D426F3E1D0003589BE /* Note.swift */; };
 		52A984DA26F3E20C003589BE /* KeyHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984D926F3E20C003589BE /* KeyHolder.swift */; };
 		52A984F526F3E3D8003589BE /* NotesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984E426F3E3D8003589BE /* NotesListViewModel.swift */; };
 		52A984F926F3E3D8003589BE /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984ED26F3E3D8003589BE /* SignInViewModel.swift */; };
@@ -43,14 +42,14 @@
 		52A9852226F4B38D003589BE /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A9852126F4B38D003589BE /* SignUpView.swift */; };
 		52A9852426F4B3A6003589BE /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A9852326F4B3A6003589BE /* SignUpViewModel.swift */; };
 		52CB05A726F912C200D3ADCE /* LinkPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CB05A626F912C200D3ADCE /* LinkPresenter.swift */; };
-		52EB118726FCC3C7005B1C5F /* ISO8601DateFormatter + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EB118626FCC3C7005B1C5F /* ISO8601DateFormatter + Extensions.swift */; };
-		52ED8C5926FE108F001EF874 /* NoteMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ED8C5726FE108F001EF874 /* NoteMO+CoreDataClass.swift */; };
+		52EB118726FCC3C7005B1C5F /* DateFormatter + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EB118626FCC3C7005B1C5F /* DateFormatter + Extensions.swift */; };
 		52F21CCD26F9D6F8000D3CE7 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F21CCC26F9D6F8000D3CE7 /* CoreDataManager.swift */; };
 		5EADD64D5A47695B2922E89E /* Pods_notes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23C6406D2C5A3D3F2DF24262 /* Pods_notes.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		23C6406D2C5A3D3F2DF24262 /* Pods_notes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_notes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5200C4D82702222600304656 /* Note+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataClass.swift"; sourceTree = "<group>"; };
 		524C45D226F4D8B9009EB4EC /* NotesCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesCreationView.swift; sourceTree = "<group>"; };
 		524C45D426F4D8DB009EB4EC /* NotesCreationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesCreationViewModel.swift; sourceTree = "<group>"; };
 		52A984A026F3DD7B003589BE /* notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = notes.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,8 +67,6 @@
 		52A984C526F3DFD0003589BE /* LoginAPIProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginAPIProtocol.swift; sourceTree = "<group>"; };
 		52A984C626F3DFD0003589BE /* NotesAPIProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesAPIProtocol.swift; sourceTree = "<group>"; };
 		52A984D226F3E1D0003589BE /* Note.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Note.xcdatamodel; sourceTree = "<group>"; };
-		52A984D326F3E1D0003589BE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		52A984D426F3E1D0003589BE /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		52A984D926F3E20C003589BE /* KeyHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyHolder.swift; sourceTree = "<group>"; };
 		52A984E426F3E3D8003589BE /* NotesListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesListViewModel.swift; sourceTree = "<group>"; };
 		52A984ED26F3E3D8003589BE /* SignInViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
@@ -90,8 +87,7 @@
 		52A9852126F4B38D003589BE /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		52A9852326F4B3A6003589BE /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		52CB05A626F912C200D3ADCE /* LinkPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkPresenter.swift; sourceTree = "<group>"; };
-		52EB118626FCC3C7005B1C5F /* ISO8601DateFormatter + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ISO8601DateFormatter + Extensions.swift"; sourceTree = "<group>"; };
-		52ED8C5726FE108F001EF874 /* NoteMO+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteMO+CoreDataClass.swift"; sourceTree = "<group>"; };
+		52EB118626FCC3C7005B1C5F /* DateFormatter + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter + Extensions.swift"; sourceTree = "<group>"; };
 		52F21CCC26F9D6F8000D3CE7 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		D7D983098D17FF904B2991F2 /* Pods-notes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-notes.release.xcconfig"; path = "Target Support Files/Pods-notes/Pods-notes.release.xcconfig"; sourceTree = "<group>"; };
 		EE811D638C860AEDD5060497 /* Pods-notes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-notes.debug.xcconfig"; path = "Target Support Files/Pods-notes/Pods-notes.debug.xcconfig"; sourceTree = "<group>"; };
@@ -230,10 +226,8 @@
 		52A984D026F3E1D0003589BE /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				52ED8C5726FE108F001EF874 /* NoteMO+CoreDataClass.swift */,
 				52A984D126F3E1D0003589BE /* NotesData.xcdatamodeld */,
-				52A984D326F3E1D0003589BE /* User.swift */,
-				52A984D426F3E1D0003589BE /* Note.swift */,
+				5200C4D82702222600304656 /* Note+CoreDataClass.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -246,7 +240,7 @@
 				52A984FF26F3E4AC003589BE /* Weakify.swift */,
 				52A984D926F3E20C003589BE /* KeyHolder.swift */,
 				52A9851B26F4A2E9003589BE /* RootView.swift */,
-				52EB118626FCC3C7005B1C5F /* ISO8601DateFormatter + Extensions.swift */,
+				52EB118626FCC3C7005B1C5F /* DateFormatter + Extensions.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -493,9 +487,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52EB118726FCC3C7005B1C5F /* ISO8601DateFormatter + Extensions.swift in Sources */,
+				52EB118726FCC3C7005B1C5F /* DateFormatter + Extensions.swift in Sources */,
 				52A9852226F4B38D003589BE /* SignUpView.swift in Sources */,
-				52A984D626F3E1D0003589BE /* User.swift in Sources */,
 				52A984FE26F3E438003589BE /* NotesListView.swift in Sources */,
 				52A984F926F3E3D8003589BE /* SignInViewModel.swift in Sources */,
 				52F21CCD26F9D6F8000D3CE7 /* CoreDataManager.swift in Sources */,
@@ -504,7 +497,6 @@
 				52A9851A26F4A015003589BE /* Factory.swift in Sources */,
 				52A9851826F49F8B003589BE /* FactoryProtocol.swift in Sources */,
 				52A9850726F3E504003589BE /* KeyboardResponder.swift in Sources */,
-				52ED8C5926FE108F001EF874 /* NoteMO+CoreDataClass.swift in Sources */,
 				52A984CB26F3DFD0003589BE /* NotesTarget.swift in Sources */,
 				524C45D526F4D8DB009EB4EC /* NotesCreationViewModel.swift in Sources */,
 				52A984FB26F3E3D8003589BE /* SignInView.swift in Sources */,
@@ -516,13 +508,13 @@
 				52A984CA26F3DFD0003589BE /* LoginTarget.swift in Sources */,
 				52A984D526F3E1D0003589BE /* NotesData.xcdatamodeld in Sources */,
 				52A9852426F4B3A6003589BE /* SignUpViewModel.swift in Sources */,
+				5200C4DA2702222600304656 /* Note+CoreDataClass.swift in Sources */,
 				52A984DA26F3E20C003589BE /* KeyHolder.swift in Sources */,
 				52A984CE26F3DFD0003589BE /* LoginAPIProtocol.swift in Sources */,
 				52A984CD26F3DFD0003589BE /* NotesAPI.swift in Sources */,
 				52A984CF26F3DFD0003589BE /* NotesAPIProtocol.swift in Sources */,
 				52A9850826F3E504003589BE /* ActivityIndicator.swift in Sources */,
 				52A984C726F3DFD0003589BE /* NoteDTO.swift in Sources */,
-				52A984D726F3E1D0003589BE /* Note.swift in Sources */,
 				52A9851526F3E6FE003589BE /* Assets.swift in Sources */,
 				52A984CC26F3DFD0003589BE /* LoginAPI.swift in Sources */,
 				52A984F526F3E3D8003589BE /* NotesListViewModel.swift in Sources */,

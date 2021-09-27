@@ -7,14 +7,14 @@ final class LoginAPI: BaseAPI<LoginTarget>, LoginAPIProtocol {
     name: String?,
     email: String,
     password: String
-  ) -> AnyPublisher<UserDTO, Error> {
+  ) -> AnyPublisher<API.User, Error> {
     requestPublisher(.signUp(name: name, email: email, password: password))
   }
   
   func signIn(
     email: String,
     password: String
-  ) -> AnyPublisher<UserDTO, Error> {
+  ) -> AnyPublisher<API.User, Error> {
     requestPublisher(.signIn(email: email, password: password))
   }
 }

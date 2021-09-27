@@ -5,7 +5,7 @@ import CoreData
 final class NotesListViewModel: NSObject, ObservableObject {
   
   private var cancellables: Set<AnyCancellable> = []
-  private var fetchedResultsController: NSFetchedResultsController<NoteMO>!
+  private var fetchedResultsController: NSFetchedResultsController<Note>!
   
   private let loginAPI: LoginAPIProtocol
   private let notesAPI: NotesAPIProtocol
@@ -15,7 +15,7 @@ final class NotesListViewModel: NSObject, ObservableObject {
   
   let logout: () -> Void = {
     KeyHolder.default.flush()
-    CoreDataManager.instance.removeAll(entities: NoteMO.self)
+    CoreDataManager.instance.removeAll(entities: Note.self)
   }
   
   var creationView: AnyView {
@@ -41,9 +41,8 @@ private extension NotesListViewModel {
   
   func syncList() {
     guard
-      let objects = fetchedResultsController.fetchedObjects else { return }
-    
-    notes = objects.map(Note.init)
+      let managedObjects = fetchedResultsController.fetchedObjects else { return }
+    notes = managedObjects
   }
 }
 
@@ -51,7 +50,7 @@ private extension NotesListViewModel {
 extension NotesListViewModel: NSFetchedResultsControllerDelegate {
   
   private func setupFetchedResultsController() {
-    let fetchRequest = NoteMO.fetchRequest() as NSFetchRequest
+    let fetchRequest = Note.fetchRequest() as NSFetchRequest
     fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
     
     fetchedResultsController = NSFetchedResultsController(
@@ -102,20 +101,18 @@ private extension NotesListViewModel {
         receiveCompletion: weakify(NotesListViewModel.syncNotesIfNeeded, object: self),
         receiveValue: { dtos in
           let manager = CoreDataManager.instance
-          let date = Date()
           
           dtos
-            .map(Note.init)
             .enumerated()
             .forEach { index, note in
               manager
                 .backgroundContext
                 .perform {
-                  let entity = NoteMO(context: manager.backgroundContext)
-                  entity.id = note.id.string
+                  let entity = Note(context: manager.backgroundContext)
+                  entity.id = note.id
                   entity.title = note.title
-                  entity.text = note.text
-                  entity.date = note.date ?? date - TimeInterval(index)
+                  entity.text = note.subtitle
+                  entity.date = DateFormatter.cached.date(from: note.date)
                   entity.isSync = true
                 }
             }
@@ -131,7 +128,7 @@ private extension NotesListViewModel {
     guard case .finished = completion else { return }
     
     let context = CoreDataManager.instance.persistentContainer.newBackgroundContext()
-    let fetchRequest: NSFetchRequest<NoteMO> = NoteMO.fetchRequest()
+    let fetchRequest: NSFetchRequest<Note> = Note.fetchRequest()
     fetchRequest.predicate = NSPredicate(format: "isSync == FALSE")
     
     context

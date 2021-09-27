@@ -2,6 +2,6 @@ import Combine
 
 protocol NotesAPIProtocol {
   
-  func fetchNotes() -> AnyPublisher<[NoteDTO], Error>
-  func createNote(title: String, text: String) -> AnyPublisher<NoteDTO, Error>
+  func fetchNotes() -> AnyPublisher<[API.Note], Error>
+  func createNote(title: String, text: String) -> AnyPublisher<API.Note, Error>
 }

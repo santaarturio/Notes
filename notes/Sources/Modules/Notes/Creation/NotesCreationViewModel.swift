@@ -25,13 +25,13 @@ final class NotesCreationViewModel: ObservableObject {
 
 private extension NotesCreationViewModel {
   
-  func save(note: Note, isSync: Bool) {
+  func save(note: API.Note, isSync: Bool) {
     let manager = CoreDataManager.instance
     
     manager
       .backgroundContext
       .perform {
-        let entity = NoteMO(context: manager.backgroundContext)
+        let entity = Note(context: manager.backgroundContext)
         entity.configure(note: note, isSync: isSync)
       }
     
@@ -56,17 +56,17 @@ private extension NotesCreationViewModel {
             
             self?
               .save(
-                note: Note(
-                  id: .init(string: "\(Date())"),
-                  title: self?.title,
-                  text: self?.body,
-                  date: Date()
+                note: API.Note(
+                  id: Date().description,
+                  title: self?.title ?? "",
+                  subtitle: self?.body ?? "",
+                  date: Date().description
                 ),
                 isSync: false
               )
           }
         },
-        receiveValue: { [weak self] dto in self?.save(note: Note(dto: dto), isSync: true) }
+        receiveValue: { [weak self] dto in self?.save(note: dto, isSync: true) }
       )
       .store(in: &cancellables)
   }
