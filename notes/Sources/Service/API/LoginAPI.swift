@@ -7,14 +7,14 @@ final class LoginAPI: BaseAPI<LoginTarget>, LoginAPIProtocol {
     name: String?,
     email: String,
     password: String
-  ) -> Future<UserDTO, Error> {
-    future(.signUp(name: name, email: email, password: password))
+  ) -> AnyPublisher<UserDTO, Error> {
+    requestPublisher(.signUp(name: name, email: email, password: password))
   }
   
   func signIn(
     email: String,
     password: String
-  ) -> Future<UserDTO, Error> {
-    future(.signIn(email: email, password: password))
+  ) -> AnyPublisher<UserDTO, Error> {
+    requestPublisher(.signIn(email: email, password: password))
   }
 }
