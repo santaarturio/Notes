@@ -5,15 +5,20 @@ import CoreData
 final class NotesCreationViewModel: ObservableObject {
   
   var cancellables: Set<AnyCancellable> = []
-  private let api: NotesAPIProtocol
+  private let notesAPI: NotesAPIProtocol
+  private let dataBaseManager: NotesDataBaseProtocol
   
   @Published var title = ""
   @Published var body = ""
   @Published var done: (() -> Void)?
   @Published var saved = false
   
-  init(api: NotesAPIProtocol) {
-    self.api = api
+  init(
+    notesAPI: NotesAPIProtocol,
+    dataBaseManager: NotesDataBaseProtocol
+  ) {
+    self.notesAPI = notesAPI
+    self.dataBaseManager = dataBaseManager
     
     $title.combineLatest($body)
       .map { !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
@@ -25,48 +30,37 @@ final class NotesCreationViewModel: ObservableObject {
 
 private extension NotesCreationViewModel {
   
-  func save(note: API.Note, isSync: Bool) {
-    let manager = CoreDataManager.instance
-    
-    manager
-      .backgroundContext
-      .perform {
-        let entity = Note(context: manager.backgroundContext)
-        entity.configure(note: note, isSync: isSync)
-      }
-    
-    manager.saveBackgroundContext()
-  }
-  
   func createNote() {
     
-    api
+    notesAPI
       .createNote(title: title, text: body)
       .sink(
         receiveCompletion: { [weak self] completion in
-          defer { self?.saved = true }
           
-          switch completion {
-          case .finished:
-            break
-            
-          case let .failure(error):
-            print("Error occured while creating new note: \(error.localizedDescription)")
-            print("Saving offline")
-            
-            self?
-              .save(
-                note: API.Note(
-                  id: Date().description,
-                  title: self?.title ?? "",
-                  subtitle: self?.body ?? "",
-                  date: Date().description
-                ),
-                isSync: false
-              )
+          defer {
+            self?.dataBaseManager.save()
+            self?.saved = true
           }
+          
+          guard case let .failure(error) = completion else { return }
+          
+          print("Error occured while creating new note: \(error.localizedDescription)")
+          print("Saving offline")
+          
+          self?
+            .dataBaseManager
+            .create { mo in
+              mo.id = Date().description
+              mo.title = self?.title
+              mo.text = self?.body
+              mo.date = Date()
+              mo.isSync = false
+            }
         },
-        receiveValue: { [weak self] dto in self?.save(note: dto, isSync: true) }
+        receiveValue: { [weak dataBaseManager] note in
+          dataBaseManager?
+            .create { $0.configure(note: note) }
+        }
       )
       .store(in: &cancellables)
   }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5200C4DA2702222600304656 /* Note+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5200C4D82702222600304656 /* Note+CoreDataClass.swift */; };
+		5200C4DF2703373800304656 /* NotesDataBaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5200C4DE2703373800304656 /* NotesDataBaseProtocol.swift */; };
 		524C45D326F4D8B9009EB4EC /* NotesCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C45D226F4D8B9009EB4EC /* NotesCreationView.swift */; };
 		524C45D526F4D8DB009EB4EC /* NotesCreationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C45D426F4D8DB009EB4EC /* NotesCreationViewModel.swift */; };
 		52A984A426F3DD7B003589BE /* notesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984A326F3DD7B003589BE /* notesApp.swift */; };
@@ -50,6 +51,7 @@
 /* Begin PBXFileReference section */
 		23C6406D2C5A3D3F2DF24262 /* Pods_notes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_notes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5200C4D82702222600304656 /* Note+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataClass.swift"; sourceTree = "<group>"; };
+		5200C4DE2703373800304656 /* NotesDataBaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesDataBaseProtocol.swift; sourceTree = "<group>"; };
 		524C45D226F4D8B9009EB4EC /* NotesCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesCreationView.swift; sourceTree = "<group>"; };
 		524C45D426F4D8DB009EB4EC /* NotesCreationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesCreationViewModel.swift; sourceTree = "<group>"; };
 		52A984A026F3DD7B003589BE /* notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = notes.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -331,6 +333,7 @@
 		52F21CCB26F9D6E1000D3CE7 /* DB */ = {
 			isa = PBXGroup;
 			children = (
+				5200C4DE2703373800304656 /* NotesDataBaseProtocol.swift */,
 				52F21CCC26F9D6F8000D3CE7 /* CoreDataManager.swift */,
 			);
 			path = DB;
@@ -489,6 +492,7 @@
 			files = (
 				52EB118726FCC3C7005B1C5F /* DateFormatter + Extensions.swift in Sources */,
 				52A9852226F4B38D003589BE /* SignUpView.swift in Sources */,
+				5200C4DF2703373800304656 /* NotesDataBaseProtocol.swift in Sources */,
 				52A984FE26F3E438003589BE /* NotesListView.swift in Sources */,
 				52A984F926F3E3D8003589BE /* SignInViewModel.swift in Sources */,
 				52F21CCD26F9D6F8000D3CE7 /* CoreDataManager.swift in Sources */,

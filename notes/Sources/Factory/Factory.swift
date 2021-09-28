@@ -15,10 +15,25 @@ struct Factory: FactoryProtocol {
   }
   
   func makeNotesListView() -> AnyView {
-    AnyView(NotesListView(viewModel: NotesListViewModel(loginAPI: LoginAPI(), notesAPI: NotesAPI())))
+    AnyView(
+      NotesListView(
+        viewModel: NotesListViewModel(
+          loginAPI: LoginAPI(),
+          notesAPI: NotesAPI(),
+          dataBaseManager: CoreDataManager.shared
+        )
+      )
+    )
   }
   
   func makeNotesCreationView() -> AnyView {
-    AnyView(NotesCreationView(viewModel: NotesCreationViewModel(api: NotesAPI())))
+    AnyView(
+      NotesCreationView(
+        viewModel: NotesCreationViewModel(
+          notesAPI: NotesAPI(),
+          dataBaseManager: CoreDataManager.shared
+        )
+      )
+    )
   }
 }
