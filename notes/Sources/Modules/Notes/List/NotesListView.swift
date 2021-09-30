@@ -4,9 +4,13 @@ struct NotesListView: View {
   
   @ObservedObject var viewModel: NotesListViewModel
   
+  @FetchRequest(
+    sortDescriptors: [NSSortDescriptor(keyPath: \Note.date, ascending: false)]
+  ) private var items: FetchedResults<Note>
+  
   var body: some View {
     NavigationView {
-      List(viewModel.notes) { NotePreviewCell(note: $0) }
+      List(items) { NotePreviewCell(note: $0) }
       .navigationBarTitleDisplayMode(.inline)
       .navigationBarItems(leading: leadingNavigationItem, trailing: trailingNavigationItem)
       .navigationBarTitle(L10n.App.General.name)
@@ -59,12 +63,6 @@ private extension NotesListView {
 // MARK: - PreviewProvider
 struct NotesScreen_Previews: PreviewProvider {
   static var previews: some View {
-    NotesListView(
-      viewModel: NotesListViewModel(
-        loginAPI: LoginAPI(),
-        notesAPI: NotesAPI(),
-        dataBaseManager: CoreDataManager.shared
-      )
-    )
+    NotesListView(viewModel: NotesListViewModel(notesDataBase: NotesDataBase.shared))
   }
 }

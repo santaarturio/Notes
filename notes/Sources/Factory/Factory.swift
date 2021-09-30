@@ -17,22 +17,15 @@ struct Factory: FactoryProtocol {
   func makeNotesListView() -> AnyView {
     AnyView(
       NotesListView(
-        viewModel: NotesListViewModel(
-          loginAPI: LoginAPI(),
-          notesAPI: NotesAPI(),
-          dataBaseManager: CoreDataManager.shared
-        )
-      )
+        viewModel: NotesListViewModel(notesDataBase: NotesDataBase.shared)
+      ).environment(\.managedObjectContext, NotesDataBase.shared.viewContext)
     )
   }
   
   func makeNotesCreationView() -> AnyView {
     AnyView(
       NotesCreationView(
-        viewModel: NotesCreationViewModel(
-          notesAPI: NotesAPI(),
-          dataBaseManager: CoreDataManager.shared
-        )
+        viewModel: NotesCreationViewModel(notesDataBase: NotesDataBase.shared)
       )
     )
   }
