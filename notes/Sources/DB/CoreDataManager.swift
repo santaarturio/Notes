@@ -8,7 +8,7 @@ class CoreDataManager {
     self.containerName = containerName
   }
   
-  private(set) lazy var persistentContainer: NSPersistentContainer = {
+  lazy private(set) var persistentContainer: NSPersistentContainer = {
     let container = NSPersistentContainer(name: containerName)
     
     container

@@ -18,8 +18,6 @@ final class NotesDataBase {
     self.coreDataManager = coreDataManager
     self.loginAPI = loginAPI
     self.notesAPI = notesAPI
-    
-    setup()
   }
 }
 
@@ -53,7 +51,7 @@ extension NotesDataBase: NotesDataBaseProtocol {
 }
 
 // MARK: - Setup
-private extension NotesDataBase {
+extension NotesDataBase {
   
   func setup() {
     loginAPI
@@ -65,7 +63,7 @@ private extension NotesDataBase {
       .store(in: &API.cancellables)
   }
   
-  func fetchNotes(_ completion: Subscribers.Completion<Error>) {
+  private func fetchNotes(_ completion: Subscribers.Completion<Error>) {
     guard
       case .finished = completion else { return }
     
@@ -78,7 +76,7 @@ private extension NotesDataBase {
       .store(in: &API.cancellables)
   }
   
-  func syncNotesIfNeeded(_ completion: Subscribers.Completion<Error>) {
+  private func syncNotesIfNeeded(_ completion: Subscribers.Completion<Error>) {
     guard
       case .finished = completion else { return }
     

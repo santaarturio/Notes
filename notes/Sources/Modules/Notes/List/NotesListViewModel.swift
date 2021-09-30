@@ -16,5 +16,6 @@ final class NotesListViewModel: ObservableObject {
   
   init(notesDataBase: NotesDataBaseProtocol) {
     self.notesDataBase = notesDataBase
+    notesDataBase.setup()
   }
 }

@@ -11,9 +11,18 @@ struct NotesListView: View {
   var body: some View {
     NavigationView {
       List(items) { NotePreviewCell(note: $0) }
-      .navigationBarTitleDisplayMode(.inline)
-      .navigationBarItems(leading: leadingNavigationItem, trailing: trailingNavigationItem)
-      .navigationBarTitle(L10n.App.General.name)
+      .toolbar {
+        ToolbarItem(placement: .navigationBarLeading) {
+          leadingNavigationItem
+        }
+        ToolbarItem(placement: .principal) {
+          Text(L10n.App.General.name)
+            .fontWeight(.medium)
+        }
+        ToolbarItem(placement: .navigationBarTrailing) {
+          trailingNavigationItem
+        }
+      }
       .animation(.easeInOut)
     }
     .accentColor(Color(Asset.Colors.stillYellow.color))
