@@ -100,7 +100,7 @@ extension CoreDataManager {
 // MARK: - Remove
 extension CoreDataManager {
   
-  func removeAllEntitieas(named entityName: String) {
+  func removeAllEntities(named entityName: String) {
     let context = newBackgroundContext
     let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
     let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)

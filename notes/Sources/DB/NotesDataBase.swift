@@ -47,7 +47,7 @@ extension NotesDataBase: NotesDataBaseProtocol {
       .store(in: &API.cancellables)
   }
   
-  func removeAll() { coreDataManager.removeAllEntitieas(named: "Note") }
+  func removeAll() { coreDataManager.removeAllEntities(named: "Note") }
 }
 
 // MARK: - Setup
@@ -88,32 +88,31 @@ extension NotesDataBase {
 // MARK: - Create
 private extension CoreDataManager {
   
-  func create(
-    context: NSManagedObjectContext,
-    configurations configure: @escaping (Note) -> Void
-  ) {
-    context.perform {
-      configure(Note(context: context))
-    }
-  }
-  
   func create(title: String?, text: String?) {
     let context = newBackgroundContext
+    let noteMO = Note(context: context)
     
-    create(context: context) { mo in
-      mo.id = Date().description
-      mo.title = title
-      mo.text = text
-      mo.date = Date()
-      mo.isSync = false
-    }
+    context
+      .perform {
+        noteMO.id = Date().description
+        noteMO.title = title
+        noteMO.text = text
+        noteMO.date = Date()
+        noteMO.isSync = false
+      }
     
     save(context: context)
   }
   
   func create(from note: API.Note) {
     let context = newBackgroundContext
-    create(context: context) { $0.configure(note: note) }
+    let noteMO = Note(context: context)
+    
+    context
+      .perform {
+        noteMO.configure(note: note)
+      }
+    
     save(context: context)
   }
 }
