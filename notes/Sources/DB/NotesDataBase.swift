@@ -47,7 +47,7 @@ extension NotesDataBase: NotesDataBaseProtocol {
       .store(in: &API.cancellables)
   }
   
-  func removeAll() { coreDataManager.removeAll() }
+  func removeAll() { coreDataManager.removeAllEntitieas(named: "Note") }
 }
 
 // MARK: - Setup
@@ -70,13 +70,13 @@ extension NotesDataBase {
     notesAPI
       .fetchNotes()
       .sink(
-        receiveCompletion: weakify(NotesDataBase.syncNotesIfNeeded, object: self),
-        receiveValue: { [weak self] dtos in self?.coreDataManager.createMany(from: dtos) }
+        receiveCompletion: weakify(NotesDataBase.syncUnsyncedIfNeeded, object: self),
+        receiveValue: { [weak self] dtos in self?.coreDataManager.sync(with: dtos) }
       )
       .store(in: &API.cancellables)
   }
   
-  private func syncNotesIfNeeded(_ completion: Subscribers.Completion<Error>) {
+  private func syncUnsyncedIfNeeded(_ completion: Subscribers.Completion<Error>) {
     guard
       case .finished = completion else { return }
     
@@ -85,68 +85,62 @@ extension NotesDataBase {
   }
 }
 
-// MARK: - Convenience CoreDataManager extension
+// MARK: - Create
 private extension CoreDataManager {
   
-  func create(configurations configure: @escaping (Note) -> Void) {
-    backgroundContext.perform { [unowned self] in
-      configure(Note(context: backgroundContext))
+  func create(
+    context: NSManagedObjectContext,
+    configurations configure: @escaping (Note) -> Void
+  ) {
+    context.perform {
+      configure(Note(context: context))
     }
   }
   
   func create(title: String?, text: String?) {
-    create { mo in
+    let context = newBackgroundContext
+    
+    create(context: context) { mo in
       mo.id = Date().description
       mo.title = title
       mo.text = text
       mo.date = Date()
       mo.isSync = false
     }
-    save()
+    
+    save(context: context)
   }
   
   func create(from note: API.Note) {
-    create { $0.configure(note: note) }
-    save()
+    let context = newBackgroundContext
+    create(context: context) { $0.configure(note: note) }
+    save(context: context)
   }
+}
+
+// MARK: - Sync
+private extension CoreDataManager {
   
-  func createMany(from notes: [API.Note]) {
-    notes.forEach { note in create { $0.configure(note: note) } }
-    save()
-  }
-  
-  func save() {
-    backgroundContext.perform { [unowned self] in
-      if backgroundContext.hasChanges {
-        do {
-          try backgroundContext.save()
-        } catch {
-          print("Error occured while save background context: \(error.localizedDescription)")
-        }
+  func sync(with notes: [API.Note]) {
+    let context = newBackgroundContext
+    
+    notes.forEach { note in
+      let fetchRequest: NSFetchRequest<Note> = Note.fetchRequest()
+      fetchRequest.predicate = NSPredicate(format: "id == %@", note.id.description)
+      
+      do {
+        (try context.fetch(fetchRequest).first ?? Note(context: context))
+          .configure(note: note)
+      } catch {
+        print("Error occured while sync dtos: \(error.localizedDescription)")
       }
     }
-  }
-  
-  func removeAll() {
-    let context = persistentContainer.newBackgroundContext()
-    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Note")
-    let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
     
-    context
-      .perform {
-        do {
-          try context.execute(deleteRequest)
-          try context.save()
-        } catch {
-          print("Error occured while delete notes: \(error.localizedDescription)")
-        }
-      }
+    save(context: context)
   }
   
   func syncUnsynced(notesAPI: NotesAPIProtocol) {
-    let context = persistentContainer.newBackgroundContext()
-    context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-    context.shouldDeleteInaccessibleFaults = true
+    let context = newBackgroundContext
     
     let fetchRequest: NSFetchRequest<Note> = Note.fetchRequest()
     fetchRequest.sortDescriptors = [NSSortDescriptor.init(keyPath: \Note.date, ascending: true)]
