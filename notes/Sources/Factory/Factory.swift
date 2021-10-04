@@ -1,34 +1,38 @@
 import SwiftUI
 
-struct Factory {
+struct Factory: FactoryProtocol {
   
-  func makeRootView() -> some View {
-    RootView(login: makeSignInView, notes: makeNotesListView)
+  func makeRootView() -> AnyView {
+    AnyView(RootView(login: makeSignInView, notes: makeNotesListView))
   }
   
-  func makeSignInView() -> some View {
-    SignInView(viewModel: SignInViewModel(api: LoginAPI()), signUpView: makeSignUpView)
+  func makeSignInView() -> AnyView {
+    AnyView(SignInView(viewModel: SignInViewModel(api: LoginAPI())))
   }
   
-  func makeSignUpView() -> some View {
-    SignUpView(viewModel: SignUpViewModel(api: LoginAPI()))
+  func makeSignUpView() -> AnyView {
+    AnyView(SignUpView(viewModel: SignUpViewModel(api: LoginAPI())))
   }
   
-  func makeNotesListView() -> some View {
-    NotesListView(
-      viewModel: NotesListViewModel(
-        notesAPI: NotesAPI(),
-        notesDataBase: DataBase.notesDataBase
-      ),
-      createView: makeNotesCreationView
+  func makeNotesListView() -> AnyView {
+    AnyView(
+      NotesListView(
+        viewModel: NotesListViewModel(
+          loginAPI: LoginAPI(),
+          notesAPI: NotesAPI(),
+          dataBaseManager: CoreDataManager.shared
+        )
+      )
     )
   }
   
-  func makeNotesCreationView() -> some View {
-    NotesCreationView(
-      viewModel: NotesCreationViewModel(
-        notesAPI: NotesAPI(),
-        notesDataBase: DataBase.notesDataBase
+  func makeNotesCreationView() -> AnyView {
+    AnyView(
+      NotesCreationView(
+        viewModel: NotesCreationViewModel(
+          notesAPI: NotesAPI(),
+          dataBaseManager: CoreDataManager.shared
+        )
       )
     )
   }

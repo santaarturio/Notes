@@ -12,11 +12,11 @@ import CoreData
 @objc(Note)
 public class Note: NSManagedObject {
 
-  func configure(dto: API.Note) {
-    self.id = dto.id
-    self.title = dto.title
-    self.text = dto.subtitle
-    self.date = DateFormatter.cached.date(from: dto.date)
+  func configure(note: API.Note) {
+    self.id = note.id
+    self.title = note.title
+    self.text = note.subtitle
+    self.date = DateFormatter.cached.date(from: note.date)
     self.isSync = true
   }
 }

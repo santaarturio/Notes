@@ -6,8 +6,7 @@ final class NotesAPI: BaseAPI<NotesTarget> {
   override init(
     provider: MoyaProvider<NotesTarget> = .init(
       plugins: [
-        AccessTokenPlugin(tokenClosure: { _ in KeyHolder.default.get(.token) ?? "" }),
-        Plugin401(onStatusCode401: { KeyHolder.default.flush() })
+        AccessTokenPlugin(tokenClosure: { _ in KeyHolder.default.get(.token) ?? "" })
       ]
     ),
     callbackQueue: DispatchQueue = .main

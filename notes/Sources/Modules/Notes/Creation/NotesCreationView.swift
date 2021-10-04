@@ -84,6 +84,6 @@ private extension NotesCreationView {
 // MARK: - PreviewProvider
 struct CreateNoteScreen_Previews: PreviewProvider {
   static var previews: some View {
-    NotesCreationView(viewModel: NotesCreationViewModel(notesAPI: NotesAPI(), notesDataBase: DataBase.notesDataBase))
+    NotesCreationView(viewModel: NotesCreationViewModel(notesAPI: NotesAPI(), dataBaseManager: CoreDataManager.shared))
   }
 }

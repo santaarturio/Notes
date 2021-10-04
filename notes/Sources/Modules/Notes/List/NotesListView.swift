@@ -1,25 +1,15 @@
 import SwiftUI
 
-struct NotesListView<CreateView: View>: View {
+struct NotesListView: View {
   
   @ObservedObject var viewModel: NotesListViewModel
-  var createView: () -> CreateView
   
   var body: some View {
     NavigationView {
       List(viewModel.notes) { NotePreviewCell(note: $0) }
-      .toolbar {
-        ToolbarItem(placement: .navigationBarLeading) {
-          leadingNavigationItem
-        }
-        ToolbarItem(placement: .principal) {
-          Text(L10n.App.General.name)
-            .fontWeight(.medium)
-        }
-        ToolbarItem(placement: .navigationBarTrailing) {
-          trailingNavigationItem
-        }
-      }
+      .navigationBarTitleDisplayMode(.inline)
+      .navigationBarItems(leading: leadingNavigationItem, trailing: trailingNavigationItem)
+      .navigationBarTitle(L10n.App.General.name)
       .animation(.easeInOut)
     }
     .accentColor(Color(Asset.Colors.stillYellow.color))
@@ -56,7 +46,7 @@ private extension NotesListView {
   // MARK: trailingNavigationItem
   private var trailingNavigationItem: some View {
     NavigationLink(
-      destination: LinkPresenter(createView)
+      destination: LinkPresenter { viewModel.creationView }
     ) {
       Image(uiImage: Asset.Images.createNote.image)
         .resizable()
@@ -69,6 +59,12 @@ private extension NotesListView {
 // MARK: - PreviewProvider
 struct NotesScreen_Previews: PreviewProvider {
   static var previews: some View {
-    NotesListView(viewModel: NotesListViewModel(notesAPI: NotesAPI(), notesDataBase: DataBase.notesDataBase), createView: EmptyView.init)
+    NotesListView(
+      viewModel: NotesListViewModel(
+        loginAPI: LoginAPI(),
+        notesAPI: NotesAPI(),
+        dataBaseManager: CoreDataManager.shared
+      )
+    )
   }
 }
