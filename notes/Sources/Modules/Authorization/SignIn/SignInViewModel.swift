@@ -4,13 +4,7 @@ import Combine
 final class SignInViewModel: ObservableObject {
   
   private var cancellables: Set<AnyCancellable> = []
-  
   private let api: LoginAPIProtocol
-  private let factory: FactoryProtocol = Factory()
-  
-  private(set) lazy var signUpView: AnyView = { [weak self] in
-    AnyView(self?.factory.makeSignUpView())
-  }()
   
   @Published var email = ""
   @Published var password = ""
@@ -35,8 +29,6 @@ extension SignInViewModel {
   }
   
   func receiveValue(_ dto: API.User) {
-    KeyHolder.default.update(email, for: .email)
-    KeyHolder.default.update(password, for: .password)
     KeyHolder.default.update(dto.jwt ?? "", for: .token)
   }
   

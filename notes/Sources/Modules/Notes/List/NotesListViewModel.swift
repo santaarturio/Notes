@@ -1,21 +1,59 @@
 import SwiftUI
+import Combine
 
 final class NotesListViewModel: ObservableObject {
   
+  private var cancellables: Set<AnyCancellable> = []
+  
+  private let notesAPI: NotesAPIProtocol
   private let notesDataBase: NotesDataBaseProtocol
-  private let factory: FactoryProtocol = Factory()
   
-  lazy var logout: () -> Void = { [weak notesDataBase] in
+  @Published var notes: [Note] = []
+  
+  lazy var logout: () -> Void = { [weak self] in
     KeyHolder.default.flush()
-    notesDataBase?.removeAll()
+    self?.notesDataBase.removeAllNotes()
   }
   
-  var creationView: AnyView {
-    AnyView(factory.makeNotesCreationView())
-  }
-  
-  init(notesDataBase: NotesDataBaseProtocol) {
+  init(
+    notesAPI: NotesAPIProtocol,
+    notesDataBase: NotesDataBaseProtocol
+  ) {
+    self.notesAPI = notesAPI
     self.notesDataBase = notesDataBase
-    notesDataBase.setup()
+    
+    setupNetworking()
+    
+    notesDataBase
+      .notesPublisher
+      .assign(to: &$notes)
+  }
+}
+
+private extension NotesListViewModel {
+  
+  func setupNetworking() {
+    downloadNotes()
+    uploadNotes()
+  }
+  
+  func downloadNotes() {
+    notesAPI
+      .fetchNotes()
+      .sink(
+        receiveCompletion: { _ in },
+        receiveValue: { [weak self] dtos in
+          dtos.forEach { dto in
+            self?
+              .notesDataBase
+              .updateNote(id: dto.id) { note in note.configure(dto: dto) }
+          }
+        }
+      )
+      .store(in: &cancellables)
+  }
+  
+  func uploadNotes() {
+    
   }
 }

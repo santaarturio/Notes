@@ -5,6 +5,7 @@ final class NotesCreationViewModel: ObservableObject {
   
   var cancellables: Set<AnyCancellable> = []
   
+  private let notesAPI: NotesAPIProtocol
   private let notesDataBase: NotesDataBaseProtocol
   
   @Published var title = ""
@@ -12,7 +13,11 @@ final class NotesCreationViewModel: ObservableObject {
   @Published var done: (() -> Void)?
   @Published var saved = false
   
-  init(notesDataBase: NotesDataBaseProtocol) {
+  init(
+    notesAPI: NotesAPIProtocol,
+    notesDataBase: NotesDataBaseProtocol
+  ) {
+    self.notesAPI = notesAPI
     self.notesDataBase = notesDataBase
     
     $title.combineLatest($body)
@@ -26,8 +31,28 @@ final class NotesCreationViewModel: ObservableObject {
 private extension NotesCreationViewModel {
   
   func createNote() {
-    notesDataBase
-      .create(title: title, text: body)
+    notesAPI
+      .createNote(title: title, text: body)
+      .sink(
+        receiveCompletion: weakify(NotesCreationViewModel.saveNoteOfflineIfNeeded, object: self),
+        receiveValue: { [weak self] dto in self?.notesDataBase.createNote { note in note.configure(dto: dto) } }
+      )
+      .store(in: &cancellables)
+  }
+  
+  func saveNoteOfflineIfNeeded(_ completion: Subscribers.Completion<Error>) {
     saved = true
+    
+    guard
+      case .failure = completion else { return }
+    
+    notesDataBase
+      .createNote { [weak self] note in
+        note.id = Date().description
+        note.title = self?.title
+        note.text = self?.body
+        note.date = Date()
+        note.isSync = false
+      }
   }
 }

@@ -1,16 +1,13 @@
 import SwiftUI
 
-struct NotesListView: View {
+struct NotesListView<CreateView: View>: View {
   
   @ObservedObject var viewModel: NotesListViewModel
-  
-  @FetchRequest(
-    sortDescriptors: [NSSortDescriptor(keyPath: \Note.date, ascending: false)]
-  ) private var items: FetchedResults<Note>
+  var createView: () -> CreateView
   
   var body: some View {
     NavigationView {
-      List(items) { NotePreviewCell(note: $0) }
+      List(viewModel.notes) { NotePreviewCell(note: $0) }
       .toolbar {
         ToolbarItem(placement: .navigationBarLeading) {
           leadingNavigationItem
@@ -59,7 +56,7 @@ private extension NotesListView {
   // MARK: trailingNavigationItem
   private var trailingNavigationItem: some View {
     NavigationLink(
-      destination: LinkPresenter { viewModel.creationView }
+      destination: LinkPresenter(createView)
     ) {
       Image(uiImage: Asset.Images.createNote.image)
         .resizable()
@@ -72,6 +69,6 @@ private extension NotesListView {
 // MARK: - PreviewProvider
 struct NotesScreen_Previews: PreviewProvider {
   static var previews: some View {
-    NotesListView(viewModel: NotesListViewModel(notesDataBase: NotesDataBase.shared))
+    NotesListView(viewModel: NotesListViewModel(notesAPI: NotesAPI(), notesDataBase: DataBase.notesDataBase), createView: EmptyView.init)
   }
 }

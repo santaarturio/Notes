@@ -3,15 +3,11 @@ import CoreData
 import Combine
 import UIKit
 
-class CoreDataManager {
+class CoreDataManager: NSObject {
   
   private let containerName: String
-  private var cancellables: Set<AnyCancellable> = []
   
-  init(containerName: String) {
-    self.containerName = containerName
-    setupObserving()
-  }
+  init(containerName: String) { self.containerName = containerName }
   
   lazy private var persistentContainer: NSPersistentContainer = {
     let container = NSPersistentContainer(name: containerName)
@@ -35,33 +31,7 @@ class CoreDataManager {
     context.parent = backgroundContext
     return context
   }()
-  
-  var newBackgroundContext: NSManagedObjectContext {
-    let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
-    context.parent = viewContext
-    return context
-  }
 }
-
-// MARK: - Setup Observing
-private extension CoreDataManager {
-  
-  func setupObserving() {
-    let willTerminate = NotificationCenter
-      .default
-      .publisher(for: UIApplication.willTerminateNotification)
-    
-    let didEnterBackground = NotificationCenter
-      .default
-      .publisher(for: UIApplication.didEnterBackgroundNotification)
-    
-    willTerminate.merge(with: didEnterBackground)
-      .map { _ in () }
-      .sink(receiveValue: weakify(CoreDataManager.save, object: self))
-      .store(in: &cancellables)
-  }
-}
-
 
 // MARK: - Save
 extension CoreDataManager {
@@ -101,7 +71,7 @@ extension CoreDataManager {
 extension CoreDataManager {
   
   func removeAllEntities(named entityName: String) {
-    let context = newBackgroundContext
+    let context = backgroundContext
     let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
     let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
     
@@ -110,7 +80,6 @@ extension CoreDataManager {
         do {
           try context.execute(deleteRequest)
           try context.save()
-          weakify(CoreDataManager.save, object: self)()
         } catch {
           print("Error occured while delete entities named \(entityName)\n", error.localizedDescription)
         }
