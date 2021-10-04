@@ -1,9 +1,6 @@
-import Foundation
 import CoreData
-import Combine
-import UIKit
 
-class CoreDataManager: NSObject {
+class CoreDataManager {
   
   private let containerName: String
   
