@@ -1,11 +1,12 @@
 import SwiftUI
 
-struct SignInView: View {
+struct SignInView<SignUpView: View>: View {
   
   @ObservedObject var viewModel: SignInViewModel
   @ObservedObject var keyboardResponder = KeyboardResponder()
   
   @State var isSignUpPresented = false
+  var signUpView: () -> SignUpView
   
   var body: some View {
     VStack {
@@ -20,7 +21,7 @@ struct SignInView: View {
       SignUpButton(action: { isSignUpPresented = true })
     }
     .isLoading($viewModel.isDownloading, text: L10n.App.Login.authorization)
-    .sheet(isPresented: $isSignUpPresented) { viewModel.signUpView }
+    .sheet(isPresented: $isSignUpPresented, content: signUpView)
     .accentColor(Color(Asset.Colors.zebra.color))
     .padding(
       EdgeInsets(
@@ -131,6 +132,6 @@ private extension SignInView {
 // MARK: - PreviewProvider
 struct LoginScreen_Previews: PreviewProvider {
   static var previews: some View {
-    SignInView(viewModel: .init(api: LoginAPI()))
+    SignInView(viewModel: .init(api: LoginAPI()), signUpView: EmptyView.init)
   }
 }

@@ -1,99 +1,78 @@
+import Foundation
 import CoreData
+import Combine
+import UIKit
 
-class CoreDataManager {
+class CoreDataManager: NSObject {
   
   private let containerName: String
   
-  init(containerName: String) {
-    self.containerName = containerName
-  }
+  init(containerName: String) { self.containerName = containerName }
   
-  private(set) lazy var persistentContainer: NSPersistentContainer = {
+  lazy private var persistentContainer: NSPersistentContainer = {
     let container = NSPersistentContainer(name: containerName)
     
     container
       .loadPersistentStores { _, error in
         if let error = error {
-          fatalError("Unresolved error: \(error.localizedDescription)")
+          fatalError("Unresolved error while loading Persistent Store: \(error.localizedDescription)")
         }
       }
     
     return container
   }()
   
-  lazy private(set) var backgroundContext: NSManagedObjectContext = {
-    let context = persistentContainer.newBackgroundContext()
-    context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-    context.shouldDeleteInaccessibleFaults = true
-    return context
+  lazy private var backgroundContext: NSManagedObjectContext = {
+    persistentContainer.newBackgroundContext()
   }()
   
   lazy private(set) var viewContext: NSManagedObjectContext = {
     let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
     context.parent = backgroundContext
-    context.automaticallyMergesChangesFromParent = true
     return context
   }()
 }
 
-extension CoreDataManager: NotesDataBaseProtocol {
-  static let shared: NotesDataBaseProtocol = CoreDataManager(containerName: "NotesData")
+// MARK: - Save
+extension CoreDataManager {
   
-  func create(configurations configure: @escaping (Note) -> Void) {
-    backgroundContext.perform { [unowned self] in
-      configure(Note(context: backgroundContext))
-    }
-  }
-  
-  func syncUnsynced(notesAPI: NotesAPIProtocol) {
-    let context = persistentContainer.newBackgroundContext()
-    context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-    context.shouldDeleteInaccessibleFaults = true
-    
-    let fetchRequest: NSFetchRequest<Note> = Note.fetchRequest()
-    fetchRequest.predicate = NSPredicate(format: "isSync == FALSE")
-    
-    context
-      .perform {
+  func save(context: NSManagedObjectContext) {
+    context.perform {
+      if context.hasChanges {
         do {
-          try context
-            .fetch(fetchRequest)
-            .forEach { mo in
-              notesAPI
-                .createNote(title: mo.title ?? "", text: mo.text ?? "")
-                .sink(
-                  receiveCompletion: { _ in },
-                  receiveValue: { note in
-                    mo.configure(note: note)
-                    
-                    do {
-                      try context.save()
-                    } catch {
-                      context.rollback()
-                    }
-                  }
-                )
-                .store(in: &API.cancellables)
-            }
-        } catch { print("Error occured while fetching non sync notes, error: \(error.localizedDescription)") }
-      }
-  }
-  
-  func save() {
-    backgroundContext.perform { [unowned self] in
-      if backgroundContext.hasChanges {
-        do {
-          try backgroundContext.save()
+          try context.save()
         } catch {
-          print("Error occured while save background context: \(error.localizedDescription)")
+          print("Error occured while saving context: \(error.localizedDescription)")
         }
       }
     }
   }
   
-  func removeAll() {
-    let context = persistentContainer.newBackgroundContext()
-    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Note")
+  func save() {
+    viewContext.perform { [unowned self] in
+      do {
+        if viewContext.hasChanges { try viewContext.save() }
+      } catch {
+        print("Unable to Save Changes of VIew Context\n", error.localizedDescription)
+      }
+      
+      backgroundContext.perform { [unowned self] in
+        do {
+          if backgroundContext.hasChanges { try backgroundContext.save() }
+        } catch {
+          print("Unable to Save Changes of Background Context\n", error.localizedDescription)
+        }
+      }
+    }
+  }
+}
+
+// MARK: - Remove
+extension CoreDataManager {
+  
+  func removeAllEntities(named entityName: String) {
+    let context = backgroundContext
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
     let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
     
     context
@@ -102,7 +81,7 @@ extension CoreDataManager: NotesDataBaseProtocol {
           try context.execute(deleteRequest)
           try context.save()
         } catch {
-          print("Error occured while delete notes: \(error.localizedDescription)")
+          print("Error occured while delete entities named \(entityName)\n", error.localizedDescription)
         }
       }
   }

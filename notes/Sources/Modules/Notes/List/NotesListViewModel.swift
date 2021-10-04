@@ -1,121 +1,59 @@
 import SwiftUI
 import Combine
-import CoreData
 
-final class NotesListViewModel: NSObject, ObservableObject {
+final class NotesListViewModel: ObservableObject {
   
   private var cancellables: Set<AnyCancellable> = []
-  private var fetchedResultsController: NSFetchedResultsController<Note>!
   
-  private let loginAPI: LoginAPIProtocol
   private let notesAPI: NotesAPIProtocol
-  private let dataBaseManager: NotesDataBaseProtocol
-  private let factory: FactoryProtocol = Factory()
+  private let notesDataBase: NotesDataBaseProtocol
   
   @Published var notes: [Note] = []
   
-  lazy var logout: () -> Void = { [weak dataBaseManager] in
+  lazy var logout: () -> Void = { [weak self] in
     KeyHolder.default.flush()
-    dataBaseManager?.removeAll()
-  }
-  
-  var creationView: AnyView {
-    AnyView(factory.makeNotesCreationView())
+    self?.notesDataBase.removeAllNotes()
   }
   
   init(
-    loginAPI: LoginAPIProtocol,
     notesAPI: NotesAPIProtocol,
-    dataBaseManager: NotesDataBaseProtocol
+    notesDataBase: NotesDataBaseProtocol
   ) {
-    self.loginAPI = loginAPI
     self.notesAPI = notesAPI
-    self.dataBaseManager = dataBaseManager
+    self.notesDataBase = notesDataBase
     
-    super.init()
-    
-    setupFetchedResultsController()
     setupNetworking()
+    
+    notesDataBase
+      .notesPublisher
+      .assign(to: &$notes)
   }
 }
 
-// MARK: - Sync
 private extension NotesListViewModel {
   
-  func syncList() {
-    guard
-      let managedObjects = fetchedResultsController.fetchedObjects else { return }
-    notes = managedObjects
-  }
-}
-
-// MARK: - NSFetchedResultsController
-extension NotesListViewModel: NSFetchedResultsControllerDelegate {
-  
-  private func setupFetchedResultsController() {
-    let fetchRequest = Note.fetchRequest() as NSFetchRequest
-    fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
-    
-    fetchedResultsController = NSFetchedResultsController(
-      fetchRequest: fetchRequest,
-      managedObjectContext: dataBaseManager.viewContext,
-      sectionNameKeyPath: nil,
-      cacheName: nil
-    )
-    fetchedResultsController.delegate = self
-    
-    do {
-      try fetchedResultsController.performFetch()
-      syncList()
-    } catch { print(error.localizedDescription) }
-  }
-  
-  func controllerDidChangeContent(
-    _ controller: NSFetchedResultsController<NSFetchRequestResult>
-  ) { syncList() }
-}
-
-// MARK: - Networking
-private extension NotesListViewModel {
-  
-  // MARK: Refresh Token
   func setupNetworking() {
-    loginAPI
-      .refreshToken()
-      .sink(
-        receiveCompletion: weakify(NotesListViewModel.fetchNotes, object: self),
-        receiveValue: { }
-      )
-      .store(in: &API.cancellables)
+    downloadNotes()
+    uploadNotes()
   }
   
-  // MARK: Fetch Notes
-  func fetchNotes(_ completion: Subscribers.Completion<Error>) {
-    guard
-      case .finished = completion else { return }
-    
+  func downloadNotes() {
     notesAPI
       .fetchNotes()
       .sink(
-        receiveCompletion: weakify(NotesListViewModel.syncNotesIfNeeded, object: self),
-        receiveValue: { [weak dataBaseManager] dtos in
-          dtos.forEach { note in dataBaseManager?.create { $0.configure(note: note) } }
-          dataBaseManager?.save()
+        receiveCompletion: { _ in },
+        receiveValue: { [weak self] dtos in
+          dtos.forEach { dto in
+            self?
+              .notesDataBase
+              .updateNote(id: dto.id) { note in note.configure(dto: dto) }
+          }
         }
       )
-      .store(in: &API.cancellables)
+      .store(in: &cancellables)
   }
   
-  // MARK: Sync Untracked Notes
-  func syncNotesIfNeeded(_ completion: Subscribers.Completion<Error>) {
-    guard
-      case .finished = completion else { return }
+  func uploadNotes() {
     
-    dataBaseManager
-      .syncUnsynced(notesAPI: NotesAPI())
   }
-}
-
-extension API {
-  static var cancellables: Set<AnyCancellable> = []
 }

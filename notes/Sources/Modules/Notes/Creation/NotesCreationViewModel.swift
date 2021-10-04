@@ -1,12 +1,12 @@
 import SwiftUI
 import Combine
-import CoreData
 
 final class NotesCreationViewModel: ObservableObject {
   
   var cancellables: Set<AnyCancellable> = []
+  
   private let notesAPI: NotesAPIProtocol
-  private let dataBaseManager: NotesDataBaseProtocol
+  private let notesDataBase: NotesDataBaseProtocol
   
   @Published var title = ""
   @Published var body = ""
@@ -15,10 +15,10 @@ final class NotesCreationViewModel: ObservableObject {
   
   init(
     notesAPI: NotesAPIProtocol,
-    dataBaseManager: NotesDataBaseProtocol
+    notesDataBase: NotesDataBaseProtocol
   ) {
     self.notesAPI = notesAPI
-    self.dataBaseManager = dataBaseManager
+    self.notesDataBase = notesDataBase
     
     $title.combineLatest($body)
       .map { !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
@@ -31,37 +31,28 @@ final class NotesCreationViewModel: ObservableObject {
 private extension NotesCreationViewModel {
   
   func createNote() {
-    
     notesAPI
       .createNote(title: title, text: body)
       .sink(
-        receiveCompletion: { [weak self] completion in
-          
-          defer {
-            self?.dataBaseManager.save()
-            self?.saved = true
-          }
-          
-          guard case let .failure(error) = completion else { return }
-          
-          print("Error occured while creating new note: \(error.localizedDescription)")
-          print("Saving offline")
-          
-          self?
-            .dataBaseManager
-            .create { mo in
-              mo.id = Date().description
-              mo.title = self?.title
-              mo.text = self?.body
-              mo.date = Date()
-              mo.isSync = false
-            }
-        },
-        receiveValue: { [weak dataBaseManager] note in
-          dataBaseManager?
-            .create { $0.configure(note: note) }
-        }
+        receiveCompletion: weakify(NotesCreationViewModel.saveNoteOfflineIfNeeded, object: self),
+        receiveValue: { [weak self] dto in self?.notesDataBase.createNote { note in note.configure(dto: dto) } }
       )
       .store(in: &cancellables)
+  }
+  
+  func saveNoteOfflineIfNeeded(_ completion: Subscribers.Completion<Error>) {
+    saved = true
+    
+    guard
+      case .failure = completion else { return }
+    
+    notesDataBase
+      .createNote { [weak self] note in
+        note.id = Date().description
+        note.title = self?.title
+        note.text = self?.body
+        note.date = Date()
+        note.isSync = false
+      }
   }
 }
