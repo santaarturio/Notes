@@ -37,6 +37,23 @@ final class NotesDataBase: NSObject, NotesDataBaseProtocol {
         configurationsHandler(Note(context: coreDataManager.viewContext))
       }
   }
+  
+  func allAnsynced(_ closure: @escaping ([Note]) -> Void) {
+    let context = coreDataManager.viewContext
+    
+    let fetchRequest: NSFetchRequest<Note> = Note.fetchRequest()
+    fetchRequest.sortDescriptors = [NSSortDescriptor.init(keyPath: \Note.date, ascending: true)]
+    fetchRequest.predicate = NSPredicate(format: "isSync == FALSE")
+    
+    context
+      .perform {
+        do {
+          try closure(context.fetch(fetchRequest))
+        } catch {
+          print("Error occured while fetching non sync notes, error: \(error.localizedDescription)")
+        }
+      }
+  }
 
   func removeAllNotes() {
     coreDataManager

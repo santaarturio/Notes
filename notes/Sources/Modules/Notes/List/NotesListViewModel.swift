@@ -54,6 +54,27 @@ private extension NotesListViewModel {
   }
   
   func uploadNotes() {
+    let api = notesAPI
     
+    notesDataBase
+      .allAnsynced { notes in
+        notes.forEach { note in
+          api
+            .createNote(
+              title: note.title ?? "",
+              text: note.text ?? ""
+            )
+            .sink(
+              receiveCompletion: { _ in },
+              receiveValue: { dto in note.configure(dto: dto) }
+            )
+            .store(in: &API.cancellables)
+        }
+      }
   }
+}
+
+private extension API {
+  /// The cancellables used for sync untracked entities, it shouldn't be affected by ViewModel or other lifecycle
+  static var cancellables: Set<AnyCancellable> = []
 }

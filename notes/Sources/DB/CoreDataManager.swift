@@ -68,18 +68,14 @@ extension CoreDataManager {
 extension CoreDataManager {
   
   func removeAllEntities(named entityName: String) {
-    let context = backgroundContext
     let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
     let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
     
-    context
-      .perform {
-        do {
-          try context.execute(deleteRequest)
-          try context.save()
-        } catch {
-          print("Error occured while delete entities named \(entityName)\n", error.localizedDescription)
-        }
-      }
+    do {
+      try backgroundContext
+        .execute(deleteRequest)
+    } catch {
+      print("Error occured while delete entities named \(entityName)\n", error.localizedDescription)
+    }
   }
 }
