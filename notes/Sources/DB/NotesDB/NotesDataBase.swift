@@ -1,7 +1,10 @@
 import SwiftUI
+import Combine
 import CoreData
 
 final class NotesDataBase: NSObject, NotesDataBaseProtocol {
+  
+  private var cancellables: Set<AnyCancellable> = []
 
   private let coreDataManager = CoreDataManager(containerName: "NotesData")
   private var fetchedResultsController: NSFetchedResultsController<Note>!
@@ -11,7 +14,16 @@ final class NotesDataBase: NSObject, NotesDataBaseProtocol {
 
   override init() {
     super.init()
+    
     setupFetchedResultsController()
+    
+    KeyHolder
+      .default
+      .$isUserLoggedIn
+      .filter { $0 }
+      .map { _ in () }
+      .sink(receiveValue: weakify(NotesDataBase.refreshFetchedResultsController, object: self))
+      .store(in: &cancellables)
   }
   
   func updateNote(id: String, _ configurationsHandler: @escaping (Note) -> Void) {
@@ -43,7 +55,7 @@ final class NotesDataBase: NSObject, NotesDataBaseProtocol {
     
     let fetchRequest: NSFetchRequest<Note> = Note.fetchRequest()
     fetchRequest.sortDescriptors = [NSSortDescriptor.init(keyPath: \Note.date, ascending: true)]
-    fetchRequest.predicate = NSPredicate(format: "isSync == FALSE")
+    fetchRequest.addPredicates([NSPredicate(format: "isSync == FALSE")])
     
     context
       .perform {
@@ -71,7 +83,9 @@ extension NotesDataBase: NSFetchedResultsControllerDelegate {
   
   private func setupFetchedResultsController() {
     let fetchRequest = Note.fetchRequest() as NSFetchRequest
-    fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Note.date, ascending: false)]
+    fetchRequest.sortDescriptors = [
+      NSSortDescriptor(keyPath: \Note.date, ascending: false)
+    ]
     
     fetchedResultsController = NSFetchedResultsController(
       fetchRequest: fetchRequest,
@@ -79,21 +93,36 @@ extension NotesDataBase: NSFetchedResultsControllerDelegate {
       sectionNameKeyPath: nil,
       cacheName: nil
     )
-    fetchedResultsController.delegate = self
     
-    do {
-      try fetchedResultsController.performFetch()
-      syncList()
-    } catch { print(error.localizedDescription) }
+    fetchedResultsController.delegate = self
   }
   
   func controllerDidChangeContent(
     _ controller: NSFetchedResultsController<NSFetchRequestResult>
   ) { syncList() }
   
+  private func refreshFetchedResultsController() {
+    do {
+      fetchedResultsController.fetchRequest.addPredicates()
+      try fetchedResultsController.performFetch()
+      syncList()
+    } catch { print(error.localizedDescription) }
+  }
+  
   private func syncList() {
     fetchedResultsController
       .fetchedObjects
       .map { notes in self.notes = notes }
+  }
+}
+
+private extension NSFetchRequest {
+  
+  @objc func addPredicates(_ predicates: [NSPredicate] = []) {
+    let creatorId = KeyHolder.default.get(.userId) ?? ""
+    predicate = NSCompoundPredicate(
+      type: .and,
+      subpredicates: predicates + [NSPredicate(format: "creatorId == %@", creatorId)]
+    )
   }
 }

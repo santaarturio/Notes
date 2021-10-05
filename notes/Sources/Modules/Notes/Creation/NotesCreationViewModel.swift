@@ -47,12 +47,6 @@ private extension NotesCreationViewModel {
       case .failure = completion else { return }
     
     notesDataBase
-      .createNote { [weak self] note in
-        note.id = Date().description
-        note.title = self?.title
-        note.text = self?.body
-        note.date = Date()
-        note.isSync = false
-      }
+      .createNote { [weak self] note in note.configure(title: self?.title, text: self?.body) }
   }
 }

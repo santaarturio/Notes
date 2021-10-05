@@ -10,10 +10,7 @@ final class NotesListViewModel: ObservableObject {
   
   @Published var notes: [Note] = []
   
-  lazy var logout: () -> Void = { [weak self] in
-    KeyHolder.default.flush()
-    self?.notesDataBase.removeAllNotes()
-  }
+  lazy var logout: () -> Void = { KeyHolder.default.flush() }
   
   init(
     notesAPI: NotesAPIProtocol,

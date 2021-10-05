@@ -30,6 +30,7 @@ extension SignUpViewModel {
   }
   
   func receiveValue(_ dto: API.User) {
+    KeyHolder.default.update(dto.id, for: .userId)
     KeyHolder.default.update(dto.jwt ?? "", for: .token)
   }
   

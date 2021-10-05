@@ -18,5 +18,15 @@ public class Note: NSManagedObject {
     self.text = dto.subtitle
     self.date = DateFormatter.cached.date(from: dto.date)
     self.isSync = true
+    self.creatorId = KeyHolder.default.get(.userId)
+  }
+  
+  func configure(title: String?, text: String?) {
+    self.id = Date().description
+    self.title = title
+    self.text = text
+    self.date = Date()
+    self.isSync = false
+    self.creatorId = KeyHolder.default.get(.userId)
   }
 }
