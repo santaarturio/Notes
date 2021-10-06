@@ -1,13 +1,19 @@
 import SwiftUI
 
-struct NotesListView<CreateView: View>: View {
+struct NotesListView<CreateView: View, DetailsView: View>: View {
   
   @ObservedObject var viewModel: NotesListViewModel
-  var createView: () -> CreateView
+  
+  let createView: () -> CreateView
+  let detailsView: (Note) -> DetailsView
   
   var body: some View {
     NavigationView {
-      List(viewModel.notes) { NotePreviewCell(note: $0) }
+      List(viewModel.notes) { note in
+        NavigationLink(destination: detailsView(note)) {
+          NotePreviewCell(note: note)
+        }
+      }
       .toolbar {
         ToolbarItem(placement: .navigationBarLeading) {
           leadingNavigationItem
@@ -69,6 +75,12 @@ private extension NotesListView {
 // MARK: - PreviewProvider
 struct NotesScreen_Previews: PreviewProvider {
   static var previews: some View {
-    NotesListView(viewModel: NotesListViewModel(notesAPI: NotesAPI(), notesDataBase: DataBase.notesDataBase), createView: EmptyView.init)
+    NotesListView(
+      viewModel: NotesListViewModel(
+        notesAPI: NotesAPI(),
+        notesDataBase: DataBase.notesDataBase),
+      createView: EmptyView.init,
+      detailsView: { _ in EmptyView() }
+    )
   }
 }

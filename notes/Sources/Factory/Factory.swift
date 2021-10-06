@@ -7,11 +7,16 @@ struct Factory {
   }
   
   func makeSignInView() -> some View {
-    SignInView(viewModel: SignInViewModel(api: LoginAPI()), signUpView: makeSignUpView)
+    SignInView(
+      viewModel: SignInViewModel(api: LoginAPI()),
+      signUpView: makeSignUpView
+    )
   }
   
   func makeSignUpView() -> some View {
-    SignUpView(viewModel: SignUpViewModel(api: LoginAPI()))
+    SignUpView(
+      viewModel: SignUpViewModel(api: LoginAPI())
+    )
   }
   
   func makeNotesListView() -> some View {
@@ -20,7 +25,14 @@ struct Factory {
         notesAPI: NotesAPI(),
         notesDataBase: DataBase.notesDataBase
       ),
-      createView: makeNotesCreationView
+      createView: makeNotesCreationView,
+      detailsView: makeNotesDetailsView
+    )
+  }
+  
+  func makeNotesDetailsView(note: Note) -> some View {
+    NotesDetailsView(
+      viewModel: NotesDetailsViewModel(note: note)
     )
   }
   
