@@ -35,7 +35,16 @@ private extension NotesCreationViewModel {
       .createNote(title: title, text: body)
       .sink(
         receiveCompletion: weakify(NotesCreationViewModel.saveNoteOfflineIfNeeded, object: self),
-        receiveValue: { [weak self] dto in self?.notesDataBase.createNote { note in note.configure(dto: dto) } }
+        receiveValue: { [weak self] dto in
+          self?
+            .notesDataBase
+            .createNote { note in
+              note.configure(
+                dto: dto,
+                creatorId: KeyHolder.default.get(.userId)
+              )
+            }
+        }
       )
       .store(in: &cancellables)
   }
@@ -47,6 +56,12 @@ private extension NotesCreationViewModel {
       case .failure = completion else { return }
     
     notesDataBase
-      .createNote { [weak self] note in note.configure(title: self?.title, text: self?.body) }
+      .createNote { [weak self] note in
+        note.configure(
+          title: self?.title,
+          text: self?.body,
+          creatorId: KeyHolder.default.get(.userId)
+        )
+      }
   }
 }

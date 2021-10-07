@@ -78,7 +78,7 @@ struct NotesScreen_Previews: PreviewProvider {
     NotesListView(
       viewModel: NotesListViewModel(
         notesAPI: NotesAPI(),
-        notesDataBase: DataBase.notesDataBase),
+        notesDataBase: DataBase.notes),
       createView: EmptyView.init,
       detailsView: { _ in EmptyView() }
     )

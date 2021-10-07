@@ -23,7 +23,7 @@ struct Factory {
     NotesListView(
       viewModel: NotesListViewModel(
         notesAPI: NotesAPI(),
-        notesDataBase: DataBase.notesDataBase
+        notesDataBase: DataBase.notes
       ),
       createView: makeNotesCreationView,
       detailsView: makeNotesDetailsView
@@ -40,7 +40,7 @@ struct Factory {
     NotesCreationView(
       viewModel: NotesCreationViewModel(
         notesAPI: NotesAPI(),
-        notesDataBase: DataBase.notesDataBase
+        notesDataBase: DataBase.notes
       )
     )
   }

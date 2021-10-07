@@ -43,7 +43,12 @@ private extension NotesListViewModel {
           dtos.forEach { dto in
             self?
               .notesDataBase
-              .updateNote(id: dto.id) { note in note.configure(dto: dto) }
+              .updateNote(id: dto.id) { note in
+                note.configure(
+                  dto: dto,
+                  creatorId: KeyHolder.default.get(.userId)
+                )
+              }
           }
         }
       )
@@ -63,7 +68,12 @@ private extension NotesListViewModel {
             )
             .sink(
               receiveCompletion: { _ in },
-              receiveValue: { dto in note.configure(dto: dto) }
+              receiveValue: { dto in
+                note.configure(
+                  dto: dto,
+                  creatorId: KeyHolder.default.get(.userId)
+                )
+              }
             )
             .store(in: &API.cancellables)
         }
