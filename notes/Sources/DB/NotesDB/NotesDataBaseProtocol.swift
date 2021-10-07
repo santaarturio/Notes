@@ -7,5 +7,4 @@ protocol NotesDataBaseProtocol {
   func createNote(with configurationsHandler: @escaping (Note) -> Void)
   func allAnsynced(_ closure: @escaping ([Note]) -> Void)
   func removeAllNotes()
-  func saveAllChanges()
 }

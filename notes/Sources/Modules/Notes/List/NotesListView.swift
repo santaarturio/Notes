@@ -69,6 +69,11 @@ private extension NotesListView {
 // MARK: - PreviewProvider
 struct NotesScreen_Previews: PreviewProvider {
   static var previews: some View {
-    NotesListView(viewModel: NotesListViewModel(notesAPI: NotesAPI(), notesDataBase: DataBase.notesDataBase), createView: EmptyView.init)
+    NotesListView(
+      viewModel: NotesListViewModel(
+        notesAPI: NotesAPI(),
+        notesDataBase: DataBase.notes),
+      createView: EmptyView.init
+    )
   }
 }

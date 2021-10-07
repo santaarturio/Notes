@@ -16,9 +16,12 @@ class BaseAPI<T: TargetType> {
   }
   
   func requestPublisher<Response: Codable>(_ target: T) -> AnyPublisher<Response, Error> {
-    provider
+    let decoder = JSONDecoder()
+    decoder.dateDecodingStrategy = .formatted(DateFormatter.cached)
+    
+    return provider
       .requestPublisher(target, callbackQueue: callbackQueue)
-      .map(Response.self)
+      .map(Response.self, using: decoder)
       .mapError(AnyError.init)
       .eraseToAnyPublisher()
   }

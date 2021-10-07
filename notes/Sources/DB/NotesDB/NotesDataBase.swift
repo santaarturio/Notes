@@ -5,14 +5,16 @@ import CoreData
 final class NotesDataBase: NSObject, NotesDataBaseProtocol {
   
   private var cancellables: Set<AnyCancellable> = []
+  private var authorPredicate: NSPredicate { .init(format: "creatorId == %@", KeyHolder.default.get(.userId) ?? "") }
 
-  private let coreDataManager = CoreDataManager(containerName: "NotesData")
+  private let coreDataManager: CoreDataManager
   private var fetchedResultsController: NSFetchedResultsController<Note>!
   
   @Published private var notes: [Note] = []
   var notesPublisher: Published<[Note]>.Publisher { $notes }
-
-  override init() {
+  
+  init(coreDataManager: CoreDataManager) {
+    self.coreDataManager = coreDataManager
     super.init()
     
     setupFetchedResultsController()
@@ -55,7 +57,10 @@ final class NotesDataBase: NSObject, NotesDataBaseProtocol {
     
     let fetchRequest: NSFetchRequest<Note> = Note.fetchRequest()
     fetchRequest.sortDescriptors = [NSSortDescriptor.init(keyPath: \Note.date, ascending: true)]
-    fetchRequest.addPredicates([NSPredicate(format: "isSync == FALSE")])
+    fetchRequest.predicate = NSCompoundPredicate(
+      type: .and,
+      subpredicates: [NSPredicate(format: "isSync == FALSE"), authorPredicate]
+    )
     
     context
       .perform {
@@ -70,11 +75,6 @@ final class NotesDataBase: NSObject, NotesDataBaseProtocol {
   func removeAllNotes() {
     coreDataManager
       .removeAllEntities(named: "Note")
-  }
-  
-  func saveAllChanges() {
-    coreDataManager
-      .save()
   }
 }
 
@@ -103,7 +103,7 @@ extension NotesDataBase: NSFetchedResultsControllerDelegate {
   
   private func refreshFetchedResultsController() {
     do {
-      fetchedResultsController.fetchRequest.addPredicates()
+      fetchedResultsController.fetchRequest.predicate = authorPredicate
       try fetchedResultsController.performFetch()
       syncList()
     } catch { print(error.localizedDescription) }
@@ -113,16 +113,5 @@ extension NotesDataBase: NSFetchedResultsControllerDelegate {
     fetchedResultsController
       .fetchedObjects
       .map { notes in self.notes = notes }
-  }
-}
-
-private extension NSFetchRequest {
-  
-  @objc func addPredicates(_ predicates: [NSPredicate] = []) {
-    let creatorId = KeyHolder.default.get(.userId) ?? ""
-    predicate = NSCompoundPredicate(
-      type: .and,
-      subpredicates: predicates + [NSPredicate(format: "creatorId == %@", creatorId)]
-    )
   }
 }

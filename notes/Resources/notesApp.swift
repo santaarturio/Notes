@@ -11,9 +11,7 @@ struct notesApp: App {
       guard
         phase != .active else { return }
       
-      DataBase
-        .notesDataBase
-        .saveAllChanges()
+      DataBaseManager.notes.save()
     }
   }
 }
