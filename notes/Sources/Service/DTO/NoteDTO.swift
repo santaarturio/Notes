@@ -1,7 +1,7 @@
 import Foundation
 
 enum API {
-  struct Note: Codable, Identifiable {
+  struct Note: Codable {
     let id: String
     let title: String
     let subtitle: String

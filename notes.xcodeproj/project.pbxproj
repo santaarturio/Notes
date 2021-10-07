@@ -185,7 +185,6 @@
 			isa = PBXGroup;
 			children = (
 				52A984BA26F3DFD0003589BE /* DTO */,
-				52A984BD26F3DFD0003589BE /* BaseAPI.swift */,
 				52A984BE26F3DFD0003589BE /* Targets */,
 				52A984C126F3DFD0003589BE /* API */,
 				52A984C426F3DFD0003589BE /* Protocols */,
@@ -215,6 +214,7 @@
 		52A984C126F3DFD0003589BE /* API */ = {
 			isa = PBXGroup;
 			children = (
+				52A984BD26F3DFD0003589BE /* BaseAPI.swift */,
 				52A984C226F3DFD0003589BE /* LoginAPI.swift */,
 				52A984C326F3DFD0003589BE /* NotesAPI.swift */,
 			);

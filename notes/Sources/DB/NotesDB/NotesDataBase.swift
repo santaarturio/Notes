@@ -56,7 +56,9 @@ final class NotesDataBase: NSObject, NotesDataBaseProtocol {
     let context = coreDataManager.viewContext
     
     let fetchRequest: NSFetchRequest<Note> = Note.fetchRequest()
-    fetchRequest.sortDescriptors = [NSSortDescriptor.init(keyPath: \Note.date, ascending: true)]
+    fetchRequest.sortDescriptors = [
+      NSSortDescriptor(keyPath: \Note.date, ascending: true)
+    ]
     fetchRequest.predicate = NSCompoundPredicate(
       type: .and,
       subpredicates: [NSPredicate(format: "isSync == FALSE"), authorPredicate]
