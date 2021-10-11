@@ -1,6 +1,7 @@
+import Combine
 
 protocol LoginAPIProtocol {
   
-  func signUp(name: String?, email: String, password: String, completion: @escaping (Result<UserDTO, Error>) -> Void)
-  func signIn(email: String, password: String, completion: @escaping (Result<UserDTO, Error>) -> Void)
+  func signUp(name: String?, email: String, password: String) -> AnyPublisher<API.User, Error>
+  func signIn(email: String, password: String) -> AnyPublisher<API.User, Error>
 }

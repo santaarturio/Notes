@@ -1,11 +1,13 @@
 import Moya
+import Combine
 
 final class NotesAPI: BaseAPI<NotesTarget> {
   
   override init(
     provider: MoyaProvider<NotesTarget> = .init(
       plugins: [
-        AccessTokenPlugin(tokenClosure: { _ in KeyHolder.default.get(.token) ?? "" })
+        AccessTokenPlugin(tokenClosure: { _ in KeyHolder.default.get(.token) ?? "" }),
+        Plugin401(onStatusCode401: { KeyHolder.default.flush() })
       ]
     ),
     callbackQueue: DispatchQueue = .main
@@ -16,23 +18,14 @@ final class NotesAPI: BaseAPI<NotesTarget> {
 
 extension NotesAPI: NotesAPIProtocol {
   
-  func fetchNotes(
-    _ completion: @escaping (Result<[NoteDTO], Error>
-    ) -> Void) {
-    provider
-      .request(.notes, callbackQueue: callbackQueue) {
-        completion(handleResult($0))
-      }
+  func fetchNotes() -> AnyPublisher<[API.Note], Error> {
+    requestPublisher(.notes)
   }
   
   func createNote(
-    title: String?,
-    text: String?,
-    completion: @escaping (Result<NoteDTO, Error>) -> Void
-  ) {
-    provider
-      .request(.create(title: title ?? "", text: text ?? ""), callbackQueue: callbackQueue) {
-        completion(handleResult($0))
-      }
+    title: String,
+    text: String
+  ) -> AnyPublisher<API.Note, Error> {
+    requestPublisher(.create(title: title, text: text))
   }
 }

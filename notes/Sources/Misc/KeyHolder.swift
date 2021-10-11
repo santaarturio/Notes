@@ -8,7 +8,7 @@ final class KeyHolder: ObservableObject {
   
   @Published var isUserLoggedIn: Bool = false
   
-  enum KeyType: String { case email, password, token }
+  enum KeyType: String { case token, userId }
   
   // MARK: Get
   func get(_ key: KeyType) -> String? {

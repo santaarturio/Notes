@@ -4,13 +4,7 @@ import Combine
 final class SignInViewModel: ObservableObject {
   
   private var cancellables: Set<AnyCancellable> = []
-  
   private let api: LoginAPIProtocol
-  private let factory: FactoryProtocol = Factory()
-  
-  private(set) lazy var signUpView: AnyView = { [weak self] in
-    AnyView(self?.factory.makeSignUpView())
-  }()
   
   @Published var email = ""
   @Published var password = ""
@@ -30,28 +24,27 @@ final class SignInViewModel: ObservableObject {
 extension SignInViewModel {
   
   // MARK: - Sign In
+  func receiveCompletion(_ completion: Subscribers.Completion<Error>) {
+    isDownloading = false
+  }
+  
+  func receiveValue(_ dto: API.User) {
+    KeyHolder.default.update(dto.id, for: .userId)
+    KeyHolder.default.update(dto.jwt ?? "", for: .token)
+  }
+  
   private func handleSignIn() {
     isDownloading = true
-    
-    func handleResult(_ result: Result<UserDTO, Error>) {
-      isDownloading = false
-      
-      switch result {
-      case let .success(userDTO):
-        KeyHolder.default.update(email, for: .email)
-        KeyHolder.default.update(password, for: .password)
-        KeyHolder.default.update(userDTO.jwt ?? "", for: .token)
-        
-      case let .failure(error):
-        print(error.localizedDescription)
-      }
-    }
     
     api
       .signIn(
         email: email,
-        password: password,
-        completion: handleResult(_:)
+        password: password
       )
+      .sink(
+        receiveCompletion: weakify(SignInViewModel.receiveCompletion, object: self),
+        receiveValue: weakify(SignInViewModel.receiveValue, object: self)
+      )
+      .store(in: &cancellables)
   }
 }

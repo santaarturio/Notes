@@ -1,27 +1,21 @@
 import Moya
+import Combine
+import Result
 
 final class LoginAPI: BaseAPI<LoginTarget>, LoginAPIProtocol {
   
   func signUp(
     name: String?,
     email: String,
-    password: String,
-    completion: @escaping (Result<UserDTO, Error>) -> Void
-  ) {
-    provider
-      .request(.signUp(name: name, email: email, password: password), callbackQueue: callbackQueue) {
-        completion(handleResult($0))
-      }
+    password: String
+  ) -> AnyPublisher<API.User, Error> {
+    requestPublisher(.signUp(name: name, email: email, password: password))
   }
   
   func signIn(
     email: String,
-    password: String,
-    completion: @escaping (Result<UserDTO, Error>) -> Void
-  ) {
-    provider
-      .request(.signIn(email: email, password: password), callbackQueue: callbackQueue) {
-        completion(handleResult($0))
-      }
+    password: String
+  ) -> AnyPublisher<API.User, Error> {
+    requestPublisher(.signIn(email: email, password: password))
   }
 }

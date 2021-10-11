@@ -1,6 +1,7 @@
+import Combine
 
 protocol NotesAPIProtocol {
   
-  func fetchNotes(_ completion: @escaping (Result<[NoteDTO], Error>) -> Void)
-  func createNote(title: String?, text: String?, completion: @escaping (Result<NoteDTO, Error>) -> Void)
+  func fetchNotes() -> AnyPublisher<[API.Note], Error>
+  func createNote(title: String, text: String) -> AnyPublisher<API.Note, Error>
 }
