@@ -500,7 +500,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "swiftgen config run --config \"$SRCROOT/swiftgen.yml\"\n";
+			shellScript = "# Adds support for Apple Silicon brew directory\nexport PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftgen; then\n    swiftgen config run --config \"$SRCROOT/swiftgen.yml\"\nelse\n  echo \"warning: SwiftGen not installed\"\nfi\n\n";
 		};
 		89BD5202F3E1FA16F8627667 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
