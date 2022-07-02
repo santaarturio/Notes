@@ -26,7 +26,6 @@ struct NotesListView<CreateView: View, DetailsView: View>: View {
           trailingNavigationItem
         }
       }
-      .animation(.easeInOut)
     }
     .accentColor(Color(Asset.Colors.stillYellow.color))
   }
