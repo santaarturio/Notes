@@ -1,31 +1,49 @@
-import Moya
 import Combine
+import FirebaseAuth
+import FirebaseFirestore
+import FirebaseFirestoreCombineSwift
 
-final class NotesAPI: BaseAPI<NotesTarget> {
+final class NotesAPI: NotesAPIProtocol {
   
-  override init(
-    provider: MoyaProvider<NotesTarget> = .init(
-      plugins: [
-        AccessTokenPlugin(tokenClosure: { _ in KeyHolder.default.get(.token) ?? "" }),
-        Plugin401(onStatusCode401: { KeyHolder.default.flush() })
-      ]
-    ),
-    callbackQueue: DispatchQueue = .main
-  ) {
-    super.init(provider: provider, callbackQueue: callbackQueue)
-  }
-}
-
-extension NotesAPI: NotesAPIProtocol {
+  private let firestore = Firestore.firestore()
+  private var userID: String? { Auth.auth().currentUser?.uid }
   
   func fetchNotes() -> AnyPublisher<[API.Note], Error> {
-    requestPublisher(.notes)
+    firestore
+      .collection("Users")
+      .document(userID ?? "")
+      .collection("Notes")
+      .getDocuments()
+      .map(\.documents)
+      .map { documents in documents.compactMap { doc in try? doc.data(as: API.Note.self) } }
+      .eraseToAnyPublisher()
   }
   
   func createNote(
     title: String,
     text: String
   ) -> AnyPublisher<API.Note, Error> {
-    requestPublisher(.create(title: title, text: text))
+    let note = API.Note(title: title, text: text)
+    return firestore
+      .collection("Users")
+      .document(userID ?? "")
+      .collection("Notes")
+      .document(note.id)
+      .setData(from: note)
+      .map { note }
+      .eraseToAnyPublisher()
+  }
+}
+
+private extension API.Note {
+  
+  init(
+    title: String,
+    text: String
+  ) {
+    self.id = UUID().uuidString
+    self.title = title
+    self.text = text
+    self.createdAt = Date()
   }
 }

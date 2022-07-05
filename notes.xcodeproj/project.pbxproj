@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,9 +17,6 @@
 		52A984AB26F3DD7F003589BE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52A984AA26F3DD7F003589BE /* Preview Assets.xcassets */; };
 		52A984C726F3DFD0003589BE /* NoteDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984BB26F3DFD0003589BE /* NoteDTO.swift */; };
 		52A984C826F3DFD0003589BE /* UserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984BC26F3DFD0003589BE /* UserDTO.swift */; };
-		52A984C926F3DFD0003589BE /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984BD26F3DFD0003589BE /* BaseAPI.swift */; };
-		52A984CA26F3DFD0003589BE /* LoginTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984BF26F3DFD0003589BE /* LoginTarget.swift */; };
-		52A984CB26F3DFD0003589BE /* NotesTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984C026F3DFD0003589BE /* NotesTarget.swift */; };
 		52A984CC26F3DFD0003589BE /* LoginAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984C226F3DFD0003589BE /* LoginAPI.swift */; };
 		52A984CD26F3DFD0003589BE /* NotesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984C326F3DFD0003589BE /* NotesAPI.swift */; };
 		52A984CE26F3DFD0003589BE /* LoginAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984C526F3DFD0003589BE /* LoginAPIProtocol.swift */; };
@@ -43,17 +40,20 @@
 		52A9852226F4B38D003589BE /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A9852126F4B38D003589BE /* SignUpView.swift */; };
 		52A9852426F4B3A6003589BE /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A9852326F4B3A6003589BE /* SignUpViewModel.swift */; };
 		52B1641C270B66EA0032874A /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B1641B270B66EA0032874A /* DataBase.swift */; };
-		52B16423270B7CC10032874A /* Plugin401.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B16422270B7CC10032874A /* Plugin401.swift */; };
 		52B16426270CB6F40032874A /* NotesDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B16425270CB6F40032874A /* NotesDetailsViewModel.swift */; };
 		52B16428270CB6FF0032874A /* NotesDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B16427270CB6FF0032874A /* NotesDetailsView.swift */; };
 		52CB05A726F912C200D3ADCE /* LinkPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CB05A626F912C200D3ADCE /* LinkPresenter.swift */; };
 		52EB118726FCC3C7005B1C5F /* DateFormatter + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EB118626FCC3C7005B1C5F /* DateFormatter + Extensions.swift */; };
 		52F21CCD26F9D6F8000D3CE7 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F21CCC26F9D6F8000D3CE7 /* CoreDataManager.swift */; };
-		5EADD64D5A47695B2922E89E /* Pods_notes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23C6406D2C5A3D3F2DF24262 /* Pods_notes.framework */; };
+		FE14E8A62872D51F00554345 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FE14E8A52872D51F00554345 /* FirebaseAuth */; };
+		FE14E8A82872D51F00554345 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = FE14E8A72872D51F00554345 /* FirebaseAuthCombine-Community */; };
+		FE14E8AA2872D51F00554345 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = FE14E8A92872D51F00554345 /* FirebaseFirestore */; };
+		FE14E8AC2872D51F00554345 /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = FE14E8AB2872D51F00554345 /* FirebaseFirestoreCombine-Community */; };
+		FE14E8AE2872D51F00554345 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FE14E8AD2872D51F00554345 /* FirebaseFirestoreSwift */; };
+		FE14E8B02872D83C00554345 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE14E8AF2872D83C00554345 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		23C6406D2C5A3D3F2DF24262 /* Pods_notes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_notes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5200C4D82702222600304656 /* Note+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataClass.swift"; sourceTree = "<group>"; };
 		5200C4DE2703373800304656 /* NotesDataBaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesDataBaseProtocol.swift; sourceTree = "<group>"; };
 		521296EF2705CF4900D59078 /* NotesDataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesDataBase.swift; sourceTree = "<group>"; };
@@ -66,9 +66,6 @@
 		52A984AC26F3DD7F003589BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52A984BB26F3DFD0003589BE /* NoteDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteDTO.swift; sourceTree = "<group>"; };
 		52A984BC26F3DFD0003589BE /* UserDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDTO.swift; sourceTree = "<group>"; };
-		52A984BD26F3DFD0003589BE /* BaseAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
-		52A984BF26F3DFD0003589BE /* LoginTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTarget.swift; sourceTree = "<group>"; };
-		52A984C026F3DFD0003589BE /* NotesTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesTarget.swift; sourceTree = "<group>"; };
 		52A984C226F3DFD0003589BE /* LoginAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginAPI.swift; sourceTree = "<group>"; };
 		52A984C326F3DFD0003589BE /* NotesAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesAPI.swift; sourceTree = "<group>"; };
 		52A984C526F3DFD0003589BE /* LoginAPIProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginAPIProtocol.swift; sourceTree = "<group>"; };
@@ -93,14 +90,12 @@
 		52A9852126F4B38D003589BE /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		52A9852326F4B3A6003589BE /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		52B1641B270B66EA0032874A /* DataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
-		52B16422270B7CC10032874A /* Plugin401.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plugin401.swift; sourceTree = "<group>"; };
 		52B16425270CB6F40032874A /* NotesDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesDetailsViewModel.swift; sourceTree = "<group>"; };
 		52B16427270CB6FF0032874A /* NotesDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesDetailsView.swift; sourceTree = "<group>"; };
 		52CB05A626F912C200D3ADCE /* LinkPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkPresenter.swift; sourceTree = "<group>"; };
 		52EB118626FCC3C7005B1C5F /* DateFormatter + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter + Extensions.swift"; sourceTree = "<group>"; };
 		52F21CCC26F9D6F8000D3CE7 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
-		D7D983098D17FF904B2991F2 /* Pods-notes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-notes.release.xcconfig"; path = "Target Support Files/Pods-notes/Pods-notes.release.xcconfig"; sourceTree = "<group>"; };
-		EE811D638C860AEDD5060497 /* Pods-notes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-notes.debug.xcconfig"; path = "Target Support Files/Pods-notes/Pods-notes.debug.xcconfig"; sourceTree = "<group>"; };
+		FE14E8AF2872D83C00554345 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +103,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5EADD64D5A47695B2922E89E /* Pods_notes.framework in Frameworks */,
+				FE14E8AA2872D51F00554345 /* FirebaseFirestore in Frameworks */,
+				FE14E8A82872D51F00554345 /* FirebaseAuthCombine-Community in Frameworks */,
+				FE14E8AC2872D51F00554345 /* FirebaseFirestoreCombine-Community in Frameworks */,
+				FE14E8A62872D51F00554345 /* FirebaseAuth in Frameworks */,
+				FE14E8AE2872D51F00554345 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,8 +128,6 @@
 			children = (
 				52A984A226F3DD7B003589BE /* notes */,
 				52A984A126F3DD7B003589BE /* Products */,
-				C1B7B6E3C56F1471D074600F /* Pods */,
-				DCE4474E32315D5D9652E483 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -177,6 +174,7 @@
 			children = (
 				52A984A326F3DD7B003589BE /* notesApp.swift */,
 				52A984A726F3DD7F003589BE /* Assets.xcassets */,
+				FE14E8AF2872D83C00554345 /* GoogleService-Info.plist */,
 				52A984AC26F3DD7F003589BE /* Info.plist */,
 				52A9851126F3E6FE003589BE /* Generated */,
 				52A984A926F3DD7F003589BE /* Preview Content */,
@@ -189,10 +187,8 @@
 			isa = PBXGroup;
 			children = (
 				52A984BA26F3DFD0003589BE /* DTO */,
-				52A984BE26F3DFD0003589BE /* Targets */,
 				52A984C126F3DFD0003589BE /* API */,
 				52A984C426F3DFD0003589BE /* Protocols */,
-				52B16420270B7C510032874A /* Plugins */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -200,25 +196,15 @@
 		52A984BA26F3DFD0003589BE /* DTO */ = {
 			isa = PBXGroup;
 			children = (
-				52A984BB26F3DFD0003589BE /* NoteDTO.swift */,
 				52A984BC26F3DFD0003589BE /* UserDTO.swift */,
+				52A984BB26F3DFD0003589BE /* NoteDTO.swift */,
 			);
 			path = DTO;
-			sourceTree = "<group>";
-		};
-		52A984BE26F3DFD0003589BE /* Targets */ = {
-			isa = PBXGroup;
-			children = (
-				52A984BF26F3DFD0003589BE /* LoginTarget.swift */,
-				52A984C026F3DFD0003589BE /* NotesTarget.swift */,
-			);
-			path = Targets;
 			sourceTree = "<group>";
 		};
 		52A984C126F3DFD0003589BE /* API */ = {
 			isa = PBXGroup;
 			children = (
-				52A984BD26F3DFD0003589BE /* BaseAPI.swift */,
 				52A984C226F3DFD0003589BE /* LoginAPI.swift */,
 				52A984C326F3DFD0003589BE /* NotesAPI.swift */,
 			);
@@ -348,14 +334,6 @@
 			path = NotesDB;
 			sourceTree = "<group>";
 		};
-		52B16420270B7C510032874A /* Plugins */ = {
-			isa = PBXGroup;
-			children = (
-				52B16422270B7CC10032874A /* Plugin401.swift */,
-			);
-			path = Plugins;
-			sourceTree = "<group>";
-		};
 		52B16424270CB6D20032874A /* Details */ = {
 			isa = PBXGroup;
 			children = (
@@ -375,23 +353,6 @@
 			path = DB;
 			sourceTree = "<group>";
 		};
-		C1B7B6E3C56F1471D074600F /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				EE811D638C860AEDD5060497 /* Pods-notes.debug.xcconfig */,
-				D7D983098D17FF904B2991F2 /* Pods-notes.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		DCE4474E32315D5D9652E483 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				23C6406D2C5A3D3F2DF24262 /* Pods_notes.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -399,18 +360,23 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 52A984AF26F3DD7F003589BE /* Build configuration list for PBXNativeTarget "notes" */;
 			buildPhases = (
-				3169C530C149EF38559D4D50 /* [CP] Check Pods Manifest.lock */,
 				52A9850A26F3E540003589BE /* SwiftGen */,
 				52A9849C26F3DD7B003589BE /* Sources */,
 				52A9849D26F3DD7B003589BE /* Frameworks */,
 				52A9849E26F3DD7B003589BE /* Resources */,
-				89BD5202F3E1FA16F8627667 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = notes;
+			packageProductDependencies = (
+				FE14E8A52872D51F00554345 /* FirebaseAuth */,
+				FE14E8A72872D51F00554345 /* FirebaseAuthCombine-Community */,
+				FE14E8A92872D51F00554345 /* FirebaseFirestore */,
+				FE14E8AB2872D51F00554345 /* FirebaseFirestoreCombine-Community */,
+				FE14E8AD2872D51F00554345 /* FirebaseFirestoreSwift */,
+			);
 			productName = notes;
 			productReference = 52A984A026F3DD7B003589BE /* notes.app */;
 			productType = "com.apple.product-type.application";
@@ -439,6 +405,9 @@
 				Base,
 			);
 			mainGroup = 52A9849726F3DD7B003589BE;
+			packageReferences = (
+				FE14E8A42872D51F00554345 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 52A984A126F3DD7B003589BE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -454,6 +423,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52A984AB26F3DD7F003589BE /* Preview Assets.xcassets in Resources */,
+				FE14E8B02872D83C00554345 /* GoogleService-Info.plist in Resources */,
 				52A9850D26F3E654003589BE /* Localizable.strings in Resources */,
 				52A984A826F3DD7F003589BE /* Assets.xcassets in Resources */,
 			);
@@ -462,28 +432,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3169C530C149EF38559D4D50 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-notes-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		52A9850A26F3E540003589BE /* SwiftGen */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -500,24 +448,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "swiftgen config run --config \"$SRCROOT/swiftgen.yml\"\n";
-		};
-		89BD5202F3E1FA16F8627667 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-notes/Pods-notes-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-notes/Pods-notes-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-notes/Pods-notes-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "# Adds support for Apple Silicon brew directory\nexport PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftgen; then\n    swiftgen config run --config \"$SRCROOT/swiftgen.yml\"\nelse\n  echo \"warning: SwiftGen not installed\"\nfi\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -536,7 +467,6 @@
 				52A9850926F3E504003589BE /* Binding+Extenstions.swift in Sources */,
 				52A9851A26F4A015003589BE /* Factory.swift in Sources */,
 				52A9850726F3E504003589BE /* KeyboardResponder.swift in Sources */,
-				52A984CB26F3DFD0003589BE /* NotesTarget.swift in Sources */,
 				524C45D526F4D8DB009EB4EC /* NotesCreationViewModel.swift in Sources */,
 				52A984FB26F3E3D8003589BE /* SignInView.swift in Sources */,
 				52A9850126F3E4AC003589BE /* Weakify.swift in Sources */,
@@ -546,7 +476,6 @@
 				52CB05A726F912C200D3ADCE /* LinkPresenter.swift in Sources */,
 				52B16426270CB6F40032874A /* NotesDetailsViewModel.swift in Sources */,
 				524C45D326F4D8B9009EB4EC /* NotesCreationView.swift in Sources */,
-				52A984CA26F3DFD0003589BE /* LoginTarget.swift in Sources */,
 				52A984D526F3E1D0003589BE /* NotesData.xcdatamodeld in Sources */,
 				52A9852426F4B3A6003589BE /* SignUpViewModel.swift in Sources */,
 				5200C4DA2702222600304656 /* Note+CoreDataClass.swift in Sources */,
@@ -556,14 +485,12 @@
 				52A984CD26F3DFD0003589BE /* NotesAPI.swift in Sources */,
 				52A984CF26F3DFD0003589BE /* NotesAPIProtocol.swift in Sources */,
 				52A9850826F3E504003589BE /* ActivityIndicator.swift in Sources */,
-				52B16423270B7CC10032874A /* Plugin401.swift in Sources */,
 				52A984C726F3DFD0003589BE /* NoteDTO.swift in Sources */,
 				52A9851526F3E6FE003589BE /* Assets.swift in Sources */,
 				52A984CC26F3DFD0003589BE /* LoginAPI.swift in Sources */,
 				52A984F526F3E3D8003589BE /* NotesListViewModel.swift in Sources */,
 				521296F02705CF4900D59078 /* NotesDataBase.swift in Sources */,
 				52A984C826F3DFD0003589BE /* UserDTO.swift in Sources */,
-				52A984C926F3DFD0003589BE /* BaseAPI.swift in Sources */,
 				52A984A426F3DD7B003589BE /* notesApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -635,7 +562,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -691,7 +618,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -703,7 +630,6 @@
 		};
 		52A984B026F3DD7F003589BE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EE811D638C860AEDD5060497 /* Pods-notes.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -717,7 +643,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Artur-Nikolaienko.notes";
+				PRODUCT_BUNDLE_IDENTIFIER = com.santaarturio.notes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -726,7 +652,6 @@
 		};
 		52A984B126F3DD7F003589BE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D7D983098D17FF904B2991F2 /* Pods-notes.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -740,7 +665,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Artur-Nikolaienko.notes";
+				PRODUCT_BUNDLE_IDENTIFIER = com.santaarturio.notes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -769,6 +694,45 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FE14E8A42872D51F00554345 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FE14E8A52872D51F00554345 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FE14E8A42872D51F00554345 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		FE14E8A72872D51F00554345 /* FirebaseAuthCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FE14E8A42872D51F00554345 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseAuthCombine-Community";
+		};
+		FE14E8A92872D51F00554345 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FE14E8A42872D51F00554345 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		FE14E8AB2872D51F00554345 /* FirebaseFirestoreCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FE14E8A42872D51F00554345 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreCombine-Community";
+		};
+		FE14E8AD2872D51F00554345 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FE14E8A42872D51F00554345 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		52A984D126F3E1D0003589BE /* NotesData.xcdatamodeld */ = {

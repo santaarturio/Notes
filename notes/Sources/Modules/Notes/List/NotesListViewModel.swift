@@ -5,17 +5,23 @@ final class NotesListViewModel: ObservableObject {
   
   private var cancellables: Set<AnyCancellable> = []
   
+  private let loginAPI: LoginAPIProtocol
   private let notesAPI: NotesAPIProtocol
   private let notesDataBase: NotesDataBaseProtocol
   
   @Published var notes: [Note] = []
   
-  lazy var logout: () -> Void = { KeyHolder.default.flush() }
+  lazy var logout: () -> Void = { [weak self] in
+    self?.loginAPI.logout()
+    KeyHolder.default.flush()
+  }
   
   init(
+    loginAPI: LoginAPIProtocol,
     notesAPI: NotesAPIProtocol,
     notesDataBase: NotesDataBaseProtocol
   ) {
+    self.loginAPI = loginAPI
     self.notesAPI = notesAPI
     self.notesDataBase = notesDataBase
     
