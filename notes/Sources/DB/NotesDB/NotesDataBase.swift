@@ -57,7 +57,7 @@ final class NotesDataBase: NSObject, NotesDataBaseProtocol {
     
     let fetchRequest: NSFetchRequest<Note> = Note.fetchRequest()
     fetchRequest.sortDescriptors = [
-      NSSortDescriptor(keyPath: \Note.date, ascending: true)
+      NSSortDescriptor(keyPath: \Note.createdAt, ascending: true)
     ]
     fetchRequest.predicate = NSCompoundPredicate(
       type: .and,
@@ -86,7 +86,7 @@ extension NotesDataBase: NSFetchedResultsControllerDelegate {
   private func setupFetchedResultsController() {
     let fetchRequest = Note.fetchRequest() as NSFetchRequest
     fetchRequest.sortDescriptors = [
-      NSSortDescriptor(keyPath: \Note.date, ascending: false)
+      NSSortDescriptor(keyPath: \Note.createdAt, ascending: false)
     ]
     
     fetchedResultsController = NSFetchedResultsController(

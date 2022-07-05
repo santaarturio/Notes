@@ -16,7 +16,7 @@ public class Note: NSManagedObject {
     self.id = dto.id
     self.title = dto.title
     self.text = dto.text
-    self.date = dto.createdAt
+    self.createdAt = dto.createdAt
     self.isSync = true
     self.creatorId = creatorId
   }
@@ -25,7 +25,7 @@ public class Note: NSManagedObject {
     self.id = Date().description
     self.title = title
     self.text = text
-    self.date = Date()
+    self.createdAt = Date()
     self.isSync = false
     self.creatorId = creatorId
   }
