@@ -15,8 +15,8 @@ public class Note: NSManagedObject {
   func configure(dto: API.Note, creatorId: String?) {
     self.id = dto.id
     self.title = dto.title
-    self.text = dto.subtitle
-    self.date = dto.date
+    self.text = dto.text
+    self.date = dto.createdAt
     self.isSync = true
     self.creatorId = creatorId
   }

@@ -76,6 +76,7 @@ struct NotesScreen_Previews: PreviewProvider {
   static var previews: some View {
     NotesListView(
       viewModel: NotesListViewModel(
+        loginAPI: LoginAPI(),
         notesAPI: NotesAPI(),
         notesDataBase: DataBase.notes),
       createView: EmptyView.init,
