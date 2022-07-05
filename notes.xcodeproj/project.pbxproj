@@ -96,6 +96,7 @@
 		52EB118626FCC3C7005B1C5F /* DateFormatter + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter + Extensions.swift"; sourceTree = "<group>"; };
 		52F21CCC26F9D6F8000D3CE7 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		FE14E8AF2872D83C00554345 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		FEB193EC2874B42400298F9E /* Note 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Note 2.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -738,9 +739,10 @@
 		52A984D126F3E1D0003589BE /* NotesData.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				FEB193EC2874B42400298F9E /* Note 2.xcdatamodel */,
 				52A984D226F3E1D0003589BE /* Note.xcdatamodel */,
 			);
-			currentVersion = 52A984D226F3E1D0003589BE /* Note.xcdatamodel */;
+			currentVersion = FEB193EC2874B42400298F9E /* Note 2.xcdatamodel */;
 			path = NotesData.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
