@@ -1,21 +1,43 @@
-import Moya
 import Combine
-import Result
+import FirebaseAuth
+import FirebaseAuthCombineSwift
 
-final class LoginAPI: BaseAPI<LoginTarget>, LoginAPIProtocol {
+final class LoginAPI: LoginAPIProtocol {
   
   func signUp(
     name: String?,
     email: String,
     password: String
   ) -> AnyPublisher<API.User, Error> {
-    requestPublisher(.signUp(name: name, email: email, password: password))
+    Auth.auth()
+      .createUser(withEmail: email, password: password)
+      .map(\.user)
+      .map(API.User.init)
+      .eraseToAnyPublisher()
   }
   
   func signIn(
     email: String,
     password: String
   ) -> AnyPublisher<API.User, Error> {
-    requestPublisher(.signIn(email: email, password: password))
+    Auth.auth()
+      .signIn(withEmail: email, password: password)
+      .map(\.user)
+      .map(API.User.init)
+      .eraseToAnyPublisher()
+  }
+  
+  func logout() {
+    do { try Auth.auth().signOut() } catch { }
+  }
+}
+
+private extension API.User {
+  
+  init(user: User) {
+    jwt = user.refreshToken
+    id = user.uid
+    name = user.displayName ?? ""
+    email = user.email ?? ""
   }
 }

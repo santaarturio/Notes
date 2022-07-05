@@ -22,6 +22,7 @@ struct Factory {
   func makeNotesListView() -> some View {
     NotesListView(
       viewModel: NotesListViewModel(
+        loginAPI: LoginAPI(),
         notesAPI: NotesAPI(),
         notesDataBase: DataBase.notes
       ),
