@@ -51,14 +51,42 @@
 		FE14E8AC2872D51F00554345 /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = FE14E8AB2872D51F00554345 /* FirebaseFirestoreCombine-Community */; };
 		FE14E8AE2872D51F00554345 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FE14E8AD2872D51F00554345 /* FirebaseFirestoreSwift */; };
 		FE14E8B02872D83C00554345 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE14E8AF2872D83C00554345 /* GoogleService-Info.plist */; };
+		FED18ACD2885C7010000D31B /* TestNotesCreationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED18ACC2885C7010000D31B /* TestNotesCreationViewModel.swift */; };
+		FED18ACE2885C7B20000D31B /* NotesCreationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C45D426F4D8DB009EB4EC /* NotesCreationViewModel.swift */; };
+		FED18AD02885C8DA0000D31B /* NotesAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984C626F3DFD0003589BE /* NotesAPIProtocol.swift */; };
+		FED18AD12885C8DE0000D31B /* LoginAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984C526F3DFD0003589BE /* LoginAPIProtocol.swift */; };
+		FED18AD22885C8EC0000D31B /* NotesDataBaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5200C4DE2703373800304656 /* NotesDataBaseProtocol.swift */; };
+		FED18AD42885C9000000D31B /* NotesAPIStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED18AD32885C9000000D31B /* NotesAPIStub.swift */; };
+		FED18AD52885C9490000D31B /* UserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984BC26F3DFD0003589BE /* UserDTO.swift */; };
+		FED18AD62885C94B0000D31B /* NoteDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984BB26F3DFD0003589BE /* NoteDTO.swift */; };
+		FED18AD82885CA9F0000D31B /* NotesDataBaseStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED18AD72885CA9F0000D31B /* NotesDataBaseStub.swift */; };
+		FED18AD92885CB1C0000D31B /* Note+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5200C4D82702222600304656 /* Note+CoreDataClass.swift */; };
+		FED18ADD2885CC790000D31B /* NotesData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 52A984D126F3E1D0003589BE /* NotesData.xcdatamodeld */; };
+		FED18AE52885CCD10000D31B /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984ED26F3E3D8003589BE /* SignInViewModel.swift */; };
+		FED18AE72885CCD80000D31B /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A9852326F4B3A6003589BE /* SignUpViewModel.swift */; };
+		FED18AE92885CCDE0000D31B /* NotesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984E426F3E3D8003589BE /* NotesListViewModel.swift */; };
+		FED18AEC2885CCF50000D31B /* NotesDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B16425270CB6F40032874A /* NotesDetailsViewModel.swift */; };
+		FED18AEE2885CE5E0000D31B /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A9851326F3E6FE003589BE /* Assets.swift */; };
+		FEDC365E2885D06C007D4F08 /* Weakify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984FF26F3E4AC003589BE /* Weakify.swift */; };
+		FEDC365F2885D06E007D4F08 /* KeyHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A984D926F3E20C003589BE /* KeyHolder.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FED18AC52885C2CD0000D31B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52A9849826F3DD7B003589BE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 52A9849F26F3DD7B003589BE;
+			remoteInfo = notes;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		5200C4D82702222600304656 /* Note+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataClass.swift"; sourceTree = "<group>"; };
 		5200C4DE2703373800304656 /* NotesDataBaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesDataBaseProtocol.swift; sourceTree = "<group>"; };
 		521296EF2705CF4900D59078 /* NotesDataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesDataBase.swift; sourceTree = "<group>"; };
 		524C45D226F4D8B9009EB4EC /* NotesCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesCreationView.swift; sourceTree = "<group>"; };
-		524C45D426F4D8DB009EB4EC /* NotesCreationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesCreationViewModel.swift; sourceTree = "<group>"; };
+		524C45D426F4D8DB009EB4EC /* NotesCreationViewModel.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = NotesCreationViewModel.swift; sourceTree = "<group>"; tabWidth = 2; };
 		52A984A026F3DD7B003589BE /* notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = notes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52A984A326F3DD7B003589BE /* notesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notesApp.swift; sourceTree = "<group>"; };
 		52A984A726F3DD7F003589BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -97,6 +125,10 @@
 		52F21CCC26F9D6F8000D3CE7 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		FE14E8AF2872D83C00554345 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		FEB193EC2874B42400298F9E /* Note 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Note 2.xcdatamodel"; sourceTree = "<group>"; };
+		FED18AC12885C2CD0000D31B /* notes tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "notes tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FED18ACC2885C7010000D31B /* TestNotesCreationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestNotesCreationViewModel.swift; sourceTree = "<group>"; };
+		FED18AD32885C9000000D31B /* NotesAPIStub.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = NotesAPIStub.swift; sourceTree = "<group>"; tabWidth = 2; };
+		FED18AD72885CA9F0000D31B /* NotesDataBaseStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesDataBaseStub.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +141,13 @@
 				FE14E8AC2872D51F00554345 /* FirebaseFirestoreCombine-Community in Frameworks */,
 				FE14E8A62872D51F00554345 /* FirebaseAuth in Frameworks */,
 				FE14E8AE2872D51F00554345 /* FirebaseFirestoreSwift in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FED18ABE2885C2CD0000D31B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				52A984A226F3DD7B003589BE /* notes */,
+				FED18AC22885C2CD0000D31B /* notes tests */,
 				52A984A126F3DD7B003589BE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -136,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				52A984A026F3DD7B003589BE /* notes.app */,
+				FED18AC12885C2CD0000D31B /* notes tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -354,6 +395,40 @@
 			path = DB;
 			sourceTree = "<group>";
 		};
+		FED18AC22885C2CD0000D31B /* notes tests */ = {
+			isa = PBXGroup;
+			children = (
+				FED18ACF2885C8C60000D31B /* Stubs */,
+				FED18ACA2885C6AA0000D31B /* Modules */,
+			);
+			path = "notes tests";
+			sourceTree = "<group>";
+		};
+		FED18ACA2885C6AA0000D31B /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				FED18ACB2885C6BE0000D31B /* Notes */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		FED18ACB2885C6BE0000D31B /* Notes */ = {
+			isa = PBXGroup;
+			children = (
+				FED18ACC2885C7010000D31B /* TestNotesCreationViewModel.swift */,
+			);
+			path = Notes;
+			sourceTree = "<group>";
+		};
+		FED18ACF2885C8C60000D31B /* Stubs */ = {
+			isa = PBXGroup;
+			children = (
+				FED18AD32885C9000000D31B /* NotesAPIStub.swift */,
+				FED18AD72885CA9F0000D31B /* NotesDataBaseStub.swift */,
+			);
+			path = Stubs;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -382,17 +457,39 @@
 			productReference = 52A984A026F3DD7B003589BE /* notes.app */;
 			productType = "com.apple.product-type.application";
 		};
+		FED18AC02885C2CD0000D31B /* notes tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FED18AC92885C2CD0000D31B /* Build configuration list for PBXNativeTarget "notes tests" */;
+			buildPhases = (
+				FED18ABD2885C2CD0000D31B /* Sources */,
+				FED18ABE2885C2CD0000D31B /* Frameworks */,
+				FED18ABF2885C2CD0000D31B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FED18AC62885C2CD0000D31B /* PBXTargetDependency */,
+			);
+			name = "notes tests";
+			productName = "notes tests";
+			productReference = FED18AC12885C2CD0000D31B /* notes tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		52A9849826F3DD7B003589BE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1250;
+				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
 					52A9849F26F3DD7B003589BE = {
 						CreatedOnToolsVersion = 12.5.1;
+					};
+					FED18AC02885C2CD0000D31B = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = 52A9849F26F3DD7B003589BE;
 					};
 				};
 			};
@@ -414,6 +511,7 @@
 			projectRoot = "";
 			targets = (
 				52A9849F26F3DD7B003589BE /* notes */,
+				FED18AC02885C2CD0000D31B /* notes tests */,
 			);
 		};
 /* End PBXProject section */
@@ -427,6 +525,13 @@
 				FE14E8B02872D83C00554345 /* GoogleService-Info.plist in Resources */,
 				52A9850D26F3E654003589BE /* Localizable.strings in Resources */,
 				52A984A826F3DD7F003589BE /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FED18ABF2885C2CD0000D31B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,7 +601,40 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FED18ABD2885C2CD0000D31B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FED18ACD2885C7010000D31B /* TestNotesCreationViewModel.swift in Sources */,
+				FEDC365E2885D06C007D4F08 /* Weakify.swift in Sources */,
+				FED18AEC2885CCF50000D31B /* NotesDetailsViewModel.swift in Sources */,
+				FED18AE52885CCD10000D31B /* SignInViewModel.swift in Sources */,
+				FED18AE92885CCDE0000D31B /* NotesListViewModel.swift in Sources */,
+				FED18AEE2885CE5E0000D31B /* Assets.swift in Sources */,
+				FED18ADD2885CC790000D31B /* NotesData.xcdatamodeld in Sources */,
+				FED18AD92885CB1C0000D31B /* Note+CoreDataClass.swift in Sources */,
+				FED18AD22885C8EC0000D31B /* NotesDataBaseProtocol.swift in Sources */,
+				FED18AD12885C8DE0000D31B /* LoginAPIProtocol.swift in Sources */,
+				FED18AD02885C8DA0000D31B /* NotesAPIProtocol.swift in Sources */,
+				FED18ACE2885C7B20000D31B /* NotesCreationViewModel.swift in Sources */,
+				FED18AD62885C94B0000D31B /* NoteDTO.swift in Sources */,
+				FEDC365F2885D06E007D4F08 /* KeyHolder.swift in Sources */,
+				FED18AD52885C9490000D31B /* UserDTO.swift in Sources */,
+				FED18AD82885CA9F0000D31B /* NotesDataBaseStub.swift in Sources */,
+				FED18AD42885C9000000D31B /* NotesAPIStub.swift in Sources */,
+				FED18AE72885CCD80000D31B /* SignUpViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FED18AC62885C2CD0000D31B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 52A9849F26F3DD7B003589BE /* notes */;
+			targetProxy = FED18AC52885C2CD0000D31B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		52A9850F26F3E654003589BE /* Localizable.strings */ = {
@@ -673,6 +811,46 @@
 			};
 			name = Release;
 		};
+		FED18AC72885C2CD0000D31B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9JDR28PH3A;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "santaarturio.notes-tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/notes.app/notes";
+			};
+			name = Debug;
+		};
+		FED18AC82885C2CD0000D31B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9JDR28PH3A;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "santaarturio.notes-tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/notes.app/notes";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -690,6 +868,15 @@
 			buildConfigurations = (
 				52A984B026F3DD7F003589BE /* Debug */,
 				52A984B126F3DD7F003589BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FED18AC92885C2CD0000D31B /* Build configuration list for PBXNativeTarget "notes tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FED18AC72885C2CD0000D31B /* Debug */,
+				FED18AC82885C2CD0000D31B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
