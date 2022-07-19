@@ -33,7 +33,7 @@ jobs:
           bundler-cache: true   # Runs 'bundle install' and caches installed gems automatically
           
       - name: Run Tests
-        run: xcodebuild clean test -project "notes.xcodeproj" -scheme "notes" -destination "platform=iOS Simulator,name=iPhone 13,OS=latest"
+        run: xcodebuild clean test -project "notes.xcodeproj" -scheme "notes" -destination "platform=iOS Simulator,name=iPhone 13,OS=15.2"
       - name: Build App
         run: xcodebuild -project "notes.xcodeproj" -scheme "notes" -destination "generic/platform=iOS" -configura
       
