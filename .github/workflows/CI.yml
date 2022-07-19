@@ -35,5 +35,5 @@ jobs:
       - name: Run Tests
         run: xcodebuild clean test -project "notes.xcodeproj" -scheme "notes" -destination "platform=iOS Simulator,name=iPhone 13,OS=latest"
       - name: Build App
-        run: xcodebuild -project "notes.xcodeproj" -scheme "notes" -destination "generic/platform=iOS" -configura
+        run: xcodebuild -project "notes.xcodeproj" -scheme "notes" -destination "generic/platform=iOS" -configuration Release build CODE_SIGNING_ALLOWED=NO
       
