@@ -9,9 +9,9 @@ struct NotesDetailsView: View {
       HStack {
         
         VStack(alignment: .leading) {
+          
           Text(viewModel.title)
             .font(.title)
-          
           Spacer(minLength: 16)
           
           Text(viewModel.text)
