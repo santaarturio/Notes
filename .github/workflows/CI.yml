@@ -15,19 +15,19 @@ jobs:
         with: 
           access_token: ${{ github.token }}
     
-      - name: Git - Checkout
+      - name: Git Checkout
         uses: actions/checkout@v3
         
-      - name: Setup - Ruby & Bundler
+      - name: Setup Ruby & Bundler
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '2.7.6' # Not needed with a .ruby-version file
           bundler-cache: true   # Runs 'bundle install' and caches installed gems automatically
           
-      - name: Build and Test
-        run: xcodebuild clean test -scheme notes -resultBundlePath results -destination "platform=iOS Simulator, name=iPhone 13, OS=latest"
+      - name: Build & Test
+        run: xcodebuild clean test -scheme notes -resultBundlePath results -destination "platform=iOS Simulator,name=iPhone 13,OS=latest"
 
-      - name: Generate - Report
+      - name: Generate Report
         uses: kishikawakatsumi/xcresulttool@v1
         with:
           path: results.xcresult
