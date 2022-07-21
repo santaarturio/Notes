@@ -2,12 +2,11 @@ name: CI
 
 on:
   pull_request:
-    branches: [ "main" ]
+    branches: [ main ]
 
 jobs:
-
-  build:
-    name: Build
+  build_test:
+    name: Build & Test
     runs-on: macos-latest
     
     steps:
@@ -25,27 +24,13 @@ jobs:
           ruby-version: '2.7.6' # Not needed with a .ruby-version file
           bundler-cache: true   # Runs 'bundle install' and caches installed gems automatically
           
-      - name: Build
-        run: xcodebuild build-for-testing -project "notes.xcodeproj" -scheme "notes" -destination "generic/platform=iOS" -configuration Release build CODE_SIGNING_ALLOWED=NO
-        
-      - name: Test
-        run: |
-          device=`xcrun xctrace list devices 2>&1 | grep -oE 'iPhone.*?[^\(]+' | head -1 | awk '{$1=$1;print}' | sed -e "s/ Simulator$//"`
-          xcodebuild test-without-building -project "notes.xcodeproj" -scheme "notes" -destination "platform=iOS Simulator,name=$device,OS=latest"
-      
-  test:
-    name: Test
-    runs-on: macos-latest
-      
-    steps:
-      - uses: actions/checkout@v3
-      - name: Test
-        run: |
-          device=`xcrun xctrace list devices 2>&1 | grep -oE 'iPhone.*?[^\(]+' | head -1 | awk '{$1=$1;print}' | sed -e "s/ Simulator$//"`
-          xcodebuild test -scheme notes -resultBundlePath TestResults -destination "platform=iOS Simulator,name=$device,OS=latest"
+      - name: Build and Test
+        run: xcodebuild clean test -scheme notes -resultBundlePath results -destination "platform=iOS Simulator, name=iPhone 13, OS=latest"
 
-      - uses: kishikawakatsumi/xcresulttool@v1
+      - name: Generate - Report
+        uses: kishikawakatsumi/xcresulttool@v1
         with:
-          path: TestResults.xcresult
+          path: results.xcresult
+          title: Test Results
         if: success() || failure()
         
