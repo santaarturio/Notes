@@ -1,8 +1,9 @@
 name: CI
 
 on:
-  pull_request:
-    branches: [ main ]
+  workflow_dispatch:
+  # pull_request:
+    # branches: [ main ]
 
 jobs:
   build_test:
@@ -14,23 +15,33 @@ jobs:
         uses: styfle/cancel-workflow-action@0.6.0
         with: 
           access_token: ${{ github.token }}
-    
+
       - name: Git Checkout
         uses: actions/checkout@v3
-        
-      - name: Setup Ruby & Bundler
-        uses: ruby/setup-ruby@v1
+    
+      - name: Bootstrap
+        uses: ./.github/actions/bootstrap
+
+      - name: Restore Cache
+        uses: actions/cache@v3
+        id: restored
         with:
-          ruby-version: '2.7.6' # Not needed with a .ruby-version file
-          bundler-cache: true   # Runs 'bundle install' and caches installed gems automatically
+          path: .build
+          key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+          restore-keys: ${{ runner.os }}-spm-
           
-      - name: Build & Test
-        run: xcodebuild clean test -scheme notes -resultBundlePath results -destination "platform=iOS Simulator,name=iPhone 13,OS=latest"
+      - name: Build & Test -- No Cache
+        if: steps.restored.outputs.cache-hit != 'true'
+        run: bundle exec fastlane build_and_test
+
+      - name: Build & Test -- Cached
+        if: steps.restored.outputs.cache-hit == 'true'
+        run: bundle exec fastlane build_and_test skip_package_dependencies_resolution:true
 
       - name: Generate Report
         uses: kishikawakatsumi/xcresulttool@v1
         with:
-          path: results.xcresult
+          path: fastlane/test_output/notes.xcresult
           title: Test Results
         if: success() || failure()
         

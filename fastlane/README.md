@@ -23,6 +23,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 Build an .ipa file for manual distribution (e.g. via diawi)
 
+### ios build_and_test
+
+```sh
+[bundle exec] fastlane ios build_and_test
+```
+
+Build and Test iOS poject
+
 ----
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.
