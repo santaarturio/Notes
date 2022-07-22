@@ -16,6 +16,7 @@
 default_platform(:ios)
 
 platform :ios do
+
   desc "Build an .ipa file for manual distribution (e.g. via diawi)"
   lane :build_diawi do
     build_app(
@@ -24,4 +25,14 @@ platform :ios do
       configuration: "Release"
     )
   end
+
+  desc "Build and Test iOS poject"
+  lane :build_and_test do |options|
+    scan(
+      scheme: "notes",
+      skip_package_dependencies_resolution: options[:skip_package_dependencies_resolution],
+      result_bundle: true
+    )
+  end
+
 end
