@@ -24,11 +24,9 @@ jobs:
 
       - name: Restore Cache
         uses: actions/cache@v3
-        id: restored
         with:
-          path: cached/spm
-          key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
-          restore-keys: ${{ runner.os }}-spm-
+          path: cached
+          key: ${{ runner.os }}-build-and-packages-${{ hashFiles('**/Package.resolved') }}
   
       - name: Build & Test
         run: bundle exec fastlane build_and_test
