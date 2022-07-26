@@ -12,7 +12,7 @@ struct NotesDetailsView: View {
           Text(viewModel.title)
             .font(.title)
           
-          Spacer(minLength: 16)
+            Spacer(minLength: 16.0)
           
           Text(viewModel.text)
             .font(.title3)
