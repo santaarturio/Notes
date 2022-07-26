@@ -73,6 +73,8 @@ DerivedData/
 Generated/
 
 ## Fastlane
-# fastlane
 fastlane/report.xml
 fastlane/test_output
+
+## Cache
+cached/

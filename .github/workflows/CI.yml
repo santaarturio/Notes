@@ -20,23 +20,18 @@ jobs:
         uses: actions/checkout@v3
     
       - name: Bootstrap
-        uses: ./.github/actions/bootstrap
+        uses: ./.github/.actions/bootstrap
 
       - name: Restore Cache
         uses: actions/cache@v3
         id: restored
         with:
-          path: .build
+          path: cached/spm
           key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
           restore-keys: ${{ runner.os }}-spm-
-          
-      - name: Build & Test -- No Cache
-        if: steps.restored.outputs.cache-hit != 'true'
+  
+      - name: Build & Test
         run: bundle exec fastlane build_and_test
-
-      - name: Build & Test -- Cached
-        if: steps.restored.outputs.cache-hit == 'true'
-        run: bundle exec fastlane build_and_test skip_package_dependencies_resolution:true
 
       - name: Generate Report
         uses: kishikawakatsumi/xcresulttool@v1

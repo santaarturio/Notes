@@ -27,11 +27,11 @@ platform :ios do
   end
 
   desc "Build and Test iOS poject"
-  lane :build_and_test do |options|
+  lane :build_and_test do
     ENV['FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT'] = '600'
     scan(
-      device: "iPhone 13 Pro",
-      skip_package_dependencies_resolution: options[:skip_package_dependencies_resolution],
+      device: "iPhone 13",
+      cloned_source_packages_path: "cached/spm",
       result_bundle: true
     )
   end
