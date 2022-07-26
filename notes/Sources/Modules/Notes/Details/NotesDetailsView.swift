@@ -7,7 +7,6 @@ struct NotesDetailsView: View {
   var body: some View {
     ScrollView {
       HStack {
-        
         VStack(alignment: .leading) {
           Text(viewModel.title)
             .font(.title)
@@ -17,7 +16,6 @@ struct NotesDetailsView: View {
           Text(viewModel.text)
             .font(.title3)
         }.padding()
-        
         Spacer()
       }
     }
