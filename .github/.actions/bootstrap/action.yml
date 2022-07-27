@@ -10,3 +10,11 @@ runs:
       with:
         ruby-version: '2.7.6' # Not needed with a .ruby-version file
         bundler-cache: true   # Runs 'bundle install' and caches installed gems automatically
+
+    - name: Restore Cache
+      uses: actions/cache@v3
+      with:
+        path: cached
+        key: ${{ runner.os }}-build-and-packages-${{ hashFiles('**/Package.resolved') }}
+        restore-keys: |
+          ${{ runner.os }}-build-and-packages-
