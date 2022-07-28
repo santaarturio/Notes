@@ -1,4 +1,3 @@
-
 public func weakify<Value: AnyObject, Result>(
   _ function: @escaping (Value) -> () -> Result,
   object: Value

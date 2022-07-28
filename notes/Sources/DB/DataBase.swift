@@ -1,4 +1,3 @@
-
 enum DataBaseManager {
   static let notes = CoreDataManager(containerName: "NotesData")
 }

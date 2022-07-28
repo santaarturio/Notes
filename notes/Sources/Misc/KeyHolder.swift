@@ -12,9 +12,9 @@ final class KeyHolder: ObservableObject {
   
   // MARK: Get
   func get(_ key: KeyType) -> String? {
-    let keychainQuery: [CFString : Any] = [
-      kSecClass : kSecClassGenericPassword,
-      kSecAttrService : key.rawValue,
+    let keychainQuery: [CFString: Any] = [
+      kSecClass: kSecClassGenericPassword,
+      kSecAttrService: key.rawValue,
       kSecReturnData: kCFBooleanTrue as Any,
       kSecMatchLimitOne: kSecMatchLimitOne
     ]
@@ -31,7 +31,7 @@ final class KeyHolder: ObservableObject {
   func update(_ value: String, for key: KeyType) {
     guard let data = value.data(using: .utf8) else { return }
     
-    let keychainQuery: [CFString : Any] = [
+    let keychainQuery: [CFString: Any] = [
       kSecClass: kSecClassGenericPassword,
       kSecAttrService: key.rawValue,
       kSecValueData: data
@@ -46,7 +46,7 @@ final class KeyHolder: ObservableObject {
   }
   
   // MARK: Flush
-  func flush()  {
+  func flush() {
     let secItemClasses =  [kSecClassGenericPassword]
     for itemClass in secItemClasses {
       let spec: NSDictionary = [kSecClass: itemClass]

@@ -437,6 +437,7 @@
 			buildConfigurationList = 52A984AF26F3DD7F003589BE /* Build configuration list for PBXNativeTarget "notes" */;
 			buildPhases = (
 				52A9850A26F3E540003589BE /* SwiftGen */,
+				FEEA2B5C2892BFA200EBFFEB /* SwiftLint */,
 				52A9849C26F3DD7B003589BE /* Sources */,
 				52A9849D26F3DD7B003589BE /* Frameworks */,
 				52A9849E26F3DD7B003589BE /* Resources */,
@@ -555,6 +556,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Adds support for Apple Silicon brew directory\nexport PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftgen; then\n    swiftgen config run --config \"$SRCROOT/swiftgen.yml\"\nelse\n  echo \"warning: SwiftGen not installed\"\nfi\n\n";
+		};
+		FEEA2B5C2892BFA200EBFFEB /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Adds support for Apple Silicon brew directory\nexport PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

@@ -11,6 +11,19 @@ runs:
         ruby-version: '2.7.6' # Not needed with a .ruby-version file
         bundler-cache: true   # Runs 'bundle install' and caches installed gems automatically
 
+    - name: Restore Mint Cache
+      uses: actions/cache@v3
+      with:
+        path: /usr/local/lib/mint
+        key: ${{ runner.os }}-mint-${{ hashFiles('**/Mintfile') }}
+        restore-keys: |
+          ${{ runner.os }}-mint-
+
+    - name: Mint Bootstrap
+      run: |
+        brew upgrade mint || brew install mint || true
+        mint bootstrap
+
     - name: Restore Cache
       uses: actions/cache@v3
       with:

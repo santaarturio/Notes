@@ -127,7 +127,6 @@ private extension SignUpView {
   }
 }
 
-
 struct SignUpScreen_Previews: PreviewProvider {
   static var previews: some View {
     SignUpView(viewModel: SignUpViewModel(api: LoginAPI()))

@@ -36,7 +36,9 @@ final class NotesDataBase: NSObject, NotesDataBaseProtocol {
       .viewContext
       .perform { [unowned self] in
         do {
-          let note = try coreDataManager.viewContext.fetch(fetchRequest).first ?? Note(context: coreDataManager.viewContext)
+          let note = try coreDataManager
+                .viewContext
+                .fetch(fetchRequest).first ?? Note(context: coreDataManager.viewContext)
           configurationsHandler(note)
         } catch {
           print("Error occured while updating notes: \(error.localizedDescription)")
