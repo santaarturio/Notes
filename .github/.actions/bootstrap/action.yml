@@ -14,7 +14,7 @@ runs:
     - name: Restore Cache
       uses: actions/cache@v3
       with:
-        path: cached
-        key: ${{ runner.os }}-build-and-packages-${{ hashFiles('**/Package.resolved') }}
+        path: ~/Library/Developer/Xcode/DerivedData/notes*/SourcePackages/
+        key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
         restore-keys: |
-          ${{ runner.os }}-build-and-packages-
+          ${{ runner.os }}-spm-
