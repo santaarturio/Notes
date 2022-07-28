@@ -20,6 +20,7 @@ runs:
           ${{ runner.os }}-mint-
 
     - name: Mint Bootstrap
+      shell: bash
       run: |
         brew upgrade mint || brew install mint || true
         mint bootstrap
