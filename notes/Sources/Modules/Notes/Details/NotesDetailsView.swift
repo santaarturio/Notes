@@ -12,7 +12,7 @@ struct NotesDetailsView: View {
           Text(viewModel.title)
             .font(.title)
           
-          Spacer(minLength: 16)
+            Spacer(minLength: 16.0)
           
           Text(viewModel.text)
             .font(.title3)
@@ -27,7 +27,9 @@ struct NotesDetailsView: View {
 struct NotesDetailsView_Previews: PreviewProvider {
   static var previews: some View {
     NotesDetailsView(
-      viewModel: NotesDetailsViewModel(note: .init())
+      viewModel: NotesDetailsViewModel(
+        note: .init()
+      )
     )
   }
 }
