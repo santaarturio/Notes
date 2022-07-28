@@ -14,7 +14,7 @@ runs:
     - name: Restore Mint Cache
       uses: actions/cache@v3
       with:
-        path: /usr/local/lib/mint
+        path: ~/.mint #/usr/local/Cellar/mint
         key: ${{ runner.os }}-mint-${{ hashFiles('**/Mintfile') }}
         restore-keys: |
           ${{ runner.os }}-mint-
