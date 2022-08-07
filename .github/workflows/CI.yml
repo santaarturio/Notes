@@ -21,6 +21,9 @@ jobs:
     
       - name: Bootstrap
         uses: ./.github/.actions/bootstrap
+
+      - name: Lint
+        run: bundle exec fastlane lint
   
       - name: Build & Test
         run: bundle exec fastlane build_and_test

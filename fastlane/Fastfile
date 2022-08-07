@@ -28,6 +28,15 @@ platform :ios do
     )
   end
 
+  desc "Run SwiftLint"
+  lane :lint do
+    swiftlint(
+      strict: true,
+      reporter: "emoji",
+      raise_if_swiftlint_error: true
+    )
+  end
+
   desc "Build and Test iOS poject"
   lane :build_and_test do
     scan(
