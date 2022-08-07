@@ -33,6 +33,7 @@ platform :ios do
     swiftlint(
       strict: true,
       reporter: "emoji",
+      executable: "~/.mint/*/swiftlint",
       raise_if_swiftlint_error: true
     )
   end
