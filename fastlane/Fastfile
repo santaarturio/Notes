@@ -30,13 +30,10 @@ platform :ios do
 
   desc "Run SwiftLint"
   lane :lint do
-    sh("which mint")
-    sh("which swiftlint")
-    sh("swiftlint --version")
     swiftlint(
       strict: true,
       reporter: "emoji",
-      executable: "~/swiftlint",
+      executable: "/usr/local/bin/swiftlint",
       raise_if_swiftlint_error: true
     )
   end
